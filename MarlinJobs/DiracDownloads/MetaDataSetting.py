@@ -4,13 +4,13 @@ from DIRAC.Core.Base import Script
 Script.parseCommandLine()
 from DIRAC.Resources.Catalog.FileCatalogClient import FileCatalogClient
 
-evtType = 'Photon'
-jobDescription = 'HighEnergyPhotons'
-detNumber = 38
-recoStage = 68
+evtType = 'Z_uds'
+jobDescription = 'OptimisationStudies'
+detNumbers = [38, 39, 40, 41, 42, 49, 50, 51, 60, 61, 62, 63]
+recoStages = [69, 70, 71, 72, 73, 74, 75, 76]
 fileType = 'Rec'
 
-energies = [1000,1500]
+energies = [91,200,360,500]
 
 fc = FileCatalogClient()
 for energy in energies:
