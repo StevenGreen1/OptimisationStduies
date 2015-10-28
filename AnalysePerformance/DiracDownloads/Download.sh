@@ -5,7 +5,8 @@ source ../env.sh
 evtType=Z_uds
 jobDescription=OptimisationStudies
 
-for detModel in 38 {45..77}
+#for detModel in {49..77}
+for detModel in {39..43}
 do
     for recoStage in {69..76}
     do
