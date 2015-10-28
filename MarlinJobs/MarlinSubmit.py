@@ -20,7 +20,7 @@ eventsToSimulate = [ { 'EventType': "Z_uds", 'Energies': [91, 200, 360, 500] } ]
 
 baseXmlFile = 'TemplateRepository/MarlinSteeringFileTemplate_Jets_1.xml'
 # Notes: 
-# Turned off the slcio outpuf processor to speed up job processing in xml file.
+# Turned off the slcio output processor to speed up job processing in xml file.
 
 pandoraSettingsFiles = {}
 pandoraSettingsFiles['Default'] = 'PandoraSettings/PandoraSettingsDefault.xml' 
@@ -77,7 +77,7 @@ for eventSelection in eventsToSimulate:
 
             outputFiles = []
             outputFiles.append('MarlinReco_' + slcioFileNoPath[:-6] + '_Default.root')
-            outputFiles.append('MarlinReco_' + slcioFileNoPath[:-6] + '.slcio')
+            #outputFiles.append('MarlinReco_' + slcioFileNoPath[:-6] + '.slcio') # Not saving the output collections to speed up processing.
             if eventType == 'Z_uds':
                 outputFiles.append('MarlinReco_' + slcioFileNoPath[:-6] + '_Muon.root')
                 outputFiles.append('MarlinReco_' + slcioFileNoPath[:-6] + '_PerfectPhoton.root')

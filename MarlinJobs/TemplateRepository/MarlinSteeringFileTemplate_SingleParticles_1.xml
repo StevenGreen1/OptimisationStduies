@@ -51,7 +51,7 @@
      <processor name="MyMarlinPandoraDefault"/>
      <processor name="MyPfoAnalysisDefault"/>
 
-     <processor name="MyLCIOOutputProcessor"/>
+     <!--processor name="MyLCIOOutputProcessor"/-->
      <!--processor name="DSTOutput"/-->
    </execute>
 

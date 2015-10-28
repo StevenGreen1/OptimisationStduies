@@ -1,9 +1,12 @@
 #!/bin/bash
 
-for detModel in 38 39 40 41 42 49 50 51 60 61 62
+# Done : 38-77 excluding 44
+
+for detModel in 43
 do
-   for recoVar in {69..76}
+   for recoVar in {71..76}
     do
-         python MarlinSubmit.py ${detModel} ${recoVar}
+         python MarlinSubmitHCalCellSize.py ${detModel} ${recoVar}
     done
 done
+
