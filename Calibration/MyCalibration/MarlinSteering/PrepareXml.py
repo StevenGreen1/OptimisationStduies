@@ -31,19 +31,8 @@ pandoraSettingsDefault = sys.argv[6]
 
 jobName = energy + '_GeV_' + particle
 
-particleNumber=''
-
-if (particle == 'Photon'):
-    particleNumber = '22'
-
-elif (particle == 'KaonL'):
-    particleNumber = '130'
-
-elif (particle == 'Muon'):
-    particleNumber = '13'
-
 slcioFormat = re.sub('ENERGY',energy,slcioFormat)
-slcioFormat = re.sub('PARTICLE',particleNumber,slcioFormat)
+slcioFormat = re.sub('PARTICLE',particle,slcioFormat)
 
 #===========================
 # Calibration Numbers

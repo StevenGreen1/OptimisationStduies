@@ -33,7 +33,7 @@ PandoraAnalysisPath="/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraA
 #PandoraAnalysisPath="/usera/sg568/ilcsoft_v01_17_07/PandoraAnalysis/bin/"
 
 hadronicScaleSettingPandora="CSM" #TEM or CSM
-sourceFile="/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/init_ilcsoft_OptimisationStduies.sh"
+sourceFile="/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/init_ilcsoft_OptimisationStudies.sh"
 useCondor="Yes"
 maxNumCondorJobs=300
 
@@ -281,7 +281,7 @@ done
 # Generate Marlin steering files with initial guesses
 
 cd ${XmlGeneration}
-python PrepareXml.py "KaonL" ${kaonLEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi}
+python PrepareXml.py "Kaon0L" ${kaonLEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi}
 
 # Generate root files
 
@@ -320,7 +320,7 @@ CheckHCalEndCapDigi=$(echo "$Fractional_HCal_EndCap_Mean >= ${digitisationAccura
 while [[ $CheckHCalBarrelDigi -gt 0 ]] || [[ $CheckHCalEndCapDigi -gt 0 ]]
 do
     cd ${XmlGeneration}
-    python PrepareXml.py "KaonL" ${kaonLEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi}
+    python PrepareXml.py "Kaon0L" ${kaonLEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi}
 
     cd ${RootFileGeneration}
     Runfile="MarlinRunFile_${kaonLEnergyCalibration}_GeV_KaonL.txt"
@@ -475,7 +475,7 @@ done
 
 # Generate Xml Files With Initial Guesses
 cd ${XmlGeneration}
-python PrepareXml.py "KaonL" ${kaonLEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi}
+python PrepareXml.py "Kaon0L" ${kaonLEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi}
 
 # Generate Root Files
 cd ${RootFileGeneration}
@@ -547,7 +547,7 @@ fi
 while [[ $CheckOne -gt 0 ]] || [[ $CheckTwo -gt 0 ]] || [[ $CheckThree -gt 0 ]] || [[ $CheckFour -gt 0 ]] 
 do
     cd ${XmlGeneration}
-    python PrepareXml.py "KaonL" ${kaonLEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi} 
+    python PrepareXml.py "Kaon0L" ${kaonLEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi} 
  
     cd ${RootFileGeneration}
     Runfile="MarlinRunFile_${kaonLEnergyCalibration}_GeV_KaonL.txt"
