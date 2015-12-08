@@ -4,16 +4,21 @@ from DIRAC.Core.Base import Script
 Script.parseCommandLine()
 from DIRAC.Resources.Catalog.FileCatalogClient import FileCatalogClient
 
-evtType = 'Z_uds'
-jobDescription = 'JERDetailed'
-detNumber = 38
+jobDescription = 'OptimisationStudies'
 fileType = 'Sim'
 
-#energies = [91,100,110,120,130,140,150,160,170,180,190,200,220,240,260,280,300,350,400,450,500]
-energies = [30,40,50,60,70,80]
+detModelList = [84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95]
 
-fc = FileCatalogClient()
-for energy in energies:
-    path = '/ilc/user/s/sgreen/JERDetailed/MokkaJobs/Detector_Model_' + str(detNumber) + '/' + evtType + '/' + str(energy) + 'GeV' 
-    pathdict = {'path':path, 'meta':{'Energy':energy, 'EvtType':evtType, 'JobDescription':jobDescription, 'MokkaJobNumber':detNumber, 'Type':fileType}}
-    res = fc.setMetadata(pathdict['path'], pathdict['meta'])
+eventsToSimulate = [ { 'EventType': 'Z_uds', 'Energies': [91, 200, 360, 500] },
+                     { 'EventType': 'Photon', 'Energies': [10] },
+                     { 'EventType': 'Muon', 'Energies': [10] },
+                     { 'EventType': 'Kaon0L', 'Energies': [20] } ]
+
+for detModel in detModelList:
+    for eventSelection in eventsToSimulate:
+        eventType = eventSelection['EventType']
+        fc = FileCatalogClient()
+        for energy in eventSelection['Energies']:
+            path = '/ilc/user/s/sgreen/' + jobDescription + '/MokkaJobs/Detector_Model_' + str(detModel) + '/' + eventType + '/' + str(energy) + 'GeV' 
+            pathdict = {'path':path, 'meta':{'Energy':energy, 'EvtType':eventType, 'JobDescription':jobDescription, 'MokkaJobNumber':detModel, 'Type':fileType}}
+            res = fc.setMetadata(pathdict['path'], pathdict['meta'])
