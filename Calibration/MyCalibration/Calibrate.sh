@@ -45,25 +45,25 @@ pandoraPFAAccuracy=0.005                        # Fractional accuracy targeted b
 #==============================================
 # PandoraPFA Point To Calibration
 #===================
-kaonLEnergyCalibration=20
+kaon0LEnergyCalibration=20
 photonEnergyCalibration=10
 
 #===================
-# KaonL Points for non linearity corrections if implemented.
+# Kaon0L Points for non linearity corrections if implemented.
 #===================
-kaonLEnergies[0]=1
-kaonLEnergies[1]=2
-kaonLEnergies[2]=5
-kaonLEnergies[3]=10
-kaonLEnergies[4]=20
-kaonLEnergies[5]=50
-kaonLEnergies[6]=100
+kaon0LEnergies[0]=1
+kaon0LEnergies[1]=2
+kaon0LEnergies[2]=5
+kaon0LEnergies[3]=10
+kaon0LEnergies[4]=20
+kaon0LEnergies[5]=50
+kaon0LEnergies[6]=100
 
 #===================
 # Kaon Kinetic Energy - Used for calibration do not change
 #===================
-kaonLMass=0.497614
-kaonLKineticEnergyCalibration=$(echo "scale=10; ${kaonLEnergyCalibration} -${kaonLMass}" | bc)
+kaon0LMass=0.497614
+kaon0LKineticEnergyCalibration=$(echo "scale=10; ${kaon0LEnergyCalibration} -${kaon0LMass}" | bc)
 
 #===================
 # MIP definition 
@@ -132,7 +132,7 @@ MarlinXml="${path}/MarlinXml/"
 RootFileGeneration="${path}/MarlinSteering/Condor/"
 RootFiles="${path}/RootFiles/"
 
-kaonLPath="${path}/RootFiles/ILD_o1_v06_${kaonLEnergyCalibration}_GeV_KaonL_SN_*.root"
+kaon0LPath="${path}/RootFiles/ILD_o1_v06_${kaon0LEnergyCalibration}_GeV_Kaon0L_SN_*.root"
 photonPath="${path}/RootFiles/ILD_o1_v06_${photonEnergyCalibration}_GeV_Photon_SN_*.root"
 muonPath="${path}/RootFiles/ILD_o1_v06_${muonEnergyCalibration}_GeV_Muon_SN_*.root"
 
@@ -281,12 +281,12 @@ done
 # Generate Marlin steering files with initial guesses
 
 cd ${XmlGeneration}
-python PrepareXml.py "Kaon0L" ${kaonLEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi}
+python PrepareXml.py "Kaon0L" ${kaon0LEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi}
 
 # Generate root files
 
 cd ${RootFileGeneration}
-Runfile="MarlinRunFile_${kaonLEnergyCalibration}_GeV_KaonL.txt"
+Runfile="MarlinRunFile_${kaon0LEnergyCalibration}_GeV_Kaon0L.txt"
 
 if [ "$useCondor" = "Yes" ];then
     ./CondorSupervisor.sh ${Runfile} ${maxNumCondorJobs} 
@@ -299,18 +299,18 @@ else
 fi
 
 # Find and update CalibrHCALBarrel and CalibrHCALEndCap
-${PandoraAnalysisPath}HCalDigitisation_ContainedEvents -a "${kaonLPath}" -b "${kaonLEnergyCalibration}" -c "${digitisationAccuracy}" -d "${outputPath}" -e "90" -f "${numberHCalLayers}" -g "Barrel" -i "0.2" -j "0.6"
-${PandoraAnalysisPath}HCalDigitisation_ContainedEvents -a "${kaonLPath}" -b "${kaonLEnergyCalibration}" -c "${digitisationAccuracy}" -d "${outputPath}" -e "90" -f "${numberHCalLayers}" -g "EndCap" -i "0.8" -j "0.9"
+${PandoraAnalysisPath}HCalDigitisation_ContainedEvents -a "${kaon0LPath}" -b "${kaon0LEnergyCalibration}" -c "${digitisationAccuracy}" -d "${outputPath}" -e "90" -f "${numberHCalLayers}" -g "Barrel" -i "0.2" -j "0.6"
+${PandoraAnalysisPath}HCalDigitisation_ContainedEvents -a "${kaon0LPath}" -b "${kaon0LEnergyCalibration}" -c "${digitisationAccuracy}" -d "${outputPath}" -e "90" -f "${numberHCalLayers}" -g "EndCap" -i "0.8" -j "0.9"
 
 cd ${PythonReadScripts}
-CalibrHCALBarrel=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaonLKineticEnergyCalibration} ${CalibrHCALBarrel} "Barrel" "Calibration_Constant")
-CalibrHCALEndCap=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaonLKineticEnergyCalibration} ${CalibrHCALEndCap} "EndCap" "Calibration_Constant")
+CalibrHCALBarrel=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaon0LKineticEnergyCalibration} ${CalibrHCALBarrel} "Barrel" "Calibration_Constant")
+CalibrHCALEndCap=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaon0LKineticEnergyCalibration} ${CalibrHCALEndCap} "EndCap" "Calibration_Constant")
 
-HCal_Barrel_Mean=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaonLKineticEnergyCalibration} ${CalibrHCALBarrel} "Barrel" "Mean")
-HCal_EndCap_Mean=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaonLKineticEnergyCalibration} ${CalibrHCALEndCap} "EndCap" "Mean")
+HCal_Barrel_Mean=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaon0LKineticEnergyCalibration} ${CalibrHCALBarrel} "Barrel" "Mean")
+HCal_EndCap_Mean=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaon0LKineticEnergyCalibration} ${CalibrHCALEndCap} "EndCap" "Mean")
 
-Fractional_HCal_Barrel_Mean=$(echo "scale=10; sqrt((${kaonLKineticEnergyCalibration} -${HCal_Barrel_Mean})^2)/${kaonLKineticEnergyCalibration}" | bc)
-Fractional_HCal_EndCap_Mean=$(echo "scale=10; sqrt((${kaonLKineticEnergyCalibration} -${HCal_EndCap_Mean})^2)/${kaonLKineticEnergyCalibration}" | bc)
+Fractional_HCal_Barrel_Mean=$(echo "scale=10; sqrt((${kaon0LKineticEnergyCalibration} -${HCal_Barrel_Mean})^2)/${kaon0LKineticEnergyCalibration}" | bc)
+Fractional_HCal_EndCap_Mean=$(echo "scale=10; sqrt((${kaon0LKineticEnergyCalibration} -${HCal_EndCap_Mean})^2)/${kaon0LKineticEnergyCalibration}" | bc)
 
 # Loop until CalibrHCALBarrel and CalibrHCALEndCap acceptable
 CheckHCalBarrelDigi=$(echo "$Fractional_HCal_Barrel_Mean >= ${digitisationAccuracy}" | bc -l)
@@ -320,10 +320,10 @@ CheckHCalEndCapDigi=$(echo "$Fractional_HCal_EndCap_Mean >= ${digitisationAccura
 while [[ $CheckHCalBarrelDigi -gt 0 ]] || [[ $CheckHCalEndCapDigi -gt 0 ]]
 do
     cd ${XmlGeneration}
-    python PrepareXml.py "Kaon0L" ${kaonLEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi}
+    python PrepareXml.py "Kaon0L" ${kaon0LEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi}
 
     cd ${RootFileGeneration}
-    Runfile="MarlinRunFile_${kaonLEnergyCalibration}_GeV_KaonL.txt"
+    Runfile="MarlinRunFile_${kaon0LEnergyCalibration}_GeV_Kaon0L.txt"
 
     if [ "$useCondor" = "Yes" ];then
         ./CondorSupervisor.sh ${Runfile} ${maxNumCondorJobs}
@@ -335,18 +335,18 @@ do
         echo "Please select whether you wish to use condor."
     fi
 
-    ${PandoraAnalysisPath}HCalDigitisation_ContainedEvents -a "${kaonLPath}" -b "${kaonLEnergyCalibration}" -c "${digitisationAccuracy}" -d "${outputPath}" -e "90" -f "${numberHCalLayers}" -g "Barrel" -i "0.2" -j "0.6"
-    ${PandoraAnalysisPath}HCalDigitisation_ContainedEvents -a "${kaonLPath}" -b "${kaonLEnergyCalibration}" -c "${digitisationAccuracy}" -d "${outputPath}" -e "90" -f "${numberHCalLayers}" -g "EndCap" -i "0.8" -j "0.9"
+    ${PandoraAnalysisPath}HCalDigitisation_ContainedEvents -a "${kaon0LPath}" -b "${kaon0LEnergyCalibration}" -c "${digitisationAccuracy}" -d "${outputPath}" -e "90" -f "${numberHCalLayers}" -g "Barrel" -i "0.2" -j "0.6"
+    ${PandoraAnalysisPath}HCalDigitisation_ContainedEvents -a "${kaon0LPath}" -b "${kaon0LEnergyCalibration}" -c "${digitisationAccuracy}" -d "${outputPath}" -e "90" -f "${numberHCalLayers}" -g "EndCap" -i "0.8" -j "0.9"
 
     cd ${PythonReadScripts}
-    CalibrHCALBarrel=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaonLKineticEnergyCalibration} ${CalibrHCALBarrel} "Barrel" "Calibration_Constant")
-    CalibrHCALEndCap=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaonLKineticEnergyCalibration} ${CalibrHCALEndCap} "EndCap" "Calibration_Constant")
+    CalibrHCALBarrel=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaon0LKineticEnergyCalibration} ${CalibrHCALBarrel} "Barrel" "Calibration_Constant")
+    CalibrHCALEndCap=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaon0LKineticEnergyCalibration} ${CalibrHCALEndCap} "EndCap" "Calibration_Constant")
 
-    HCal_Barrel_Mean=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaonLKineticEnergyCalibration} ${CalibrHCALBarrel} "Barrel" "Mean")
-    HCal_EndCap_Mean=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaonLKineticEnergyCalibration} ${CalibrHCALEndCap} "EndCap" "Mean")
+    HCal_Barrel_Mean=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaon0LKineticEnergyCalibration} ${CalibrHCALBarrel} "Barrel" "Mean")
+    HCal_EndCap_Mean=$(python HCal_Digi_Extract.py ${calibrationFile} ${kaon0LKineticEnergyCalibration} ${CalibrHCALEndCap} "EndCap" "Mean")
 
-    Fractional_HCal_Barrel_Mean=$(echo "scale=10; sqrt( (${kaonLKineticEnergyCalibration} -${HCal_Barrel_Mean})^2)/${kaonLKineticEnergyCalibration}" | bc)
-    Fractional_HCal_EndCap_Mean=$(echo "scale=10; sqrt( (${kaonLKineticEnergyCalibration} -${HCal_EndCap_Mean})^2)/${kaonLKineticEnergyCalibration}" | bc)
+    Fractional_HCal_Barrel_Mean=$(echo "scale=10; sqrt( (${kaon0LKineticEnergyCalibration} -${HCal_Barrel_Mean})^2)/${kaon0LKineticEnergyCalibration}" | bc)
+    Fractional_HCal_EndCap_Mean=$(echo "scale=10; sqrt( (${kaon0LKineticEnergyCalibration} -${HCal_EndCap_Mean})^2)/${kaon0LKineticEnergyCalibration}" | bc)
 
     CheckHCalBarrelDigi=$(echo "$Fractional_HCal_Barrel_Mean >= ${digitisationAccuracy}" | bc -l)
     CheckHCalEndCapDigi=$(echo "$Fractional_HCal_EndCap_Mean >= ${digitisationAccuracy}" | bc -l)
@@ -370,7 +370,7 @@ else
     echo "Please select whether you wish to use condor."
 fi
 
-${PandoraAnalysisPath}HCalDigitisation_DirectionCorrectionDistribution -a "${kaonLPath}" -b "${kaonLEnergyCalibration}" -c "${outputPath}"
+${PandoraAnalysisPath}HCalDigitisation_DirectionCorrectionDistribution -a "${kaon0LPath}" -b "${kaon0LEnergyCalibration}" -c "${outputPath}"
 ${PandoraAnalysisPath}SimCaloHitEnergyDistribution -a "${muonPath}" -b "${muonEnergyCalibration}" -c "${outputPath}"
 
 cd ${PythonReadScripts}
@@ -381,9 +381,9 @@ Absorber_Scintillator_Ratio=$(python HCal_Ring_Gear_Information.py ${calibration
 MIP_Peak_Ratio=$(python HCal_Ring_Digi_Extract.py ${calibrationFile} ${muonEnergyCalibration})
 
 # Ratio is Dir_Corr_Ec/Dir_Corr_Ring
-Direction_Correction_Ratio=$(python HCal_Direction_Corrections_Extract.py ${calibrationFile} ${kaonLEnergyCalibration})
+Direction_Correction_Ratio=$(python HCal_Direction_Corrections_Extract.py ${calibrationFile} ${kaon0LEnergyCalibration})
 
-CalibrHCALOther=$(echo "scale=10; " ${Direction_Correction_Ratio}*${MIP_Peak_Ratio}*${Absorber_Scintillator_Ratio}*${CalibrHCALEndCap}*${kaonLKineticEnergyCalibration}/${HCal_EndCap_Mean}| bc)
+CalibrHCALOther=$(echo "scale=10; " ${Direction_Correction_Ratio}*${MIP_Peak_Ratio}*${Absorber_Scintillator_Ratio}*${CalibrHCALEndCap}*${kaon0LKineticEnergyCalibration}/${HCal_EndCap_Mean}| bc)
 
 echo "_____________________________________________________________________________________" >> ${calibrationFile}
 echo "CalibrHCALOther                                     : ${CalibrHCALOther} " >> ${calibrationFile}
@@ -470,16 +470,16 @@ do
 done
 
 #===============================================#
-#      Hadronic Energy Scale (KaonL Events)     #
+#      Hadronic Energy Scale (Kaon0L Events)     #
 #===============================================#
 
 # Generate Xml Files With Initial Guesses
 cd ${XmlGeneration}
-python PrepareXml.py "Kaon0L" ${kaonLEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi}
+python PrepareXml.py "Kaon0L" ${kaon0LEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi}
 
 # Generate Root Files
 cd ${RootFileGeneration}
-Runfile="MarlinRunFile_${kaonLEnergyCalibration}_GeV_KaonL.txt"
+Runfile="MarlinRunFile_${kaon0LEnergyCalibration}_GeV_Kaon0L.txt"
 
 if [ "$useCondor" = "Yes" ];then
     ./CondorSupervisor.sh ${Runfile} ${maxNumCondorJobs} 
@@ -490,16 +490,16 @@ else
 fi
 
 # HCalToHad and ECalToHad Calibration 
-#echo "${kaonLEnergyCalibration}"
-#echo "${kaonLPath}"
+#echo "${kaon0LEnergyCalibration}"
+#echo "${kaon0LPath}"
 #echo "${numberHCalLayers}"
 #echo "${pandoraPFAAccuracy}"
 #echo "${outputPath}" 
 
 if [ "$hadronicScaleSettingPandora" = "CSM" ];then
-    ${PandoraAnalysisPath}PandoraPFACalibrate_HadronicScale_ChiSquareMethod -a "${kaonLPath}" -b "${kaonLEnergyCalibration}" -c "${pandoraPFAAccuracy}" -d "${outputPath}" -e "${numberHCalLayers}" 
+    ${PandoraAnalysisPath}PandoraPFACalibrate_HadronicScale_ChiSquareMethod -a "${kaon0LPath}" -b "${kaon0LEnergyCalibration}" -c "${pandoraPFAAccuracy}" -d "${outputPath}" -e "${numberHCalLayers}" 
 elif [ "$hadronicScaleSettingPandora" = "TEM" ];then
-    ${PandoraAnalysisPath}PandoraPFACalibrate_HadronicScale_TotalEnergyMethod -a "${kaonLPath}" -b "${kaonLEnergyCalibration}" -c "${pandoraPFAAccuracy}" -d "${outputPath}" -e "90" -f "${numberHCalLayers}" 
+    ${PandoraAnalysisPath}PandoraPFACalibrate_HadronicScale_TotalEnergyMethod -a "${kaon0LPath}" -b "${kaon0LEnergyCalibration}" -c "${pandoraPFAAccuracy}" -d "${outputPath}" -e "90" -f "${numberHCalLayers}" 
 else
     echo "Select a calibration method."
 fi
@@ -507,11 +507,11 @@ fi
 # Update HCTH and ECTH
 cd ${PythonReadScripts}
 
-HCalToHad=$(python Had_Extract.py ${calibrationFile} ${kaonLEnergyCalibration} "HCTH" ${HCalToHad} "Calibration_Constant" ${hadronicScaleSettingPandora}) 
+HCalToHad=$(python Had_Extract.py ${calibrationFile} ${kaon0LEnergyCalibration} "HCTH" ${HCalToHad} "Calibration_Constant" ${hadronicScaleSettingPandora}) 
 HCalToEm=${HCalToHad}
-ECalToHad=$(python Had_Extract.py ${calibrationFile} ${kaonLEnergyCalibration} "ECTH" ${ECalToHad} "Calibration_Constant" ${hadronicScaleSettingPandora}) 
-HCalToHad_Fom=$(python Had_Extract.py ${calibrationFile} ${kaonLEnergyCalibration} "HCTH" ${HCalToHad} "FOM" ${hadronicScaleSettingPandora}) 
-ECalToHad_Fom=$(python Had_Extract.py ${calibrationFile} ${kaonLEnergyCalibration} "ECTH" ${ECalToHad} "FOM" ${hadronicScaleSettingPandora}) 
+ECalToHad=$(python Had_Extract.py ${calibrationFile} ${kaon0LEnergyCalibration} "ECTH" ${ECalToHad} "Calibration_Constant" ${hadronicScaleSettingPandora}) 
+HCalToHad_Fom=$(python Had_Extract.py ${calibrationFile} ${kaon0LEnergyCalibration} "HCTH" ${HCalToHad} "FOM" ${hadronicScaleSettingPandora}) 
+ECalToHad_Fom=$(python Had_Extract.py ${calibrationFile} ${kaon0LEnergyCalibration} "ECTH" ${ECalToHad} "FOM" ${hadronicScaleSettingPandora}) 
 
 # Target Limits on recostruction
 UpperLimit=$(echo "1 + ${pandoraPFAAccuracy}" | bc)
@@ -520,10 +520,10 @@ LowerLimit=$(echo "1 - ${pandoraPFAAccuracy}" | bc)
 # Limits on reconstruction
 
 if [ "$hadronicScaleSettingPandora" = "CSM" ];then
-    HCalToHad_UL=$(echo "${kaonLKineticEnergyCalibration}*${UpperLimit}" | bc)
-    HCalToHad_LL=$(echo "${kaonLKineticEnergyCalibration}*${LowerLimit}" | bc)
-    ECalToHad_UL=$(echo "${kaonLKineticEnergyCalibration}*${UpperLimit}" | bc)
-    ECalToHad_LL=$(echo "${kaonLKineticEnergyCalibration}*${LowerLimit}" | bc)
+    HCalToHad_UL=$(echo "${kaon0LKineticEnergyCalibration}*${UpperLimit}" | bc)
+    HCalToHad_LL=$(echo "${kaon0LKineticEnergyCalibration}*${LowerLimit}" | bc)
+    ECalToHad_UL=$(echo "${kaon0LKineticEnergyCalibration}*${UpperLimit}" | bc)
+    ECalToHad_LL=$(echo "${kaon0LKineticEnergyCalibration}*${LowerLimit}" | bc)
 
     CheckOne=$(echo "$HCalToHad_Fom >= $HCalToHad_UL" | bc -l)
     CheckTwo=$(echo "$HCalToHad_Fom <= $HCalToHad_LL" | bc -l)
@@ -547,10 +547,10 @@ fi
 while [[ $CheckOne -gt 0 ]] || [[ $CheckTwo -gt 0 ]] || [[ $CheckThree -gt 0 ]] || [[ $CheckFour -gt 0 ]] 
 do
     cd ${XmlGeneration}
-    python PrepareXml.py "Kaon0L" ${kaonLEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi} 
+    python PrepareXml.py "Kaon0L" ${kaon0LEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${ECalMIPMPV} ${HCalMIPMPV} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${ecalRealisticDigi} 
  
     cd ${RootFileGeneration}
-    Runfile="MarlinRunFile_${kaonLEnergyCalibration}_GeV_KaonL.txt"
+    Runfile="MarlinRunFile_${kaon0LEnergyCalibration}_GeV_Kaon0L.txt"
 
     if [ "$useCondor" = "Yes" ];then
         ./CondorSupervisor.sh ${Runfile} ${maxNumCondorJobs} 
@@ -561,25 +561,25 @@ do
     fi
 
     if [ "$hadronicScaleSettingPandora" = "CSM" ];then
-        ${PandoraAnalysisPath}PandoraPFACalibrate_HadronicScale_ChiSquareMethod -a "${kaonLPath}" -b "${kaonLEnergyCalibration}" -c "${pandoraPFAAccuracy}" -d "${outputPath}" -e "${numberHCalLayers}" 
+        ${PandoraAnalysisPath}PandoraPFACalibrate_HadronicScale_ChiSquareMethod -a "${kaon0LPath}" -b "${kaon0LEnergyCalibration}" -c "${pandoraPFAAccuracy}" -d "${outputPath}" -e "${numberHCalLayers}" 
     elif [ "$hadronicScaleSettingPandora" = "TEM" ];then
-        ${PandoraAnalysisPath}PandoraPFACalibrate_HadronicScale_TotalEnergyMethod -a "${kaonLPath}" -b "${kaonLEnergyCalibration}" -c "${pandoraPFAAccuracy}" -d "${outputPath}" -e "90" -f "${numberHCalLayers}" 
+        ${PandoraAnalysisPath}PandoraPFACalibrate_HadronicScale_TotalEnergyMethod -a "${kaon0LPath}" -b "${kaon0LEnergyCalibration}" -c "${pandoraPFAAccuracy}" -d "${outputPath}" -e "90" -f "${numberHCalLayers}" 
     else
         echo "Select a calibration method."
     fi
 
     cd ${PythonReadScripts}
-    HCalToHad=$(python Had_Extract.py ${calibrationFile} ${kaonLEnergyCalibration} "HCTH" ${HCalToHad} "Calibration_Constant" ${hadronicScaleSettingPandora}) 
+    HCalToHad=$(python Had_Extract.py ${calibrationFile} ${kaon0LEnergyCalibration} "HCTH" ${HCalToHad} "Calibration_Constant" ${hadronicScaleSettingPandora}) 
     HCalToEm=${HCalToHad}
-    ECalToHad=$(python Had_Extract.py ${calibrationFile} ${kaonLEnergyCalibration} "ECTH" ${ECalToHad} "Calibration_Constant" ${hadronicScaleSettingPandora}) 
-    HCalToHad_Fom=$(python Had_Extract.py ${calibrationFile} ${kaonLEnergyCalibration} "HCTH" ${HCalToHad} "FOM" ${hadronicScaleSettingPandora}) 
-    ECalToHad_Fom=$(python Had_Extract.py ${calibrationFile} ${kaonLEnergyCalibration} "ECTH" ${ECalToHad} "FOM" ${hadronicScaleSettingPandora}) 
+    ECalToHad=$(python Had_Extract.py ${calibrationFile} ${kaon0LEnergyCalibration} "ECTH" ${ECalToHad} "Calibration_Constant" ${hadronicScaleSettingPandora}) 
+    HCalToHad_Fom=$(python Had_Extract.py ${calibrationFile} ${kaon0LEnergyCalibration} "HCTH" ${HCalToHad} "FOM" ${hadronicScaleSettingPandora}) 
+    ECalToHad_Fom=$(python Had_Extract.py ${calibrationFile} ${kaon0LEnergyCalibration} "ECTH" ${ECalToHad} "FOM" ${hadronicScaleSettingPandora}) 
 
     if [ "$hadronicScaleSettingPandora" = "CSM" ];then
-        HCalToHad_UL=$(echo "${kaonLKineticEnergyCalibration}*${UpperLimit}" | bc) 
-        HCalToHad_LL=$(echo "${kaonLKineticEnergyCalibration}*${LowerLimit}" | bc) 
-        ECalToHad_UL=$(echo "${kaonLKineticEnergyCalibration}*${UpperLimit}" | bc) 
-        ECalToHad_LL=$(echo "${kaonLKineticEnergyCalibration}*${LowerLimit}" | bc) 
+        HCalToHad_UL=$(echo "${kaon0LKineticEnergyCalibration}*${UpperLimit}" | bc) 
+        HCalToHad_LL=$(echo "${kaon0LKineticEnergyCalibration}*${LowerLimit}" | bc) 
+        ECalToHad_UL=$(echo "${kaon0LKineticEnergyCalibration}*${UpperLimit}" | bc) 
+        ECalToHad_LL=$(echo "${kaon0LKineticEnergyCalibration}*${LowerLimit}" | bc) 
 
         CheckOne=$(echo "$HCalToHad_Fom >= $HCalToHad_UL" | bc -l) 
         CheckTwo=$(echo "$HCalToHad_Fom <= $HCalToHad_LL" | bc -l) 

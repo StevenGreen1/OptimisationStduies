@@ -4,7 +4,7 @@ source env.sh
 
 jobDescription=OptimisationStudies
 
-for detModel in {84..95}
+for detModel in {85..95}
 do
     for evtType in "Muon" "Photon"
     do

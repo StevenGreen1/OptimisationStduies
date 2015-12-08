@@ -710,11 +710,11 @@
 <processor name="MyILDCaloDigi" type="ILDCaloDigi">
   <!--ILD digitizer...-->
   <!--Calibration coefficients for ECAL-->
-  <parameter name="CalibrECAL" type="FloatVec">42.77 </parameter>
+  <parameter name="CalibrECAL" type="FloatVec">43.2576434142 </parameter>
   <!--Calibration coefficients for HCAL barrel-->
-  <parameter name="CalibrHCALBarrel" type="FloatVec">43.5800000000</parameter>
+  <parameter name="CalibrHCALBarrel" type="FloatVec">49.270834535</parameter>
   <!--Calibration coefficients for HCAL endcap -->
-  <parameter name="CalibrHCALEndcap" type="FloatVec">50.2600000000</parameter>
+  <parameter name="CalibrHCALEndcap" type="FloatVec">56.4056313096</parameter>
   <!--Calibration coefficients for HCAL plug-->
   <parameter name="CalibrHCALOther" type="FloatVec">26.76</parameter>
   <!--ECAL Collection Names-->
@@ -763,7 +763,7 @@
   <!-- Realistic HCal -->
   <parameter name="HCAL_apply_realistic_digi" type="int">1</parameter>
   <parameter name="HCALThresholdUnit" type="string">MIP</parameter>
-  <parameter name="CalibHCALMIP" type="float">0.00004</parameter>
+  <parameter name="CalibHCALMIP" type="float">0.0004975</parameter>
   <parameter name="HCAL_maxDynamicRange_MIP" type="float">99999999</parameter>
   <parameter name="HCAL_elec_noise_mips" type="float">0.06</parameter>
   <parameter name="HCAL_deadCellRate" type="float">0</parameter>
@@ -775,7 +775,7 @@
   <parameter name="HCAL_miscalibration_correl" type="float">0</parameter>
   <!-- Realistic ECal -->
 <parameter name="ECAL_apply_realistic_digi" type="int">1</parameter>
-<parameter name="CalibECALMIP" type="float">0.00015</parameter>
+<parameter name="CalibECALMIP" type="float">0.0001475</parameter>
   <parameter name="ECAL_maxDynamicRange_MIP" type="float">2500</parameter>
   <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
   <parameter name="ECAL_deadCellRate" type="float">0</parameter>
