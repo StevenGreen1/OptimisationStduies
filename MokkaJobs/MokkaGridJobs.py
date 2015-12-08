@@ -103,6 +103,7 @@ def getHEPEvtFiles(eventType, energy):
         lines = f.readlines()
         for idx, line in enumerate(lines):
             line = line.strip()
+            print line
             hepevtFiles.append(line)
     os.system('rm tmp.txt')
     return hepevtFiles

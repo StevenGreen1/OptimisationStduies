@@ -774,8 +774,8 @@
   <parameter name="HCAL_miscalibration_uncorrel" type="float">0</parameter>
   <parameter name="HCAL_miscalibration_correl" type="float">0</parameter>
   <!-- Realistic ECal -->
-  <parameter name="ECAL_apply_realistic_digi" type="int">1</parameter>
-  <parameter name="CalibECALMIP" type="float">ECALMIPMPV_XXXX</parameter>
+<parameter name="ECAL_apply_realistic_digi" type="int">ECAL_APPLY_REALISTIC_DIGI_XXXX</parameter>
+<parameter name="CalibECALMIP" type="float">CALIBR_ECAL_MIP_XXXX</parameter>
   <parameter name="ECAL_maxDynamicRange_MIP" type="float">2500</parameter>
   <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
   <parameter name="ECAL_deadCellRate" type="float">0</parameter>
@@ -783,6 +783,10 @@
   <parameter name="ECAL_miscalibration_uncorrel_memorise" type="bool">false</parameter>
   <parameter name="ECAL_miscalibration_correl" type="float">0</parameter>
   <parameter name="energyPerEHpair" type="float">3.6</parameter>
+  <parameter name="ECAL_PPD_PE_per_MIP" type="float">7</parameter>
+  <parameter name="ECAL_PPD_N_Pixels" type="int">10000</parameter>
+  <parameter name="ECAL_PPD_N_Pixels_uncertainty" type="float">0.05</parameter>
+  <parameter name="ECAL_pixel_spread" type="float">0.05</parameter>
   <!-- Histograms-->
   <parameter name="Histograms" type="int"> 0 </parameter>
   <parameter name="RootFile" type="string">Digi_SiW.root</parameter>

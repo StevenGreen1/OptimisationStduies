@@ -12,7 +12,7 @@ from MokkaGridJobs import *
 
 #===== User Input =====
 
-detectorModelNumber = 84 
+detectorModelNumber = sys.argv[1] 
 
 eventsToSimulate = [ { 'EventType': "Z_uds"  , 'EventsPerFile' : 1000 , 'Energies':  ['91','200','360','500'] }, 
                      { 'EventType': "Muon"  , 'EventsPerFile' : 1000 , 'Energies':  ['10'] },
