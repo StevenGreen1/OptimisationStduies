@@ -733,7 +733,7 @@
   <!--Index of HCal Layers-->
   <parameter name="HCALLayers" type="IntVec">100  </parameter>
   <!--Threshold for HCAL Hits in GeV-->
-  <parameter name="HCALThreshold" type="float">0.00025 </parameter>
+  <parameter name="HCALThreshold" type="float">0.5 </parameter>
   <!--Digital Ecal-->
   <parameter name="IfDigitalEcal" type="int">0 </parameter>
   <!--Digital Hcal-->
