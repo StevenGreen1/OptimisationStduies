@@ -57,9 +57,9 @@
 
    <global>
       <parameter name="LCIOInputFiles">
-          /r04/lc/sg568/HCAL_Optimisation_Studies/Slcio/GJN84/MokkaSim_Detector_Model_84_Photon_10GeV_1000_40000.slcio
+          /r04/lc/sg568/HCAL_Optimisation_Studies/Slcio/GJN85/MokkaSim_Detector_Model_85_Photon_10GeV_1000_40000.slcio
       </parameter>
-      <parameter name="GearXMLFile" value="/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN84_OutputSandbox/ILD_o1_v06_Detector_Model_84.gear"/>
+      <parameter name="GearXMLFile" value="/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN85_OutputSandbox/ILD_o1_v06_Detector_Model_85.gear"/>
       <parameter name="MaxRecordNumber" value="-1"/>
       <parameter name="SkipNEvents" value="0"/>
       <parameter name="SupressCheck" value="false"/>
@@ -970,7 +970,7 @@
   <parameter name="HCalToHadGeVCalibration" type="float">1.075</parameter>
   <parameter name="MuonToMipCalibration" type="float">10.0</parameter>
   <parameter name="DigitalMuonHits" type="int">0</parameter>
-  <parameter name="MaxHCalHitHadronicEnergy" type="float">1.0</parameter>
+  <parameter name="MaxHCalHitHadronicEnergy" type="float">1.5</parameter>
   <parameter name="AbsorberRadLengthECal" type="float">0.2854</parameter>
   <parameter name="AbsorberIntLengthECal" type="float">0.0101</parameter>
   <parameter name="AbsorberRadLengthHCal" type="float">0.0569</parameter>

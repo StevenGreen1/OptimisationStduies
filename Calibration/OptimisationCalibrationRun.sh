@@ -139,7 +139,7 @@ HCalEndcapTimeWindowMax="100.0"
 
 #===== End Settings =====#
 
-for detModel in 84 #{84..95}
+for detModel in {84..87}
 do
     slcioPath="/r04/lc/sg568/HCAL_Optimisation_Studies/Slcio/GJN${detModel}/"
     gearFile="/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN${detModel}_OutputSandbox/ILD_o1_v06_Detector_Model_${detModel}.gear"
@@ -148,7 +148,7 @@ do
     currentECalRealisticDigi=${ecalRealisticDigi[${detModel}]}
     slcioFormat="MokkaSim_Detector_Model_${detModel}_PARTICLE_ENERGYGeV_(.*?).slcio"
 
-    for recoStage in 71 #{69..76}
+    for recoStage in {69..76}
     do
         calibrationResultsPath="/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_${detModel}/Reco_Stage_${recoStage}/"
         currentMHHHE="${MHHHE[${recoStage}]}"
