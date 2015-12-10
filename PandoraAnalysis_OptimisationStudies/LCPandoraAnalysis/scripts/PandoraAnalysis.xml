@@ -1,0 +1,32 @@
+<!-- Example steering file for PandoraAnalysis
+     Output root file can be examined using the AnalysePerformance binary -->
+<marlin>
+
+<execute>
+  <processor name="MyPfoAnalysis"/>
+</execute>
+
+<global>
+  <parameter name="LCIOInputFiles" value="" />
+  <parameter name="SkipNEvents" value="0" />
+  <parameter name="MaxRecordNumber" value="10000" />
+  <parameter name="SupressCheck" value="false" />
+  <parameter name="GearXMLFile" value="" />
+  <parameter name="Verbosity" options="DEBUG0-4,MESSAGE0-4,WARNING0-4,ERROR0-4,SILENT">WARNING</parameter>
+</global>
+
+<processor name="MyPfoAnalysis" type="PfoAnalysis">
+  <!--PfoAnalysis analyses output of PandoraPFANew-->
+  <!--Names of input pfo collection-->
+  <parameter name="PfoCollection" type="string" lcioInType="ReconstructedParticle">PandoraPFOs</parameter>
+  <!--Names of mc particle collection-->
+  <parameter name="MCParticleCollection" type="string" lcioInType="MCParticle">MCParticle</parameter>
+  <!--Set the debug print level-->
+  <parameter name="Printing" type="int">0</parameter>
+  <!--Name of the output root file-->
+  <parameter name="RootFile" type="string">PFOAnalysis.root</parameter>
+  <!--verbosity level of this processor ("DEBUG0-4,MESSAGE0-4,WARNING0-4,ERROR0-4,SILENT")-->
+  <!--parameter name="Verbosity" type="string">DEBUG </parameter-->
+</processor>
+
+</marlin>
