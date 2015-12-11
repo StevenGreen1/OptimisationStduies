@@ -40,6 +40,8 @@
      <processor name="MyKinkFinder"/>
 
      <!-- ========== calorimeter digitization and PFA ======= -->
+     <processor name="MyILDCaloDigi_ScTrans"/>
+     <processor name="MyILDCaloDigi_ScLong"/>
      <processor name="MyILDCaloDigi"/>
      <processor name="MySimpleBCalDigi"/>
      <processor name="MySimpleLCalDigi"/>
@@ -703,6 +705,176 @@
 
 
 <!--######  ILDCaloDigi ##########################################-->
+
+i<processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
+  <!--ILD digitizer...-->
+  <!--Calibration coefficients for ECAL-->
+  <parameter name="CalibrECAL" type="FloatVec">CALIBR_ECAL_XXXX</parameter>
+  <!--Calibration coefficients for HCAL barrel-->
+  <parameter name="CalibrHCALBarrel" type="FloatVec">CALIBR_HCAL_BARREL_XXXX</parameter>
+  <!--Calibration coefficients for HCAL endcap -->
+  <parameter name="CalibrHCALEndcap" type="FloatVec">CALIBR_HCAL_ENDCAP_XXXX</parameter>
+  <!--Calibration coefficients for HCAL plug-->
+  <parameter name="CalibrHCALOther" type="FloatVec">CALIBR_HCAL_OTHER_XXXX</parameter>
+  <!--ECAL Collection Names-->
+  <parameter name="ECALCollections" type="StringVec">EcalBarrelScintillatorTransverseStrips EcalEndcapScintillatorTransverseStrips dummy1</parameter>
+  <!--Index of ECal Layers-->
+  <parameter name="ECALLayers" type="IntVec">20 100  </parameter>
+  <!--Threshold for ECAL Hits in GeV-->
+  <parameter name="ECALThreshold" type="float">5e-05 </parameter>
+  <!--HCAL Collection Names-->
+  <parameter name="HCALCollections" type="StringVec">dummy2 dummy3 dummy4</parameter>
+  <!--Index of HCal Layers-->
+  <parameter name="HCALLayers" type="IntVec">100  </parameter>
+  <!--Threshold for HCAL Hits in MIPs - given HCALThresholdUnit is specified-->
+  <parameter name="HCALThreshold" type="float">0.5 </parameter>
+  <!--Digital Ecal-->
+  <parameter name="IfDigitalEcal" type="int">0 </parameter>
+  <!--Digital Hcal-->
+  <parameter name="IfDigitalHcal" type="int">0 </parameter>
+  <!--name for the new collection -->
+  <parameter name="ECALOutputCollection0" type="stringVec">ECALScTransverseBarrel </parameter>
+  <parameter name="ECALOutputCollection1" type="stringVec">ECALScTransverseEndcap </parameter>
+  <parameter name="ECALOutputCollection2" type="stringVec">blah1 </parameter>
+  <parameter name="HCALOutputCollection0" type="stringVec">blah2 </parameter>
+  <parameter name="HCALOutputCollection1" type="stringVec">blah3 </parameter>
+  <parameter name="HCALOutputCollection2" type="stringVec">blah4 </parameter>
+  <!--CaloHit Relation Collection-->
+  <parameter name="RelationOutputCollection" type="string">RelationECALScTransverseCaloHit</parameter>
+  <!--Gap Correction-->
+  <parameter name="ECALGapCorrection" type="int"> 1 </parameter>
+  <!--Gap Correction Fudge Factor-->
+  <parameter name="ECALGapCorrectionFactor" type="int"> 1.0 </parameter>
+  <parameter name="ECALModuleGapCorrectionFactor" type="int"> 0.0 </parameter>
+  <!-- Timing -->
+  <parameter name="UseEcalTiming" type="int">1</parameter>
+  <parameter name="UseHcalTiming" type="int">1</parameter>
+  <parameter name="ECALBarrelTimeWindowMax" type="float"> ECALBARRELTIMEWINDOWMAX_XXXX </parameter>
+  <parameter name="HCALBarrelTimeWindowMax" type="float"> HCALBARRELTIMEWINDOWMAX_XXXX </parameter>
+  <parameter name="ECALEndcapTimeWindowMax" type="float"> ECALENDCAPTIMEWINDOWMAX_XXXX </parameter>
+  <parameter name="HCALEndcapTimeWindowMax" type="float"> HCALENDCAPTIMEWINDOWMAX_XXXX </parameter>
+  <parameter name="ECALTimeWindowMin" type="float"> -1.0 </parameter>
+  <parameter name="HCALTimeWindowMin" type="float"> -1.0 </parameter>
+  <parameter name="ECALCorrectTimesForPropagation" type="int">1</parameter>
+  <parameter name="HCALCorrectTimesForPropagation" type="int">1</parameter>
+  <parameter name="ECALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
+  <parameter name="HCALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
+  <!-- Realistic HCal -->
+  <parameter name="HCAL_apply_realistic_digi" type="int">1</parameter>
+  <parameter name="HCALThresholdUnit" type="string">MIP</parameter>
+  <parameter name="CalibHCALMIP" type="float">CALIBR_HCAL_MIP_XXXX</parameter>
+  <parameter name="HCAL_maxDynamicRange_MIP" type="float">99999999</parameter>
+  <parameter name="HCAL_elec_noise_mips" type="float">0.06</parameter>
+  <parameter name="HCAL_deadCellRate" type="float">0</parameter>
+  <parameter name="HCAL_PPD_N_Pixels" type="int">2000</parameter>
+  <parameter name="HCAL_PPD_PE_per_MIP" type="float">15</parameter>
+  <parameter name="HCAL_pixel_spread" type="float">0.05</parameter>
+  <parameter name="HCAL_PPD_N_Pixels_uncertainty" type="float">0</parameter>
+  <parameter name="HCAL_miscalibration_uncorrel" type="float">0</parameter>
+  <parameter name="HCAL_miscalibration_correl" type="float">0</parameter>
+  <!-- Realistic ECal -->
+  <parameter name="ECAL_apply_realistic_digi" type="int">2</parameter>
+  <parameter name="CalibECALMIP" type="float">CALIBR_ECAL_MIP_XXXX</parameter>
+  <parameter name="ECAL_maxDynamicRange_MIP" type="float">2500</parameter>
+  <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
+  <parameter name="ECAL_deadCellRate" type="float">0</parameter>
+  <parameter name="ECAL_miscalibration_uncorrel" type="float">0</parameter>
+  <parameter name="ECAL_miscalibration_uncorrel_memorise" type="bool">false</parameter>
+  <parameter name="ECAL_miscalibration_correl" type="float">0</parameter>
+  <parameter name="energyPerEHpair" type="float">3.6</parameter>
+  <parameter name="ECAL_PPD_PE_per_MIP" type="float">7</parameter>
+  <parameter name="ECAL_PPD_N_Pixels" type="int">10000</parameter>
+  <parameter name="ECAL_PPD_N_Pixels_uncertainty" type="float">0.05</parameter>
+  <parameter name="ECAL_pixel_spread" type="float">0.05</parameter>
+  <!-- Histograms-->
+  <parameter name="Histograms" type="int"> 0 </parameter>
+  <parameter name="RootFile" type="string">Digi_SiW.root</parameter>
+</processor>
+
+<processor name="MyILDCaloDigi_ScLong" type="ILDCaloDigi">
+  <!--ILD digitizer...-->
+  <!--Calibration coefficients for ECAL-->
+  <parameter name="CalibrECAL" type="FloatVec">CALIBR_ECAL_XXXX</parameter>
+  <!--Calibration coefficients for HCAL barrel-->
+  <parameter name="CalibrHCALBarrel" type="FloatVec">CALIBR_HCAL_BARREL_XXXX</parameter>
+  <!--Calibration coefficients for HCAL endcap -->
+  <parameter name="CalibrHCALEndcap" type="FloatVec">CALIBR_HCAL_ENDCAP_XXXX</parameter>
+  <!--Calibration coefficients for HCAL plug-->
+  <parameter name="CalibrHCALOther" type="FloatVec">CALIBR_HCAL_OTHER_XXXX</parameter>
+  <!--ECAL Collection Names-->
+  <parameter name="ECALCollections" type="StringVec">EcalBarrelScintillatorLongitudinalStrips EcalEndcapScintillatorLongitudinalStrips dummy5 </parameter>
+  <!--Index of ECal Layers-->
+  <parameter name="ECALLayers" type="IntVec">20 100  </parameter>
+  <!--Threshold for ECAL Hits in GeV-->
+  <parameter name="ECALThreshold" type="float">5e-05 </parameter>
+  <!--HCAL Collection Names-->
+  <parameter name="HCALCollections" type="StringVec">dummy6 dummy7 dummy8</parameter>
+  <!--Index of HCal Layers-->
+  <parameter name="HCALLayers" type="IntVec">100  </parameter>
+  <!--Threshold for HCAL Hits in MIPs - given HCALThresholdUnit is specified-->
+  <parameter name="HCALThreshold" type="float">0.5 </parameter>
+  <!--Digital Ecal-->
+  <parameter name="IfDigitalEcal" type="int">0 </parameter>
+  <!--Digital Hcal-->
+  <parameter name="IfDigitalHcal" type="int">0 </parameter>
+  <!--name for the new collection -->
+  <parameter name="ECALOutputCollection0" type="stringVec">ECALScLongitudinalBarrel </parameter>
+  <parameter name="ECALOutputCollection1" type="stringVec">ECALScLongitudinalEndcap </parameter>
+  <parameter name="ECALOutputCollection2" type="stringVec">blah5 </parameter>
+  <parameter name="HCALOutputCollection0" type="stringVec">blah6 </parameter>
+  <parameter name="HCALOutputCollection1" type="stringVec">blah7 </parameter>
+  <parameter name="HCALOutputCollection2" type="stringVec">blah8 </parameter>
+  <!--CaloHit Relation Collection-->
+  <parameter name="RelationOutputCollection" type="string">RelationECALScLongitudinalCaloHit</parameter>
+  <!--Gap Correction-->
+  <parameter name="ECALGapCorrection" type="int"> 1 </parameter>
+  <!--Gap Correction Fudge Factor-->
+  <parameter name="ECALGapCorrectionFactor" type="int"> 1.0 </parameter>
+  <parameter name="ECALModuleGapCorrectionFactor" type="int"> 0.0 </parameter>
+  <!-- Timing -->
+  <parameter name="UseEcalTiming" type="int">1</parameter>
+  <parameter name="UseHcalTiming" type="int">1</parameter>
+  <parameter name="ECALBarrelTimeWindowMax" type="float"> ECALBARRELTIMEWINDOWMAX_XXXX </parameter>
+  <parameter name="HCALBarrelTimeWindowMax" type="float"> HCALBARRELTIMEWINDOWMAX_XXXX </parameter>
+  <parameter name="ECALEndcapTimeWindowMax" type="float"> ECALENDCAPTIMEWINDOWMAX_XXXX </parameter>
+  <parameter name="HCALEndcapTimeWindowMax" type="float"> HCALENDCAPTIMEWINDOWMAX_XXXX </parameter>
+  <parameter name="ECALTimeWindowMin" type="float"> -1.0 </parameter>
+  <parameter name="HCALTimeWindowMin" type="float"> -1.0 </parameter>
+  <parameter name="ECALCorrectTimesForPropagation" type="int">1</parameter>
+  <parameter name="HCALCorrectTimesForPropagation" type="int">1</parameter>
+  <parameter name="ECALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
+  <parameter name="HCALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
+  <!-- Realistic HCal -->
+  <parameter name="HCAL_apply_realistic_digi" type="int">1</parameter>
+  <parameter name="HCALThresholdUnit" type="string">MIP</parameter>
+  <parameter name="CalibHCALMIP" type="float">CALIBR_HCAL_MIP_XXXX</parameter>
+  <parameter name="HCAL_maxDynamicRange_MIP" type="float">99999999</parameter>
+  <parameter name="HCAL_elec_noise_mips" type="float">0.06</parameter>
+  <parameter name="HCAL_deadCellRate" type="float">0</parameter>
+  <parameter name="HCAL_PPD_N_Pixels" type="int">2000</parameter>
+  <parameter name="HCAL_PPD_PE_per_MIP" type="float">15</parameter>
+  <parameter name="HCAL_pixel_spread" type="float">0.05</parameter>
+  <parameter name="HCAL_PPD_N_Pixels_uncertainty" type="float">0</parameter>
+  <parameter name="HCAL_miscalibration_uncorrel" type="float">0</parameter>
+  <parameter name="HCAL_miscalibration_correl" type="float">0</parameter>
+  <!-- Realistic ECal -->
+  <parameter name="ECAL_apply_realistic_digi" type="int">2</parameter>
+  <parameter name="CalibECALMIP" type="float">CALIBR_ECAL_MIP_XXXX</parameter>
+  <parameter name="ECAL_maxDynamicRange_MIP" type="float">2500</parameter>
+  <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
+  <parameter name="ECAL_deadCellRate" type="float">0</parameter>
+  <parameter name="ECAL_miscalibration_uncorrel" type="float">0</parameter>
+  <parameter name="ECAL_miscalibration_uncorrel_memorise" type="bool">false</parameter>
+  <parameter name="ECAL_miscalibration_correl" type="float">0</parameter>
+  <parameter name="energyPerEHpair" type="float">3.6</parameter>
+  <parameter name="ECAL_PPD_PE_per_MIP" type="float">7</parameter>
+  <parameter name="ECAL_PPD_N_Pixels" type="int">10000</parameter>
+  <parameter name="ECAL_PPD_N_Pixels_uncertainty" type="float">0.05</parameter>
+  <parameter name="ECAL_pixel_spread" type="float">0.05</parameter>
+  <!-- Histograms-->
+  <parameter name="Histograms" type="int"> 0 </parameter>
+  <parameter name="RootFile" type="string">Digi_SiW.root</parameter>
+</processor>
 
 <processor name="MyILDCaloDigi" type="ILDCaloDigi">
   <!--ILD digitizer...-->

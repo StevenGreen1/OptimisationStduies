@@ -2,11 +2,11 @@
 
 # Done : 38-77 excluding 44
 
-for detModel in 43
+for detModel in {84..89}
 do
-   for recoVar in {71..76}
+   for recoVar in {69..76}
     do
-         python MarlinSubmitHCalCellSize.py ${detModel} ${recoVar}
+         python MarlinSubmit.py ${detModel} ${recoVar}
     done
 done
 
