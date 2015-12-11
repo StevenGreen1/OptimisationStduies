@@ -33,7 +33,7 @@ pandoraSettingsFiles['PerfectPFA'] = 'PandoraSettings/PandoraSettingsPerfectPFA.
 #===== Second level user input =====
 # If using naming scheme doesn't need changing 
 
-gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_GJN' + str(detModel) + '.gear'
+gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_Detector_Model_' + str(detModel) + '.gear'
 calibConfigFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
 
 #=====
