@@ -1,0 +1,13 @@
+executable              = MarlinCalibration3.sh                                           
+initial_dir             = /usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibration/MyCalibration3/MarlinSteering/Condor/                                                    
+notification            = never                                                           
+Requirements            = (POOL == "GENERAL") && (OSTYPE == "SLC6")                   
+Rank                    = memory                                                          
+output                  = $ENV(HOME)/CondorLogs/MarlinCalibration3.out.$(Process)               
+error                   = $ENV(HOME)/CondorLogs/MarlinCalibration3.err.$(Process)               
+log                     = $ENV(HOME)/CondorLogs/MarlinCalibration3.log.$(Process)               
+environment             = CONDOR_JOB=true                                                 
+Universe                = vanilla                                                         
+getenv                  = false                                                           
+copy_to_spool           = true                                                            
+should_transfer_files   = yes                                                             

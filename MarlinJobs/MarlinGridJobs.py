@@ -46,6 +46,9 @@ def getMarlinSteeringFileTemplate(baseFileName,calibrationFileName):
     marlinSteeringTemplate = baseFile.read()
     baseFile.close()
 
+    # ECal Active Material
+    marlinSteeringTemplate = re.sub('ECAL_APPLY_REALISTIC_DIGI_XXXX',str(config['ECalApplyRealisticDigi']),marlinSteeringTemplate)
+
     # Digitisation Constants
     ECalString = str(config['CalibrECal']) + ' ' + str(2 * config['CalibrECal'])
     marlinSteeringTemplate = re.sub('CALIBR_ECAL_XXXX',ECalString,marlinSteeringTemplate)
