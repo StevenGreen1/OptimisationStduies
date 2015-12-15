@@ -6,9 +6,8 @@ from DIRAC.Resources.Catalog.FileCatalogClient import FileCatalogClient
 
 evtType = 'Z_uds'
 jobDescription = 'OptimisationStudies'
-detNumbers = [39, 40, 41, 42, 43] 
-recoStages = [69, 70, 71, 72, 73, 74, 75, 76]
-fileType = 'Rec'
+detNumbers = range(90,96) 
+recoStages = range(69,77) 
 
 energies = [91,200,360,500]
 
@@ -20,3 +19,4 @@ for detNumber in detNumbers:
             metadata = ['Energy','EvtType','JobDescription','MokkaJobNumber','ReconstructionVariant','Type']
             metaDict = {path:metadata}
             result = fc.removeMetadata(metaDict)
+

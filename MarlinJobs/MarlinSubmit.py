@@ -15,10 +15,11 @@ from MarlinGridJobs import *
 jobDescription = 'OptimisationStudies'
 detModel = sys.argv[1] 
 recoVar = sys.argv[2] # Ranges from 69 to 76, all using realistic ECal and HCal
+templateNumber = sys.argv[3]
 
 eventsToSimulate = [ { 'EventType': "Z_uds", 'Energies': [91, 200, 360, 500] } ]
 
-baseXmlFile = 'TemplateRepository/MarlinSteeringFileTemplate_Jets_1.xml'
+baseXmlFile = 'TemplateRepository/MarlinSteeringFileTemplate_Jets_' + str(templateNumber) + '.xml'
 # Notes: 
 # Turned off the slcio output processor to speed up job processing in xml file.
 
@@ -33,7 +34,7 @@ pandoraSettingsFiles['PerfectPFA'] = 'PandoraSettings/PandoraSettingsPerfectPFA.
 #===== Second level user input =====
 # If using naming scheme doesn't need changing 
 
-gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_GJN' + str(detModel) + '.gear'
+gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_Detector_Model_' + str(detModel) + '.gear'
 calibConfigFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
 
 #=====
@@ -88,7 +89,7 @@ for eventSelection in eventsToSimulate:
             job.setJobGroup(jobDescription)
             job.setInputSandbox(pandoraSettingsFilesLocal.values()) # Local files
             job.setOutputSandbox(['*.log','*.gear','*.mac','*.steer','*.xml'])
-            job.setOutputData(outputFiles,OutputPath='/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV') # On grid
+            job.setOutputData(outputFiles,OutputPath='/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '_Run2/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV') # On grid
             job.setName(jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar))
             job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp'])
             job.dontPromptMe()

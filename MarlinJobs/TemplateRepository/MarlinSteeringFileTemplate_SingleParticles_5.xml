@@ -943,7 +943,7 @@ i<processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
   <parameter name="HCAL_miscalibration_uncorrel" type="float">0</parameter>
   <parameter name="HCAL_miscalibration_correl" type="float">0</parameter>
   <!-- Realistic ECal -->
-<parameter name="ECAL_apply_realistic_digi" type="int">ECAL_APPLY_REALISTIC_DIGI_XXXX</parameter>
+<parameter name="ECAL_apply_realistic_digi" type="int">1</parameter>
 <parameter name="CalibECALMIP" type="float">CALIBR_ECAL_MIP_XXXX</parameter>
   <parameter name="ECAL_maxDynamicRange_MIP" type="float">2500</parameter>
   <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
@@ -1113,13 +1113,13 @@ i<processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
 <parameter name="PandoraSettingsXmlFile" type="String">PANDORASETTINGSDEFAULT_XXXX</parameter>
   <!-- Collection names -->
   <parameter name="TrackCollections" type="StringVec">MarlinTrkTracks</parameter>
-  <parameter name="ECalCaloHitCollections" type="StringVec">ECALBarrel ECALEndcap ECALOther</parameter>
+  <parameter name="ECalCaloHitCollections" type="StringVec">ECALScLongitudinalBarrel ECALScTransverseBarrel ECALScLongitudinalEndcap ECALScTransverseEndcap ECALOther</parameter>
   <parameter name="HCalCaloHitCollections" type="StringVec">HCALBarrel HCALEndcap HCALOther</parameter>
   <parameter name="LCalCaloHitCollections" type="StringVec">LCAL</parameter>
   <parameter name="LHCalCaloHitCollections" type="StringVec">LHCAL</parameter>
   <parameter name="MuonCaloHitCollections" type="StringVec">MUON</parameter>
   <parameter name="MCParticleCollections" type="StringVec">MCParticle</parameter>
-  <parameter name="RelCaloHitCollections" type="StringVec">RelationCaloHit RelationMuonHit</parameter>
+  <parameter name="RelCaloHitCollections" type="StringVec">RelationECALScTransverseCaloHit RelationECALScLongitudinalCaloHit RelationCaloHit RelationMuonHit</parameter>
   <parameter name="RelTrackCollections" type="StringVec">MarlinTrkTracksMCTruthLink</parameter>
   <parameter name="KinkVertexCollections" type="StringVec">KinkVertices</parameter>
   <parameter name="ProngVertexCollections" type="StringVec">ProngVertices</parameter>
@@ -1163,7 +1163,7 @@ i<processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
   <parameter name="HCalRingOuterSymmetryOrder" type="int">8</parameter>^M
     <parameter name="HCalRingOuterPhi0" type="int">0</parameter>^M
       <!--Name of the ECAL collection used to form clusters-->^M
-  <parameter name="ECalCollections" type="StringVec" lcioInType="CalorimeterHit">ECALBarrel ECALEndcap ECALOther</parameter>^M
+  <parameter name="ECalCollections" type="StringVec" lcioInType="CalorimeterHit">ECALScLongitudinalBarrel ECALScTransverseBarrel ECALScLongitudinalEndcap ECALScTransverseEndcap ECALOther</parameter>^M
     <!--Name of the HCAL collection used to form clusters-->^M
   <parameter name="HCalCollections" type="StringVec" lcioInType="CalorimeterHit">HCALBarrel HCALEndcap HCALOther </parameter>^M
     <!--Name of the MUON collection used to form clusters-->^M
@@ -1174,14 +1174,14 @@ i<processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
   <parameter name="LHCalCollections" type="StringVec" lcioInType="CalorimeterHit">LHCAL </parameter>^M
     <!--Name of the LCAL collection used to form clusters-->^M
   <parameter name="LCalCollections" type="StringVec" lcioInType="CalorimeterHit">LCAL </parameter>^M
-    <!--ECal Collection ADC Names-->^M
-  <parameter name="ECalCollectionsADC" type="StringVec">EcalBarrelSiliconCollection EcalEndcapSiliconCollection  EcalEndcapRingCollection </parameter>^M
-    <!--HCal Barrel Collection ADC Names-->^M
-  <parameter name="HCalBarrelCollectionsADC" type="StringVec"> HcalBarrelRegCollection </parameter>^M
-    <!--HCal Endcap Collection ADC Names-->^M
-  <parameter name="HCalEndCapCollectionsADC" type="StringVec"> HcalEndCapsCollection </parameter>^M
-    <!--HCal Other/Ring Collection ADC Names-->^M
-  <parameter name="HCalOtherCollectionsADC" type="StringVec"> HcalEndCapRingsCollection</parameter>^M
+    <!--ECal Collection SimCaloHit Names-->^M
+  <parameter name="ECalCollectionsSimCaloHit" type="StringVec">ECALScLongitudinalBarrel ECALScTransverseBarrel ECALScLongitudinalEndcap ECALScTransverseEndcap ECALOther</parameter>^M
+    <!--HCal Barrel Collection SimCaloHit Names-->^M
+  <parameter name="HCalBarrelCollectionsSimCaloHit" type="StringVec"> HcalBarrelRegCollection </parameter>^M
+    <!--HCal Endcap Collection SimCaloHit Names-->^M
+  <parameter name="HCalEndCapCollectionsSimCaloHit" type="StringVec"> HcalEndCapsCollection </parameter>^M
+    <!--HCal Other/Ring Collection SimCaloHit Names-->^M
+  <parameter name="HCalOtherCollectionsSimCaloHit" type="StringVec"> HcalEndCapRingsCollection</parameter>^M
     <!--Set the debug print level-->
   <parameter name="Printing" type="int"> 0 </parameter>
     <!--Output root file name-->^M

@@ -1,12 +1,17 @@
 #!/bin/bash
 
-# Done : 38-77 excluding 44
+# 1 is silicon ECal, realistic options
+# 5 is scintillator ECal, realistic options
 
-for detModel in 38 
+templateNumber=5
+
+for detModel in 90
 do
-   for recoVar in 38 43 46 51 54 59
+   for recoVar in 69 #{69..76}
     do
-         python MarlinSubmitSingleParticles.py ${detModel} ${recoVar}
+         python MarlinSubmitSingleParticles.py ${detModel} ${recoVar} ${templateNumber}
     done
 done
+
+
 

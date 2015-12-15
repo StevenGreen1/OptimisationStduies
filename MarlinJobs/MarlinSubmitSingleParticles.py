@@ -15,10 +15,11 @@ from MarlinGridJobs import *
 jobDescription = 'OptimisationStudies'
 detModel = sys.argv[1] 
 recoVar = sys.argv[2] # Ranges from 69 to 76, all using realistic ECal and HCal
+templateNumber = sys.argv[3]
 
 eventsToSimulate = [ { 'EventType': "Kaon0L", 'Energies': [1,2,3,4,5,6,7,8,9,10,15,20,25,30,35,40,45,50] } ]
 
-baseXmlFile = 'TemplateRepository/MarlinSteeringFileTemplate_SingleParticles_1.xml'
+baseXmlFile = 'TemplateRepository/MarlinSteeringFileTemplate_SingleParticles_' + str(templateNumber) + '.xml'
 # Notes: 
 # Turned off the slcio output processor to speed up job processing in xml file.
 
@@ -34,7 +35,7 @@ pandoraSettingsFiles['PerfectPFA'] = 'PandoraSettings/PandoraSettingsPerfectPFA.
 #===== Second level user input =====
 # If using naming scheme doesn't need changing 
 
-gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_GJN' + str(detModel) + '.gear'
+gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_Detector_Model_' + str(detModel) + '.gear'
 calibConfigFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
 
 #=====

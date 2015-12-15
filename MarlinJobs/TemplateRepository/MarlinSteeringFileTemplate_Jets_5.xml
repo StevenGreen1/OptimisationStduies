@@ -1121,13 +1121,13 @@
 <parameter name="PandoraSettingsXmlFile" type="String">PANDORASETTINGSMUON_XXXX</parameter>
   <!-- Collection names -->
   <parameter name="TrackCollections" type="StringVec">MarlinTrkTracks</parameter>
-  <parameter name="ECalCaloHitCollections" type="StringVec">ECALBarrel ECALEndcap ECALOther</parameter>
+  <parameter name="ECalCaloHitCollections" type="StringVec">ECALScLongitudinalBarrel ECALScTransverseBarrel ECALScLongitudinalEndcap ECALScTransverseEndcap ECALOther</parameter>
   <parameter name="HCalCaloHitCollections" type="StringVec">HCALBarrel HCALEndcap HCALOther</parameter>
   <parameter name="LCalCaloHitCollections" type="StringVec">LCAL</parameter>
   <parameter name="LHCalCaloHitCollections" type="StringVec">LHCAL</parameter>
   <parameter name="MuonCaloHitCollections" type="StringVec">MUON</parameter>
   <parameter name="MCParticleCollections" type="StringVec">MCParticle</parameter>
-  <parameter name="RelCaloHitCollections" type="StringVec">RelationCaloHit RelationMuonHit</parameter>
+  <parameter name="RelCaloHitCollections" type="StringVec">RelationECALScTransverseCaloHit RelationECALScLongitudinalCaloHit RelationCaloHit RelationMuonHit</parameter>
   <parameter name="RelTrackCollections" type="StringVec">MarlinTrkTracksMCTruthLink</parameter>
   <parameter name="KinkVertexCollections" type="StringVec">KinkVertices</parameter>
   <parameter name="ProngVertexCollections" type="StringVec">ProngVertices</parameter>
@@ -1177,13 +1177,13 @@
 <parameter name="PandoraSettingsXmlFile" type="String">PANDORASETTINGSDEFAULT_XXXX</parameter>
   <!-- Collection names -->
   <parameter name="TrackCollections" type="StringVec">MarlinTrkTracks</parameter>
-  <parameter name="ECalCaloHitCollections" type="StringVec">ECALBarrel ECALEndcap ECALOther</parameter>
+  <parameter name="ECalCaloHitCollections" type="StringVec">ECALScLongitudinalBarrel ECALScTransverseBarrel ECALScLongitudinalEndcap ECALScTransverseEndcap ECALOther</parameter>
   <parameter name="HCalCaloHitCollections" type="StringVec">HCALBarrel HCALEndcap HCALOther</parameter>
   <parameter name="LCalCaloHitCollections" type="StringVec">LCAL</parameter>
   <parameter name="LHCalCaloHitCollections" type="StringVec">LHCAL</parameter>
   <parameter name="MuonCaloHitCollections" type="StringVec">MUON</parameter>
   <parameter name="MCParticleCollections" type="StringVec">MCParticle</parameter>
-  <parameter name="RelCaloHitCollections" type="StringVec">RelationCaloHit RelationMuonHit</parameter>
+  <parameter name="RelCaloHitCollections" type="StringVec">RelationECALScTransverseCaloHit RelationECALScLongitudinalCaloHit RelationCaloHit RelationMuonHit</parameter>
   <parameter name="RelTrackCollections" type="StringVec">MarlinTrkTracksMCTruthLink</parameter>
   <parameter name="KinkVertexCollections" type="StringVec">KinkVertices</parameter>
   <parameter name="ProngVertexCollections" type="StringVec">ProngVertices</parameter>
@@ -1233,13 +1233,13 @@
 <parameter name="PandoraSettingsXmlFile" type="String">PANDORASETTINGSPERFECTPHOTON_XXXX</parameter>
   <!-- Collection names -->
   <parameter name="TrackCollections" type="StringVec">MarlinTrkTracks</parameter>
-  <parameter name="ECalCaloHitCollections" type="StringVec">ECALBarrel ECALEndcap ECALOther</parameter>
+  <parameter name="ECalCaloHitCollections" type="StringVec">ECALScLongitudinalBarrel ECALScTransverseBarrel ECALScLongitudinalEndcap ECALScTransverseEndcap ECALOther</parameter>
   <parameter name="HCalCaloHitCollections" type="StringVec">HCALBarrel HCALEndcap HCALOther</parameter>
   <parameter name="LCalCaloHitCollections" type="StringVec">LCAL</parameter>
   <parameter name="LHCalCaloHitCollections" type="StringVec">LHCAL</parameter>
   <parameter name="MuonCaloHitCollections" type="StringVec">MUON</parameter>
   <parameter name="MCParticleCollections" type="StringVec">MCParticle</parameter>
-  <parameter name="RelCaloHitCollections" type="StringVec">RelationCaloHit RelationMuonHit</parameter>
+  <parameter name="RelCaloHitCollections" type="StringVec">RelationECALScTransverseCaloHit RelationECALScLongitudinalCaloHit RelationCaloHit RelationMuonHit</parameter>
   <parameter name="RelTrackCollections" type="StringVec">MarlinTrkTracksMCTruthLink</parameter>
   <parameter name="KinkVertexCollections" type="StringVec">KinkVertices</parameter>
   <parameter name="ProngVertexCollections" type="StringVec">ProngVertices</parameter>
@@ -1289,13 +1289,13 @@
 <parameter name="PandoraSettingsXmlFile" type="String">PANDORASETTINGSPERFECTPHOTONNK0L_XXXX</parameter>
   <!-- Collection names -->
   <parameter name="TrackCollections" type="StringVec">MarlinTrkTracks</parameter>
-  <parameter name="ECalCaloHitCollections" type="StringVec">ECALBarrel ECALEndcap ECALOther</parameter>
+  <parameter name="ECalCaloHitCollections" type="StringVec">ECALScLongitudinalBarrel ECALScTransverseBarrel ECALScLongitudinalEndcap ECALScTransverseEndcap ECALOther</parameter>
   <parameter name="HCalCaloHitCollections" type="StringVec">HCALBarrel HCALEndcap HCALOther</parameter>
   <parameter name="LCalCaloHitCollections" type="StringVec">LCAL</parameter>
   <parameter name="LHCalCaloHitCollections" type="StringVec">LHCAL</parameter>
   <parameter name="MuonCaloHitCollections" type="StringVec">MUON</parameter>
   <parameter name="MCParticleCollections" type="StringVec">MCParticle</parameter>
-  <parameter name="RelCaloHitCollections" type="StringVec">RelationCaloHit RelationMuonHit</parameter>
+  <parameter name="RelCaloHitCollections" type="StringVec">RelationECALScTransverseCaloHit RelationECALScLongitudinalCaloHit RelationCaloHit RelationMuonHit</parameter>
   <parameter name="RelTrackCollections" type="StringVec">MarlinTrkTracksMCTruthLink</parameter>
   <parameter name="KinkVertexCollections" type="StringVec">KinkVertices</parameter>
   <parameter name="ProngVertexCollections" type="StringVec">ProngVertices</parameter>
@@ -1345,13 +1345,13 @@
 <parameter name="PandoraSettingsXmlFile" type="String">PANDORASETTINGSPERFECTPFA_XXXX</parameter>
   <!-- Collection names -->
   <parameter name="TrackCollections" type="StringVec">MarlinTrkTracks</parameter>
-  <parameter name="ECalCaloHitCollections" type="StringVec">ECALBarrel ECALEndcap ECALOther</parameter>
+  <parameter name="ECalCaloHitCollections" type="StringVec">ECALScLongitudinalBarrel ECALScTransverseBarrel ECALScLongitudinalEndcap ECALScTransverseEndcap ECALOther</parameter>
   <parameter name="HCalCaloHitCollections" type="StringVec">HCALBarrel HCALEndcap HCALOther</parameter>
   <parameter name="LCalCaloHitCollections" type="StringVec">LCAL</parameter>
   <parameter name="LHCalCaloHitCollections" type="StringVec">LHCAL</parameter>
   <parameter name="MuonCaloHitCollections" type="StringVec">MUON</parameter>
   <parameter name="MCParticleCollections" type="StringVec">MCParticle</parameter>
-  <parameter name="RelCaloHitCollections" type="StringVec">RelationCaloHit RelationMuonHit</parameter>
+  <parameter name="RelCaloHitCollections" type="StringVec">RelationECALScTransverseCaloHit RelationECALScLongitudinalCaloHit RelationCaloHit RelationMuonHit</parameter>
   <parameter name="RelTrackCollections" type="StringVec">MarlinTrkTracksMCTruthLink</parameter>
   <parameter name="KinkVertexCollections" type="StringVec">KinkVertices</parameter>
   <parameter name="ProngVertexCollections" type="StringVec">ProngVertices</parameter>

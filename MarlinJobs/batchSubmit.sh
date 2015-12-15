@@ -1,12 +1,15 @@
 #!/bin/bash
 
-# Done : 38-77 excluding 44
+# 1 is silicon ECal, realistic options
+# 5 is scintillator ECal, realistic options 
 
-for detModel in 43
+templateNumber=5
+
+for detModel in {90..95}
 do
-   for recoVar in {71..76}
+   for recoVar in {69..76}
     do
-         python MarlinSubmitHCalCellSize.py ${detModel} ${recoVar}
+         python MarlinSubmit.py ${detModel} ${recoVar} ${templateNumber}
     done
 done
 

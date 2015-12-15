@@ -16,7 +16,7 @@ jobDescription = 'OptimisationStudies'
 detModel = sys.argv[1] 
 recoVar = sys.argv[2]
 eventsToSimulate = [ { 'EventType': "Z_uds", 'Energies': [91, 200, 360, 500] } ]
-pandoraSettings = 'Default'
+pandoraSettings = sys.argv[3]
 
 # MarlinReco_ILD_o1_v06_GJN38_uds91_10_600_Muon.root
 # MarlinReco_ILD_o1_v06_GJN38_uds91_10_600_PerfectPFA.root
@@ -35,7 +35,7 @@ for eventSelection in eventsToSimulate:
     eventType = eventSelection['EventType']
     for energy in eventSelection['Energies']:
         rootFilesToProcess = getRootFiles(jobDescription,detModel,recoVar,energy,eventType,pandoraSettings)
-        print 'Submitting analysis of ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.'  
+        print 'Submitting analysis of ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.  Pandora settings ' + str(pandoraSettings) + '.'  
         runFileName = 'runfile.txt'
         runFile = open(runFileName,'w')
         for rootFile in rootFilesToProcess:
@@ -60,7 +60,7 @@ for eventSelection in eventsToSimulate:
         job.setJobGroup(JobIdentificationString)
         job.setInputSandbox(['LFN:/ilc/user/s/sgreen/AnalysePerformanceTarBall/lib.tar.gz', 'runfile.txt']) 
         job.setInputData(rootFilesToProcess)
-        job.setOutputData(outputFiles,OutputPath='/OptimisationStudies/AnalysePerformance/Detector_Model_' + str(detModel) + '_Run2/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV')
+        job.setOutputData(outputFiles,OutputPath='/OptimisationStudies/AnalysePerformance/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV')
 
         job.setName(JobIdentificationString)
         job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.CIT.us'])

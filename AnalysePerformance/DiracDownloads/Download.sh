@@ -6,7 +6,7 @@ evtType=Z_uds
 jobDescription=OptimisationStudies
 
 #for detModel in {49..77}
-for detModel in {39..43}
+for detModel in {84..94}
 do
     for recoStage in {69..76}
     do
