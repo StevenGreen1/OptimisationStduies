@@ -72,6 +72,14 @@ MHHHE[73]="2.0"
 MHHHE[74]="5.0"
 MHHHE[75]="10.0"
 MHHHE[76]="1000000.0"
+MHHHE[77]="0.5"
+MHHHE[78]="0.75"
+MHHHE[79]="1.0"
+MHHHE[80]="1.5"
+MHHHE[81]="2.0"
+MHHHE[82]="5.0"
+MHHHE[83]="10.0"
+MHHHE[84]="1000000.0"
 
 ECalBarrelTimeWindowMax="100.0"
 HCalBarrelTimeWindowMax="100.0"
@@ -89,7 +97,7 @@ do
     currentECalRealisticDigi=${ecalRealisticDigi[${detModel}]}
     slcioFormat="MokkaSim_Detector_Model_${detModel}_PARTICLE_ENERGYGeV_(.*?).slcio"
 
-    for recoStage in {69..76}
+    for recoStage in 79 #{69..76}
     do
         calibrationResultsPath="/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_${detModel}/Reco_Stage_${recoStage}/"
         currentMHHHE="${MHHHE[${recoStage}]}"

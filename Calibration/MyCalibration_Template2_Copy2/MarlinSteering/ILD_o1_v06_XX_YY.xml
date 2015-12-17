@@ -822,7 +822,7 @@
  <processor name="MySimpleMuonDigi" type="SimpleMuonDigi">
  <!--Performs simple digitization of sim calo hits...-->
   <!--Calibration coefficients for MUON-->
-  <parameter name="CalibrMUON" type="FloatVec">CALIBRMUON_XXXX</parameter>
+  <parameter name="CalibrMUON" type="FloatVec">CALIBR_MUON_XXXX</parameter>
   <!-- maximum hit energy for a MUON hit -->
   <parameter name="MaxHitEnergyMUON" type="float">2.0</parameter>
   <!--MUON Collection Names-->

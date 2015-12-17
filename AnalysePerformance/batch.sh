@@ -1,8 +1,8 @@
 #!/bin/bash
 
-for detModel in 95 #{84..94}
+for detModel in {84..89}
 do
-    for recoVar in {69..76}
+    for recoVar in 79 #{69..76}
     do
         for pandora in "PerfectPFA" "PerfectPhoton" "PerfectPhotonNK0L" "Default"
         do

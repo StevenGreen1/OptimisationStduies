@@ -92,10 +92,10 @@ if allFiles:
             rootFileFullPath = os.path.join(rootFilePath, 'ILD_o1_v06_' + jobName + '_SN_' + SN + '.root')
 
             # Root Files
-            newContent = re.sub('PANDORA_SETTINGS_DEFAULT_ROOT_FILE',rootFileFullPath,newContent)
+            newContent = re.sub('ROOTFILEDEFAULT_XXXX',rootFileFullPath,newContent)
 
             # Pandora Settings Files
-            newContent = re.sub('PANDORA_SETTINGS_DEFAULT_FILE',pandoraSettingsDefault,newContent)
+            newContent = re.sub('PANDORASETTINGSDEFAULT_XXXX',pandoraSettingsDefault,newContent)
 
             # Slcio File
             newContent = re.sub('LCIO_INPUT_FILE',slcioPath + nextFile,newContent)

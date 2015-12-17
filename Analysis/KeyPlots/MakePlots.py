@@ -70,13 +70,13 @@ class Results:
 
     def optimiseData(self):
         if self.algorithm:
-             if 'HCal Cell' in self.resultsName:
-                 optimalRecoVar = defaultdict(dict)
-                 optimalRecoVar = { 39:self.RecoVarFromTrunc[(0.5)], 40:self.RecoVarFromTrunc[(0.75)], 38:self.RecoVarFromTrunc[(1)], 41:self.RecoVarFromTrunc[(1.5)], 42:self.RecoVarFromTrunc[(2)], 43:self.RecoVarFromTrunc[(5)] }
-                 self.optimalRecoVar = optimalRecoVar
+            if 'HCal Cell' in self.resultsName:
+                optimalRecoVar = defaultdict(dict)
+                optimalRecoVar = { 39:self.RecoVarFromTrunc[(0.5)], 40:self.RecoVarFromTrunc[(0.75)], 38:self.RecoVarFromTrunc[(1)], 41:self.RecoVarFromTrunc[(1.5)], 42:self.RecoVarFromTrunc[(2)], 43:self.RecoVarFromTrunc[(5)] }
+                self.optimalRecoVar = optimalRecoVar
 
-             else:
-                 print 'Please speicify optimisaed energy truncations.'
+            else:
+                print 'Please speicify optimised energy truncations.'
 
 #            optimalRecoVar = defaultdict(dict)
 #            for detectorModel in self.detectorModelList:
@@ -99,8 +99,15 @@ class Results:
 
         else:
             optimalRecoVar = defaultdict(dict)
-            for detectorModel in self.detectorModelList:
-                optimalRecoVar[(detectorModel)] = 71
+
+            if 'No Truncation' in self.resultsName:
+                for detectorModel in self.detectorModelList:
+                    optimalRecoVar[(detectorModel)] = 76
+
+            else:
+                for detectorModel in self.detectorModelList:
+                    optimalRecoVar[(detectorModel)] = 71
+
             self.optimalRecoVar = optimalRecoVar
 
 #==================== 
@@ -237,6 +244,32 @@ class Results:
 jetEnergyList = [91,200,360,500]
 reconstructionVariantList = range(69,77)
 
+# Optimised HCal Cell Size
+#resultsName = 'Optimised HCal Cell Size'
+#detectorModelList = [39,40,38,41,42,43]
+#xAxisPlottingList = [10,20,30,40,50,100]
+#xAxisTitle = 'Optimised HCal Cell Size [mm^{2}]'
+
+#hcalCellSizeResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, True)
+#hcalCellSizeResults.readData()
+#hcalCellSizeResults.optimiseData()
+#hcalCellSizeResults.analyseOptimalData()
+#hcalCellSizeResults.plotData()
+
+# No Truncation HCal Cell Size
+#resultsName = 'No Truncation HCal Cell Size'
+#detectorModelList = [39,40,38,41,42,43]
+#xAxisPlottingList = [10,20,30,40,50,100]
+#xAxisTitle = 'No Truncation HCal Cell Size [mm^{2}]'
+
+#hcalCellSizeResults2 = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False)
+#hcalCellSizeResults2.readData()
+#hcalCellSizeResults2.optimiseData()
+#hcalCellSizeResults2.analyseOptimalData()
+#hcalCellSizeResults2.plotData()
+
+#sys.exit()
+
 # ECal Cell Size Silicon
 resultsName = 'Silicon ECal Cell Size'
 detectorModelList = [84,85,86,87,88,89]
@@ -251,8 +284,8 @@ ecalCellSizeResults.analyseOptimalData()
 
 # ECal Cell Size Scintillator
 resultsName = 'Scintillator ECal Cell Size'
-detectorModelList = [90,91,92]
-xAxisPlottingList = [3,5,7]
+detectorModelList = [90,91,92,93,94,95]
+xAxisPlottingList = [3,5,7,10,15,20]
 xAxisTitle = 'Scintillator ECal Cell Size [mm^{2}]'
 
 ecalCellSize2Results = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False)
@@ -274,7 +307,7 @@ hcalMaterialResults.readData()
 hcalMaterialResults.optimiseData()
 hcalMaterialResults.plotData()
 
-# Number of HCal Layers
+# HCal Cell Size
 resultsName = 'HCal Cell Size'
 detectorModelList = [39,40,38,41,42,43]
 xAxisPlottingList = [10,20,30,40,50,100]

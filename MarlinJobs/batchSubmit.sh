@@ -3,11 +3,11 @@
 # 1 is silicon ECal, realistic options
 # 5 is scintillator ECal, realistic options 
 
-templateNumber=5
+templateNumber=2
 
-for detModel in {90..95}
+for detModel in {84..89}
 do
-   for recoVar in {69..76}
+   for recoVar in 79 #{77..76}
     do
          python MarlinSubmit.py ${detModel} ${recoVar} ${templateNumber}
     done

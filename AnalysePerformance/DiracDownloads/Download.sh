@@ -5,10 +5,9 @@ source ../env.sh
 evtType=Z_uds
 jobDescription=OptimisationStudies
 
-#for detModel in {49..77}
-for detModel in {84..94}
+for detModel in {84..89}
 do
-    for recoStage in {69..76}
+    for recoStage in 79 #{69..76}
     do
         for energy in 91 200 360 500
         do

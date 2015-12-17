@@ -32,17 +32,12 @@ ECalGeVToMIP = sys.argv[10]
 HCalGeVToMIP = sys.argv[11]
 MuonGeVToMIP = sys.argv[12]
 
-ECalMIPMPV = sys.argv[13]
-HCalMIPMPV = sys.argv[14]
+MHHHE = sys.argv[13]
 
-MHHHE = sys.argv[15]
-
-ECalToEm = sys.argv[16]
-HCalToEm = sys.argv[17]
-ECalToHad = sys.argv[18]
-HCalToHad = sys.argv[19]
-
-ECalRealisticDigi = sys.argv[20]
+ECalToEm = sys.argv[14]
+HCalToEm = sys.argv[15]
+ECalToHad = sys.argv[16]
+HCalToHad = sys.argv[17]
 
 #======================
 # Output Path
