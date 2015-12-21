@@ -7,7 +7,7 @@ import sys
 
 Source_File = sys.argv[1]
 
-baseFileName =  os.path.join(os.getcwd(), 'MarlinCalibration2.sh')
+baseFileName =  os.path.join(os.getcwd(), 'MarlinCalibration_Template1_Copy1.sh')
 
 base = open(baseFileName,'r')
 baseContent = base.read()

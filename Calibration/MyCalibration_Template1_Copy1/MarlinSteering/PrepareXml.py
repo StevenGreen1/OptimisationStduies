@@ -55,7 +55,6 @@ ECalToEm = sys.argv[21]
 HCalToEm = sys.argv[22]
 ECalToHad = sys.argv[23]
 HCalToHad = sys.argv[24]
-ECalRealisticDigi = sys.argv[25]
 #===========================
 
 baseFile = os.path.join(os.getcwd(), 'ILD_o1_v06_XX_YY.xml')
@@ -130,9 +129,6 @@ if allFiles:
             newContent = re.sub('HCALTOEM_XXXX',HCalToEm,newContent)
             newContent = re.sub('ECALTOHAD_XXXX',ECalToHad,newContent)
             newContent = re.sub('HCALTOHAD_XXXX',HCalToHad,newContent)
-
-            # ECal Type, Silicon or Scintillator
-            newContent = re.sub('ECAL_APPLY_REALISTIC_DIGI_XXXX',ECalRealisticDigi,newContent)
 
             file = open(marlinFullPath,'w')
             file.write(newContent)

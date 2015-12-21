@@ -23,16 +23,28 @@ print sys.argv
 particle = sys.argv[1]
 energy = sys.argv[2]
 slcioPath = sys.argv[3] 
-slcioFormat = sys.argv[4] #'ILD_o1_v06_ENERGY_GeV_energy_PARTICLE_pdg_SN_(.*?).slcio'
+slcioFormat = sys.argv[4] #ILD_o1_v06_GJN${detModel}_ENERGY_GeV_Energy_PARTICLE_pdg_SN_(.*?).slcio
 gearFile = sys.argv[5]
 pandoraSettingsDefault = sys.argv[6]
 
 #===========================
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#particleNumber = 0
+
+#if 'Photon' in particle:
+#    particleNumber = 22
+#elif 'Muon' in particle:
+#    particleNumber = 13
+#elif 'Kaon0L' in particle:
+#    particleNumber = 130
+
 jobName = energy + '_GeV_' + particle
 
 slcioFormat = re.sub('ENERGY',energy,slcioFormat)
 slcioFormat = re.sub('PARTICLE',particle,slcioFormat)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #===========================
 # Calibration Numbers

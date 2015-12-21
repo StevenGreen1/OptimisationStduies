@@ -12,7 +12,7 @@ from collections import defaultdict
 
 class Results:
     m_HadronicEnergyTrunc = defaultdict(dict)
-    m_HadronicEnergyTrunc = {69:0.5, 70:0.75, 71:1, 72:1.5, 73:2, 74:5, 75:10, 76:1000000};
+    m_HadronicEnergyTrunc = {69:0.5, 70:0.75, 71:1, 72:1.5, 73:2, 74:5, 75:10, 76:1000000, 77:0.5, 78:0.75, 79:1, 80:1.5, 81:2, 82:5, 83:10, 84:1000000};
 
     m_RecoVarFromTrunc = defaultdict(dict)
     m_RecoVarFromTrunc = {0.5:69, 0.75:70, 1:71, 1.5:72, 2:73, 5:74, 10:75, 1000000:76};
@@ -21,7 +21,7 @@ class Results:
 
 #==================== 
 
-    def __init__(self, resultsName, detectorModelList, xAxisPlottingList, xAxisTitle, reconstructionVariantList, jetEnergyList, algorithm):
+    def __init__(self, resultsName, detectorModelList, xAxisPlottingList, xAxisTitle, reconstructionVariantList, jetEnergyList, algorithm, fixedRecoVar):
         self.resultsName = resultsName
         self.detectorModelList = detectorModelList
         self.xAxisPlottingList = xAxisPlottingList
@@ -38,6 +38,8 @@ class Results:
         for idx, xAxisPlotting in enumerate(xAxisPlottingList):
             detectorModelFromPlotting[(xAxisPlotting)] = detectorModelList[idx]
         self.detectorModelFromPlotting = detectorModelFromPlotting
+
+        self.fixedRecoVar = fixedRecoVar
 
 #==================== 
 
@@ -120,20 +122,14 @@ class Results:
                 optimalRecoVar = defaultdict(dict)
                 optimalRecoVar = { 39:self.m_RecoVarFromTrunc[(0.5)], 40:self.m_RecoVarFromTrunc[(0.75)], 38:self.m_RecoVarFromTrunc[(1)], 41:self.m_RecoVarFromTrunc[(1.5)], 42:self.m_RecoVarFromTrunc[(2)], 43:self.m_RecoVarFromTrunc[(5)] }
                 self.optimalRecoVar = optimalRecoVar
-
             else:
                 print 'Please speicify optimised energy truncations.'
 
         else:
             optimalRecoVar = defaultdict(dict)
 
-            if 'No Truncation' in self.resultsName:
-                for detectorModel in self.detectorModelList:
-                    optimalRecoVar[(detectorModel)] = 76
-
-            else:
-                for detectorModel in self.detectorModelList:
-                    optimalRecoVar[(detectorModel)] = 71
+            for detectorModel in self.detectorModelList:
+                optimalRecoVar[(detectorModel)] = self.fixedRecoVar
 
             self.optimalRecoVar = optimalRecoVar
 

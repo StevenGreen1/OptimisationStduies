@@ -63,66 +63,8 @@ numberOfHCalLayers[93]="48"
 numberOfHCalLayers[94]="48"
 numberOfHCalLayers[95]="48"
 
-ecalRealisticDigi[38]="1"
-ecalRealisticDigi[39]="1"
-ecalRealisticDigi[40]="1"
-ecalRealisticDigi[41]="1"
-ecalRealisticDigi[42]="1"
-ecalRealisticDigi[43]="1"
-ecalRealisticDigi[44]="1"
-ecalRealisticDigi[45]="1"
-ecalRealisticDigi[46]="1"
-ecalRealisticDigi[47]="1"
-ecalRealisticDigi[48]="1"
-ecalRealisticDigi[49]="1"
-ecalRealisticDigi[50]="1"
-ecalRealisticDigi[51]="1"
-ecalRealisticDigi[52]="1"
-ecalRealisticDigi[53]="1"
-ecalRealisticDigi[54]="1"
-ecalRealisticDigi[55]="1"
-ecalRealisticDigi[56]="1"
-ecalRealisticDigi[57]="1"
-ecalRealisticDigi[58]="1"
-ecalRealisticDigi[59]="1"
-ecalRealisticDigi[60]="1"
-ecalRealisticDigi[61]="1"
-ecalRealisticDigi[62]="1"
-ecalRealisticDigi[63]="1"
-ecalRealisticDigi[64]="1"
-ecalRealisticDigi[65]="1"
-ecalRealisticDigi[66]="1"
-ecalRealisticDigi[67]="1"
-ecalRealisticDigi[68]="1"
-ecalRealisticDigi[69]="1"
-ecalRealisticDigi[70]="1"
-ecalRealisticDigi[71]="1"
-ecalRealisticDigi[72]="1"
-ecalRealisticDigi[73]="1"
-ecalRealisticDigi[74]="1"
-ecalRealisticDigi[75]="1"
-ecalRealisticDigi[76]="1"
-ecalRealisticDigi[77]="1"
-ecalRealisticDigi[78]="1"
-ecalRealisticDigi[79]="1"
-ecalRealisticDigi[80]="1"
-ecalRealisticDigi[81]="1"
-ecalRealisticDigi[82]="1"
-ecalRealisticDigi[83]="1"
-ecalRealisticDigi[84]="1"
-ecalRealisticDigi[85]="1"
-ecalRealisticDigi[86]="1"
-ecalRealisticDigi[87]="1"
-ecalRealisticDigi[88]="1"
-ecalRealisticDigi[89]="1"
-ecalRealisticDigi[90]="2"
-ecalRealisticDigi[91]="2"
-ecalRealisticDigi[92]="2"
-ecalRealisticDigi[93]="2"
-ecalRealisticDigi[94]="2"
-ecalRealisticDigi[95]="2"
-
 #===== Reconstruction Settings =====#
+MHHHE[38]="1.0"
 MHHHE[69]="0.5"
 MHHHE[70]="0.75"
 MHHHE[71]="1.0"
@@ -132,28 +74,27 @@ MHHHE[74]="5.0"
 MHHHE[75]="10.0"
 MHHHE[76]="1000000.0"
 
-ECalBarrelTimeWindowMax="100.0"
-HCalBarrelTimeWindowMax="100.0"
-ECalEndcapTimeWindowMax="100.0"
-HCalEndcapTimeWindowMax="100.0"
+ECalBarrelTimeWindowMax="1000000.0"
+HCalBarrelTimeWindowMax="1000000.0"
+ECalEndcapTimeWindowMax="1000000.0"
+HCalEndcapTimeWindowMax="1000000.0"
 
 #===== End Settings =====#
 
-for detModel in {92..95}
+for detModel in {87..89}
 do
     slcioPath="/r04/lc/sg568/HCAL_Optimisation_Studies/Slcio/GJN${detModel}/"
     gearFile="/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN${detModel}_OutputSandbox/ILD_o1_v06_Detector_Model_${detModel}.gear"
     pandoraSettingsFile="/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibration/PandoraSettings_MarlinPandora_v02-00-00/PandoraSettingsDefault.xml" 
     currentNumberOfHCalLayers=${numberOfHCalLayers[${detModel}]}
-    currentECalRealisticDigi=${ecalRealisticDigi[${detModel}]}
     slcioFormat="MokkaSim_Detector_Model_${detModel}_PARTICLE_ENERGYGeV_(.*?).slcio"
 
-    for recoStage in {69..76}
+    for recoStage in 38 #{69..76}
     do
         calibrationResultsPath="/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_${detModel}/Reco_Stage_${recoStage}/"
         currentMHHHE="${MHHHE[${recoStage}]}"
         cd MyCalibration_Template1_Copy2
-        ./Calibrate.sh "${slcioPath}" "${slcioFormat}" "${gearFile}" "${calibrationResultsPath}" "${pandoraSettingsFile}" "${currentMHHHE}" "${currentNumberOfHCalLayers}" "${currentECalRealisticDigi}" "${ECalBarrelTimeWindowMax}" "${HCalBarrelTimeWindowMax}" "${ECalEndcapTimeWindowMax}" "${HCalEndcapTimeWindowMax}"
+        ./Calibrate.sh "${slcioPath}" "${slcioFormat}" "${gearFile}" "${calibrationResultsPath}" "${pandoraSettingsFile}" "${currentMHHHE}" "${currentNumberOfHCalLayers}" "${ECalBarrelTimeWindowMax}" "${HCalBarrelTimeWindowMax}" "${ECalEndcapTimeWindowMax}" "${HCalEndcapTimeWindowMax}"
         cd -
     done
 done

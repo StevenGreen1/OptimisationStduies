@@ -64,6 +64,7 @@ numberOfHCalLayers[94]="48"
 numberOfHCalLayers[95]="48"
 
 #===== Reconstruction Settings =====#
+MHHHE[63]="1.0"
 MHHHE[69]="0.5"
 MHHHE[70]="0.75"
 MHHHE[71]="1.0"
@@ -81,23 +82,25 @@ MHHHE[82]="5.0"
 MHHHE[83]="10.0"
 MHHHE[84]="1000000.0"
 
-ECalBarrelTimeWindowMax="100.0"
-HCalBarrelTimeWindowMax="100.0"
-ECalEndcapTimeWindowMax="100.0"
-HCalEndcapTimeWindowMax="100.0"
+ECalBarrelTimeWindowMax="1000000.0"
+HCalBarrelTimeWindowMax="1000000.0"
+ECalEndcapTimeWindowMax="1000000.0"
+HCalEndcapTimeWindowMax="1000000.0"
 
 #===== End Settings =====#
 
-for detModel in {84..86}
+for detModel in 38 #{84..86}
 do
     slcioPath="/r04/lc/sg568/HCAL_Optimisation_Studies/Slcio/GJN${detModel}/"
+    #gearFile="/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN38_OutputSandbox/ILD_o1_v06_GJN${detModel}.gear"
     gearFile="/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN${detModel}_OutputSandbox/ILD_o1_v06_Detector_Model_${detModel}.gear"
     pandoraSettingsFile="/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibration/PandoraSettings_MarlinPandora_v02-00-00/PandoraSettingsDefault.xml" 
     currentNumberOfHCalLayers=${numberOfHCalLayers[${detModel}]}
     currentECalRealisticDigi=${ecalRealisticDigi[${detModel}]}
+    #slcioFormat="ILD_o1_v06_GJN${detModel}_ENERGY_GeV_Energy_PARTICLE_pdg_SN_(.*?).slcio"
     slcioFormat="MokkaSim_Detector_Model_${detModel}_PARTICLE_ENERGYGeV_(.*?).slcio"
 
-    for recoStage in 79 #{69..76}
+    for recoStage in 63 #{69..76}
     do
         calibrationResultsPath="/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_${detModel}/Reco_Stage_${recoStage}/"
         currentMHHHE="${MHHHE[${recoStage}]}"

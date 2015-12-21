@@ -37,7 +37,6 @@ ECalToEm = sys.argv[16]
 HCalToEm = sys.argv[17]
 ECalToHad = sys.argv[18]
 HCalToHad = sys.argv[19]
-ECalRealisticDigi = sys.argv[20]
 #======================
 # Output Path
 #======================
@@ -75,7 +74,6 @@ newContent = re.sub('ECALTOEM_XXXX',ECalToEm,newContent)
 newContent = re.sub('HCALTOEM_XXXX',HCalToEm,newContent)
 newContent = re.sub('ECALTOHAD_XXXX',ECalToHad,newContent)
 newContent = re.sub('HCALTOHAD_XXXX',HCalToHad,newContent)
-newContent = re.sub('ECAL_APPLY_REALISTIC_DIGI_XXXX',ECalRealisticDigi,newContent)
 
 fullPath = os.path.join(outputPath, 'ILD_o1_v06_AAxAA_BBxBB_XX_YY.xml')
 

@@ -57,9 +57,9 @@
 
    <global>
       <parameter name="LCIOInputFiles">
-          /r04/lc/sg568/HCAL_Optimisation_Studies/Slcio/GJN89/MokkaSim_Detector_Model_89_Kaon0L_20GeV_1000_35000.slcio
+          /r04/lc/sg568/HCAL_Optimisation_Studies/Slcio/GJN86/MokkaSim_Detector_Model_86_Kaon0L_20GeV_1000_35000.slcio
       </parameter>
-      <parameter name="GearXMLFile" value="/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN89_OutputSandbox/ILD_o1_v06_Detector_Model_89.gear"/>
+      <parameter name="GearXMLFile" value="/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN86_OutputSandbox/ILD_o1_v06_Detector_Model_86.gear"/>
       <parameter name="MaxRecordNumber" value="-1"/>
       <parameter name="SkipNEvents" value="0"/>
       <parameter name="SupressCheck" value="false"/>
@@ -710,13 +710,13 @@
 <processor name="MyILDCaloDigi" type="ILDCaloDigi">
   <!--ILD digitizer...-->
   <!--Calibration coefficients for ECAL-->
-  <parameter name="CalibrECAL" type="FloatVec">42.8022729138 </parameter>
+  <parameter name="CalibrECAL" type="FloatVec">42.3851429024 </parameter>
   <!--Calibration coefficients for HCAL barrel-->
-  <parameter name="CalibrHCALBarrel" type="FloatVec">43.5800000000</parameter>
+  <parameter name="CalibrHCALBarrel" type="FloatVec">46.9729543347</parameter>
   <!--Calibration coefficients for HCAL endcap -->
-  <parameter name="CalibrHCALEndcap" type="FloatVec">50.2600000000</parameter>
+  <parameter name="CalibrHCALEndcap" type="FloatVec">52.1603853641</parameter>
   <!--Calibration coefficients for HCAL plug-->
-  <parameter name="CalibrHCALOther" type="FloatVec">26.76</parameter>
+  <parameter name="CalibrHCALOther" type="FloatVec">28.2220640718</parameter>
   <!--ECAL Collection Names-->
   <parameter name="ECALCollections" type="StringVec">EcalBarrelSiliconCollection EcalEndcapSiliconCollection  EcalEndcapRingCollection </parameter>
   <!--Index of ECal Layers-->
@@ -750,10 +750,10 @@
   <!-- Timing -->
   <parameter name="UseEcalTiming" type="int">1</parameter>
   <parameter name="UseHcalTiming" type="int">1</parameter>
-  <parameter name="ECALBarrelTimeWindowMax" type="float"> 100.0 </parameter>
-  <parameter name="HCALBarrelTimeWindowMax" type="float"> 100.0 </parameter>
-  <parameter name="ECALEndcapTimeWindowMax" type="float"> 100.0 </parameter>
-  <parameter name="HCALEndcapTimeWindowMax" type="float"> 100.0 </parameter>
+  <parameter name="ECALBarrelTimeWindowMax" type="float"> 1000000.0 </parameter>
+  <parameter name="HCALBarrelTimeWindowMax" type="float"> 1000000.0 </parameter>
+  <parameter name="ECALEndcapTimeWindowMax" type="float"> 1000000.0 </parameter>
+  <parameter name="HCALEndcapTimeWindowMax" type="float"> 1000000.0 </parameter>
   <parameter name="ECALTimeWindowMin" type="float"> -1.0 </parameter>
   <parameter name="HCALTimeWindowMin" type="float"> -1.0 </parameter>
   <parameter name="ECALCorrectTimesForPropagation" type="int">1</parameter>
@@ -959,18 +959,18 @@
   <parameter name="ClusterCollectionName" type="String">PandoraClustersDefault</parameter>
   <parameter name="PFOCollectionName" type="String">PandoraPFOsDefault</parameter>
   <!-- Calibration constants -->
-  <parameter name="ECalToMipCalibration" type="float">160.0</parameter>
-  <parameter name="HCalToMipCalibration" type="float">34.8</parameter>
+  <parameter name="ECalToMipCalibration" type="float">153.846</parameter>
+  <parameter name="HCalToMipCalibration" type="float">39.2157</parameter>
   <parameter name="ECalMipThreshold" type="float">0.5</parameter>
   <parameter name="HCalMipThreshold" type="float">0.3</parameter>
-  <parameter name="ECalToEMGeVCalibration" type="float">0.9995</parameter>
-  <parameter name="HCalToEMGeVCalibration" type="float">1.075</parameter>
-  <parameter name="ECalToHadGeVCalibrationBarrel" type="float">1.076</parameter>
-  <parameter name="ECalToHadGeVCalibrationEndCap" type="float">1.076</parameter>
-  <parameter name="HCalToHadGeVCalibration" type="float">1.075</parameter>
-  <parameter name="MuonToMipCalibration" type="float">10.0</parameter>
+  <parameter name="ECalToEMGeVCalibration" type="float">1.01425025343</parameter>
+  <parameter name="HCalToEMGeVCalibration" type="float">1.10905003318</parameter>
+  <parameter name="ECalToHadGeVCalibrationBarrel" type="float">1.07613155515</parameter>
+  <parameter name="ECalToHadGeVCalibrationEndCap" type="float">1.07613155515</parameter>
+  <parameter name="HCalToHadGeVCalibration" type="float">1.10905003318</parameter>
+  <parameter name="MuonToMipCalibration" type="float">10.3093</parameter>
   <parameter name="DigitalMuonHits" type="int">0</parameter>
-  <parameter name="MaxHCalHitHadronicEnergy" type="float">1000000.0</parameter>
+  <parameter name="MaxHCalHitHadronicEnergy" type="float">1.0</parameter>
   <parameter name="AbsorberRadLengthECal" type="float">0.2854</parameter>
   <parameter name="AbsorberIntLengthECal" type="float">0.0101</parameter>
   <parameter name="AbsorberRadLengthHCal" type="float">0.0569</parameter>
@@ -1016,7 +1016,7 @@
     <!--Set the debug print level-->
   <parameter name="Printing" type="int"> 0 </parameter>
     <!--Output root file name-->^M
-  <parameter name="RootFile" type="string"> /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibration/MyCalibration2/MarlinSteering/../RootFiles/ILD_o1_v06_20_GeV_Kaon0L_SN_1000_35000.root </parameter>^M
+  <parameter name="RootFile" type="string"> /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/Calibration/MyCalibration_Template1_Copy1/MarlinSteering/../RootFiles/ILD_o1_v06_20_GeV_Kaon0L_SN_1000_35000.root </parameter>^M
 </processor>
 
 </marlin>

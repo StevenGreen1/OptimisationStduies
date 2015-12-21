@@ -52,6 +52,10 @@ for eventSelection in eventsToSimulate:
                 outputFile = 'MokkaSim_Detector_Model_' + str(detectorModelNumber) + '_' + description + '_' + str(eventsPerJob) + '_' + str(jobNumber) + '.slcio'
                 outputPath = '/' + jobName + '/MokkaJobs/Detector_Model_' + str(detectorModelNumber) + '/' + eventType + '/' + str(energy) + 'GeV' 
 
+                lfn = '/ilc/user/s/sgreen/' + outputPath + '/' + outputFile
+                if doesFileExist(lfn):
+                    continue
+
                 mokkaSteeringTemplate = ''
                 mokkaSteeringTemplate = getMokkaSteeringFileTemplate(baseXmlFile,detModelConfigFile)
                 mokkaSteeringTemplate = setGearFile(mokkaSteeringTemplate,gearFile)

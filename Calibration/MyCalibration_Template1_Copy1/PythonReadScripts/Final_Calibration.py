@@ -42,7 +42,6 @@ HCalToEm = sys.argv[17]
 ECalToHad = sys.argv[18]
 HCalToHad = sys.argv[19]
 
-ECalRealisticDigi = sys.argv[20]
 
 #======================
 # Output Path
@@ -107,9 +106,6 @@ jobList += ECALEndcapTimeWindowMax + '\n'
 
 jobList += 'HCALEndcapTimeWindowMax is:                         '
 jobList += HCALEndcapTimeWindowMax + '\n'
-
-jobList += 'ECalRealisticDigi is:                               '
-jobList += ECalRealisticDigi + '\n'
 
 file = open( outputPath + 'Final_Calibration.txt','w')
 file.write(jobList)

@@ -74,6 +74,25 @@ def getMokkaSteeringFileTemplate(baseFileName,detectorConfigFile):
     # ECal cell size
     mokkaSteeringTemplate = re.sub('ECAL_CELL_SIZE_XXXX',str(config['ECalCellSize']),mokkaSteeringTemplate)
 
+    # ECal Number of Layers 
+    mokkaSteeringTemplate = re.sub('ECAL_NLAYERS1_XXXX',str(config['NumberECalLayers1']),mokkaSteeringTemplate)
+    mokkaSteeringTemplate = re.sub('ECAL_NLAYERS2_XXXX',str(config['NumberECalLayers2']),mokkaSteeringTemplate)
+    mokkaSteeringTemplate = re.sub('ECAL_NLAYERS3_XXXX',str(config['NumberECalLayers3']),mokkaSteeringTemplate)
+
+    # LCal Number of Layers
+    mokkaSteeringTemplate = re.sub('LCAL_NLAYERS_XXXX',str(config['NumberLCalLayers']),mokkaSteeringTemplate)
+
+    # Thickness of absorber layers in the ECal
+    mokkaSteeringTemplate = re.sub('ECAL_RADIATOR_LAYERS_SET1_THICKNESS_XXXX',str(config['ECalAbsorberLayerThickness1']),mokkaSteeringTemplate)
+    mokkaSteeringTemplate = re.sub('ECAL_RADIATOR_LAYERS_SET2_THICKNESS_XXXX',str(config['ECalAbsorberLayerThickness2']),mokkaSteeringTemplate)
+    mokkaSteeringTemplate = re.sub('ECAL_RADIATOR_LAYERS_SET3_THICKNESS_XXXX',str(config['ECalAbsorberLayerThickness3']),mokkaSteeringTemplate)
+
+    # Thickenss of scintillator layers in the ECal
+    mokkaSteeringTemplate = re.sub('ECAL_SC_THICKNESS_XXXX',str(config['ECalSiliconThickness']),mokkaSteeringTemplate)
+
+    # Thickenss of silicon layers in the ECal
+    mokkaSteeringTemplate = re.sub('ECAL_SI_THICKNESS_XXXX',str(config['ECalScintillatorThickness']),mokkaSteeringTemplate)
+
     # Ecal Sc N strips across module
     mokkaSteeringTemplate = re.sub('ECAL_SC_NSTRIPS_ACROSS_MODULE_XXXX',str(config['ECalScNStripsAcrossModule']),mokkaSteeringTemplate)
 
@@ -107,6 +126,19 @@ def getHEPEvtFiles(eventType, energy):
             hepevtFiles.append(line)
     os.system('rm tmp.txt')
     return hepevtFiles
+
+### ----------------------------------------------------------------------------------------------------
+
+def doesFileExist(lfn):
+    from DIRAC.DataManagementSystem.Client.DataManager import DataManager
+    dm = DataManager()
+    result = dm.getActiveReplicas(lfn)
+    if result[('Value')][('Successful')]:
+        return True
+#        print 'File exists.'
+    else:
+        return False
+#        print 'File does notexists.'
 
 ### ----------------------------------------------------------------------------------------------------
 

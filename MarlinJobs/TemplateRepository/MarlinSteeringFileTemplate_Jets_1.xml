@@ -780,7 +780,7 @@
   <parameter name="HCAL_miscalibration_uncorrel" type="float">0</parameter>
   <parameter name="HCAL_miscalibration_correl" type="float">0</parameter>
   <!-- Realistic ECal -->
-<parameter name="ECAL_apply_realistic_digi" type="int">ECAL_APPLY_REALISTIC_DIGI_XXXX</parameter>
+<parameter name="ECAL_apply_realistic_digi" type="int">1</parameter>
 <parameter name="CalibECALMIP" type="float">CALIBR_ECAL_MIP_XXXX</parameter>
   <parameter name="ECAL_maxDynamicRange_MIP" type="float">2500</parameter>
   <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>

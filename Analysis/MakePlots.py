@@ -45,7 +45,7 @@ detectorModelList = [84,85,86,87,88,89]
 xAxisPlottingList = [3,5,7,10,15,20]
 xAxisTitle = 'Silicon ECal Cell Size [mm^{2}]'
 
-ecalCellSizeResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False)
+ecalCellSizeResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
 ecalCellSizeResults.readData()
 ecalCellSizeResults.optimiseData()
 ecalCellSizeResults.plotData()
@@ -54,13 +54,30 @@ ecalCellSizeResults.generateConfusionTerms()
 ecalCellSizeResults.plotConfusionData(500)
 ecalCellSizeResults.plotConfusionData(91)
 
+# ECal Cell Size Silicon
+reconstructionVariantList2 = [79]
+
+resultsName = 'Silicon ECal Cell Size No Realistic Digitisation Effects'
+detectorModelList = [84,85,86,87,88,89]
+xAxisPlottingList = [3,5,7,10,15,20]
+xAxisTitle = 'Silicon ECal Cell Size [mm^{2}]'
+
+ecalCellSizeResults2 = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList2,jetEnergyList, False, 79)
+ecalCellSizeResults2.readData()
+ecalCellSizeResults2.optimiseData()
+ecalCellSizeResults2.plotData()
+ecalCellSizeResults2.analyseOptimalData()
+ecalCellSizeResults2.generateConfusionTerms()
+ecalCellSizeResults2.plotConfusionData(500)
+ecalCellSizeResults2.plotConfusionData(91)
+
 # ECal Cell Size Scintillator
 resultsName = 'Scintillator ECal Cell Size'
 detectorModelList = [90,91,92,93,94,95]
 xAxisPlottingList = [3,5,7,10,15,20]
 xAxisTitle = 'Scintillator ECal Cell Size [mm^{2}]'
 
-ecalCellSize2Results = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False)
+ecalCellSize2Results = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
 ecalCellSize2Results.readData()
 ecalCellSize2Results.optimiseData()
 ecalCellSize2Results.plotData()
@@ -77,7 +94,7 @@ detectorModelList = [45,46,47,48]
 xAxisPlottingList = [1,2,3,4]
 xAxisTitle = 'HCal Absorber Material'
 
-hcalMaterialResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False)
+hcalMaterialResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
 hcalMaterialResults.readData()
 hcalMaterialResults.optimiseData()
 hcalMaterialResults.plotData()
@@ -88,7 +105,7 @@ detectorModelList = [39,40,38,41,42,43]
 xAxisPlottingList = [10,20,30,40,50,100]
 xAxisTitle = 'HCal Cell Size [mm^{2}]'
 
-hcalCellSizeResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, True)
+hcalCellSizeResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, True, 0)
 hcalCellSizeResults.readData()
 hcalCellSizeResults.optimiseData()
 hcalCellSizeResults.analyseOptimalData()
@@ -101,7 +118,7 @@ detectorModelList = [49,50,51,52,53,38,54,55]
 xAxisPlottingList = [18,24,30,36,42,48,54,60]
 xAxisTitle = 'Number Of Layers In The HCal'
 
-layerResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False)
+layerResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
 layerResults.readData()
 layerResults.optimiseData()
 layerResults.plotData()
@@ -113,7 +130,7 @@ detectorModelList = [56,57,38,58,59]
 xAxisPlottingList = [4.576,5.148,5.72,6.292,6.864]
 xAxisTitle = 'Number Of Nuclear Interation Lengths In The HCal [#lambda_{I}]'
 
-lengthResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False)
+lengthResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
 lengthResults.readData()
 lengthResults.optimiseData()
 lengthResults.plotData()
@@ -125,7 +142,7 @@ detectorModelList = [60,61,38,62,63]
 xAxisPlottingList = [0.05,0.10,0.15,0.20,0.25]
 xAxisTitle = 'Sampling Fraction In The HCal'
 
-sampFraclengthResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False)
+sampFraclengthResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
 sampFraclengthResults.readData()
 sampFraclengthResults.optimiseData()
 sampFraclengthResults.plotData()
@@ -137,7 +154,7 @@ detectorModelList = [64,65,66,67,68,69,70,71,72]
 xAxisPlottingList = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
 xAxisTitle = 'Magentic Field Strength [T]'
 
-bFieldResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False)
+bFieldResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
 bFieldResults.readData()
 bFieldResults.optimiseData()
 bFieldResults.plotData()
@@ -149,7 +166,7 @@ detectorModelList = [73,74,75,76,77]
 xAxisPlottingList = [1208,1408,1608,1808,2008]
 xAxisTitle = 'ECal Inner Radius [mm]'
 
-ecalInnerRadResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False)
+ecalInnerRadResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
 ecalInnerRadResults.readData()
 ecalInnerRadResults.optimiseData()
 ecalInnerRadResults.plotData()

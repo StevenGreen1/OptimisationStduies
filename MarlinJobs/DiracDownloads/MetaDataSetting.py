@@ -6,8 +6,8 @@ from DIRAC.Resources.Catalog.FileCatalogClient import FileCatalogClient
 
 evtType = 'Z_uds'
 jobDescription = 'OptimisationStudies'
-detNumbers = range(84,90) 
-#detNumbers = range(90,96) 
+#detNumbers = range(84,90) 
+detNumbers = range(90,96) 
 recoStages = [79] #range(69,77) 
 fileType = 'Rec'
 
