@@ -104,13 +104,6 @@ MuonGeVToMIP=10.0
 
 ECalMIPMPV=0.00015
 HCalMIPMPV=0.00004
-#===============================================
-# Clear previous files
-#===============================================
-rm -fr RootFiles
-mkdir RootFiles
-rm -fr MarlinXml
-mkdir MarlinXml
 
 #===============================================
 # Output File Information
