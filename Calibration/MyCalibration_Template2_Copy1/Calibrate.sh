@@ -149,7 +149,7 @@ fi
 
 # Generate Marlin steering files with initial guesses
 cd ${XmlGeneration}
-python PrepareXml.py "Photon" ${photonEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} 
+python PrepareXml.py "Photon" ${photonEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${calibrationFilePath} 
 
 # Generate root files
 cd ${RootFileGeneration}
@@ -185,7 +185,7 @@ CheckECalDigi=$(echo "$Fractional_Error_ECal_Mean >= ${digitisationAccuracy}" | 
 while [[ $CheckECalDigi -gt 0 ]] 
 do
     cd ${XmlGeneration}
-    python PrepareXml.py "Photon" ${photonEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} 
+    python PrepareXml.py "Photon" ${photonEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${calibrationFilePath} 
 
     cd ${RootFileGeneration}
     Runfile="MarlinRunFile_${photonEnergyCalibration}_GeV_Photon.txt"
@@ -217,7 +217,7 @@ done
 # Generate Marlin steering files with initial guesses
 
 cd ${XmlGeneration}
-python PrepareXml.py "Kaon0L" ${kaon0LEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} 
+python PrepareXml.py "Kaon0L" ${kaon0LEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${calibrationFilePath} 
 
 # Generate root files
 
@@ -256,7 +256,7 @@ CheckHCalEndCapDigi=$(echo "$Fractional_HCal_EndCap_Mean >= ${digitisationAccura
 while [[ $CheckHCalBarrelDigi -gt 0 ]] || [[ $CheckHCalEndCapDigi -gt 0 ]]
 do
     cd ${XmlGeneration}
-    python PrepareXml.py "Kaon0L" ${kaon0LEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} 
+    python PrepareXml.py "Kaon0L" ${kaon0LEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${calibrationFilePath} 
 
     cd ${RootFileGeneration}
     Runfile="MarlinRunFile_${kaon0LEnergyCalibration}_GeV_Kaon0L.txt"
@@ -290,7 +290,7 @@ done
 
 # Generate Marlin steering files for muons, needed for HCal ring calibration
 cd ${XmlGeneration}
-python PrepareXml.py "Muon" ${muonEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} 
+python PrepareXml.py "Muon" ${muonEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${calibrationFilePath} 
 
 # Process steering files
 cd ${RootFileGeneration}
@@ -349,7 +349,7 @@ HCalMIPMPV=$(python Extract_SimCaloHitMIPMPV.py ${calibrationFile} "HCal")
 
 # Generate Xml Files With Initial Guesses
 cd ${XmlGeneration}
-python PrepareXml.py "Photon" ${photonEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} 
+python PrepareXml.py "Photon" ${photonEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${calibrationFilePath} 
 
 # Generate Root Files
 
@@ -379,7 +379,7 @@ CheckECalToEMPandoraPFA=$(echo "$Fractional_EM_Error >= ${pandoraPFAAccuracy}" |
 while [ $CheckECalToEMPandoraPFA -gt 0 ]
 do
     cd ${XmlGeneration}
-    python PrepareXml.py "Photon" ${photonEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} 
+    python PrepareXml.py "Photon" ${photonEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${calibrationFilePath} 
 
     cd ${RootFileGeneration}
     Runfile="MarlinRunFile_${photonEnergyCalibration}_GeV_Photon.txt"
@@ -411,7 +411,7 @@ done
 
 # Generate Xml Files With Initial Guesses
 cd ${XmlGeneration}
-python PrepareXml.py "Kaon0L" ${kaon0LEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} 
+python PrepareXml.py "Kaon0L" ${kaon0LEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${calibrationFilePath} 
 
 # Generate Root Files
 cd ${RootFileGeneration}
@@ -483,7 +483,7 @@ fi
 while [[ $CheckOne -gt 0 ]] || [[ $CheckTwo -gt 0 ]] || [[ $CheckThree -gt 0 ]] || [[ $CheckFour -gt 0 ]] 
 do
     cd ${XmlGeneration}
-    python PrepareXml.py "Kaon0L" ${kaon0LEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad}  
+    python PrepareXml.py "Kaon0L" ${kaon0LEnergyCalibration} ${slcioPath} ${slcioFormat} ${gearFile} ${pandoraSettingsFile} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} ${calibrationFilePath}  
  
     cd ${RootFileGeneration}
     Runfile="MarlinRunFile_${kaon0LEnergyCalibration}_GeV_Kaon0L.txt"
@@ -546,7 +546,7 @@ cd ${PythonReadScripts}
 python Final_Calibration.py ${outputPath} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} 
 
 cd ${XmlGeneration}
-python PrepareFinalXml.py ${outputPath} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad} 
+python PrepareFinalXml.py ${outputPath} ${CalibrECAL} ${CalibrHCALBarrel} ${CalibrHCALEndCap} ${CalibrHCALOther} ${ECalBarrelTimeWindowMax} ${HCalBarrelTimeWindowMax} ${ECalEndCapTimeWindowMax} ${HCalEndCapTimeWindowMax} ${ECalGeVToMIP} ${HCalGeVToMIP} ${MuonGeVToMIP} ${MHHHE} ${ECalToEm} ${HCalToEm} ${ECalToHad} ${HCalToHad}  
 
 #===============================================#
 #                      End                      #

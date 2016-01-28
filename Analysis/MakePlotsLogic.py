@@ -12,12 +12,15 @@ from collections import defaultdict
 
 class Results:
     m_HadronicEnergyTrunc = defaultdict(dict)
-    m_HadronicEnergyTrunc = {69:0.5, 70:0.75, 71:1, 72:1.5, 73:2, 74:5, 75:10, 76:1000000, 77:0.5, 78:0.75, 79:1, 80:1.5, 81:2, 82:5, 83:10, 84:1000000};
+    m_HadronicEnergyTrunc = {38:1, 69:0.5, 70:0.75, 71:1, 72:1.5, 73:2, 74:5, 75:10, 76:1000000, 77:0.5, 78:0.75, 79:1, 80:1.5, 81:2, 82:5, 83:10, 84:1000000}
 
     m_RecoVarFromTrunc = defaultdict(dict)
-    m_RecoVarFromTrunc = {0.5:69, 0.75:70, 1:71, 1.5:72, 2:73, 5:74, 10:75, 1000000:76};
+    m_RecoVarFromTrunc = {0.5:69, 0.75:70, 1:71, 1.5:72, 2:73, 5:74, 10:75, 1000000:76}
 
     m_PandoraSettings = ['Default','PerfectPhoton','PerfectPhotonNK0L','PerfectPFA']
+
+    m_DetectorLabel = defaultdict(dict)
+    m_DetectorLabel = {45:'Steel HCal Absorber Material, QGSP_BERT', 46:'Steel HCal Absorber Material, QGSP_BERT_HP', 47:'Tungsten HCal Absorber Material, QGSP_BERT', 48:'Tungsten HCal Absorber Material, QGSP_BERT_HP'}
 
 #==================== 
 
@@ -52,6 +55,7 @@ class Results:
                 for reconstructionVariant in self.reconstructionVariantList:
                     for jetEnergy in self.jetEnergyList:
                         JER[(detectorModel,reconstructionVariant,jetEnergy,pandoraSettings)] = -1
+                        JERError[(detectorModel,reconstructionVariant,jetEnergy,pandoraSettings)] = 0
                         fileName = '/r06/lc/sg568/HCAL_Optimisation_Studies/AnalysePerformanceResults/Detector_Model_' + str(detectorModel) + '/Reco_Stage_' + str(reconstructionVariant) + '/Z_uds/' + str(jetEnergy) + 'GeV/AnalysePerformance_PandoraSettings' + pandoraSettings + '_DetectorModel_' + str(detectorModel) + '_Reco_Stage_' + str(reconstructionVariant) + '_Z_uds_' + str(jetEnergy) + 'GeV.txt'
                         if os.path.isfile(fileName):
                             file = open(fileName)
@@ -233,6 +237,78 @@ class Results:
 
         #===== Write out file =====#
         resultsFile = open("JER_vs_" + str(self.resultsName.replace(' ', '')) + ".C", "w")
+        resultsFile.write(saveString)
+        resultsFile.close()
+
+#====================
+
+    def plotDataVsJetEnergy(self):
+        pandoraSettings = 'Default'
+
+        saveString = '{\n'
+        saveString += '    gStyle->SetOptStat(0);\n\n'
+
+        saveString += '    TCanvas *pCanvasEj = new TCanvas();\n'
+        saveString += '    pCanvasEj->cd();\n\n'
+
+        saveString += '    TH2F *pAxesEj = new TH2F("axesEj","",300,0,300,650,0,6.5);\n'
+        saveString += '    pAxesEj->GetYaxis()->SetTitle("RMS_{90}(E_{j}) / Mean_{90}(E_{j}) [%]");\n'
+        saveString += '    pAxesEj->GetXaxis()->SetTitle("E_{j} [GeV]");\n'
+        saveString += '    pAxesEj->Draw();\n\n'
+
+        saveString += '    float jetEnergy[' + str(len(self.jetEnergyList)) + '] = {'
+        for jetEnergy in self.jetEnergyList:
+            saveString += str(float(jetEnergy)/2)
+            if jetEnergy is not self.jetEnergyList[-1]:
+                saveString += ','
+        saveString += '};\n\n'
+
+        saveString += '    float jetEnergyError[' + str(len(self.jetEnergyList)) + '] = {'
+        for jetEnergy in self.jetEnergyList:
+            saveString += str(0)
+            if jetEnergy is not self.jetEnergyList[-1]:
+                saveString += ','
+        saveString += '};\n\n'
+
+        for xAxisPlotting in self.xAxisPlottingList:
+            saveString += '    float Variable_' + str(xAxisPlotting) + '_JER[' + str(len(self.jetEnergyList)) + '] = {'
+            detectorModel = self.detectorModelFromPlotting[(xAxisPlotting)]
+            optimalRecoVar = self.optimalRecoVar[(detectorModel)]
+            for jetEnergy in self.jetEnergyList:
+                saveString += str(self.JER[(detectorModel,optimalRecoVar,jetEnergy,pandoraSettings)])
+                if jetEnergy is not self.jetEnergyList[-1]:
+                    saveString += ','
+            saveString += '};\n\n'
+
+        for xAxisPlotting in self.xAxisPlottingList:
+            saveString += '    float Variable_' + str(xAxisPlotting) + '_JERError[' + str(len(self.jetEnergyList)) + '] = {'
+            detectorModel = self.detectorModelFromPlotting[(xAxisPlotting)]
+            optimalRecoVar = self.optimalRecoVar[(detectorModel)]
+            for jetEnergy in self.jetEnergyList:
+                saveString += str(self.JERError[(detectorModel,optimalRecoVar,jetEnergy,pandoraSettings)])
+                if jetEnergy is not self.jetEnergyList[-1]:
+                    saveString += ','
+            saveString += '};\n\n'
+
+        rootLineColor = ['4','2','6','1',]
+        #rootLineStyle = ['1','2','3','4','5','6']
+
+        saveString += '    TLegend *pLegend = new TLegend(0.6, 0.6, 0.9, 0.9);\n'
+
+        for idx, xAxisPlotting in enumerate(self.xAxisPlottingList):
+            saveString += '    TGraphErrors *pTGraphErrors_Variable_' + str(xAxisPlotting) + ' = new TGraphErrors(' + str(len(self.jetEnergyList)) + ',jetEnergy,Variable_' + str(xAxisPlotting) + '_JER,jetEnergyError,Variable_' + str(xAxisPlotting) + '_JERError);\n\n'
+            saveString += '    pTGraphErrors_Variable_' + str(xAxisPlotting) + '->SetLineColor(' + rootLineColor[idx] + ');\n'
+            saveString += '    pTGraphErrors_Variable_' + str(xAxisPlotting) + '->SetMarkerColor(' + rootLineColor[idx] + ');\n'
+            saveString += '    pTGraphErrors_Variable_' + str(xAxisPlotting) + '->Draw("lp,same");\n\n'
+            saveString += '    pLegend->AddEntry(pTGraphErrors_Variable_' + str(xAxisPlotting) + ', "' + Results.m_DetectorLabel[self.detectorModelList[idx]] + '", "lp");\n\n'
+
+        saveString += '    pLegend->SetFillStyle(0);\n'
+        saveString += '    pLegend->Draw("same");\n'
+        saveString += '    pCanvasEj->SaveAs("JER_vs_JetEnergy_' + str(self.resultsName.replace(' ', '')) + '.pdf");\n'
+        saveString += '}\n'
+
+        #===== Write out file =====#
+        resultsFile = open("JER_vs_JetEnergy_" + str(self.resultsName.replace(' ', '')) + ".C", "w")
         resultsFile.write(saveString)
         resultsFile.close()
 

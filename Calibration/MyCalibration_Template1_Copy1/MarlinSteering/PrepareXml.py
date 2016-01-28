@@ -59,10 +59,14 @@ ECalToHad = sys.argv[23]
 HCalToHad = sys.argv[24]
 #===========================
 
+calibrationFilePath = sys.argv[25]
+
+#===========================
+
 baseFile = os.path.join(os.getcwd(), 'ILD_o1_v06_XX_YY.xml')
 baseFileName = 'ILD_o1_v06_XX_YY.xml'
-marlinPath = os.getcwd() + '/../MarlinXml'
-rootFilePath = os.getcwd() + '/../RootFiles'
+marlinPath = calibrationFilePath + 'MarlinXml'
+rootFilePath = calibrationFilePath + 'RootFiles'
 
 jobList = ''
 

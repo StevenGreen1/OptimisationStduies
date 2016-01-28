@@ -50,6 +50,11 @@ for eventSelection in eventsToSimulate:
                      ]
 
         outputFiles = arguements[1:]
+        outputPath = '/OptimisationStudies/AnalysePerformance/Detector_Model_' + str(detModel) + '_Run4/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
+
+        lfn = '/ilc/user/s/sgreen/' + outputPath + '/' + arguements[1]
+        if doesFileExist(lfn):
+            continue
 
         genericApplication = GenericApplication()
         genericApplication.setScript('AnalysePerformance')
@@ -60,7 +65,7 @@ for eventSelection in eventsToSimulate:
         job.setJobGroup(JobIdentificationString)
         job.setInputSandbox(['LFN:/ilc/user/s/sgreen/AnalysePerformanceTarBall/lib.tar.gz', 'runfile.txt']) 
         job.setInputData(rootFilesToProcess)
-        job.setOutputData(outputFiles,OutputPath='/OptimisationStudies/AnalysePerformance/Detector_Model_' + str(detModel) + '_Run3/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV')
+        job.setOutputData(outputFiles,OutputPath=outputPath)
 
         job.setName(JobIdentificationString)
         job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.CIT.us'])

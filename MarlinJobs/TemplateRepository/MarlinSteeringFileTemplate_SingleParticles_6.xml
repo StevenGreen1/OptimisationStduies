@@ -742,7 +742,7 @@ i<processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
   <!--CaloHit Relation Collection-->
   <parameter name="RelationOutputCollection" type="string">RelationECALScTransverseCaloHit</parameter>
   <!--Gap Correction-->
-  <parameter name="ECALGapCorrection" type="int"> 1 </parameter>
+  <parameter name="ECALGapCorrection" type="int"> 0 </parameter>
   <!--Gap Correction Fudge Factor-->
   <parameter name="ECALGapCorrectionFactor" type="int"> 1.0 </parameter>
   <parameter name="ECALModuleGapCorrectionFactor" type="int"> 0.0 </parameter>
@@ -829,7 +829,7 @@ i<processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
   <!--CaloHit Relation Collection-->
   <parameter name="RelationOutputCollection" type="string">RelationECALScLongitudinalCaloHit</parameter>
   <!--Gap Correction-->
-  <parameter name="ECALGapCorrection" type="int"> 1 </parameter>
+  <parameter name="ECALGapCorrection" type="int"> 0 </parameter>
   <!--Gap Correction Fudge Factor-->
   <parameter name="ECALGapCorrectionFactor" type="int"> 1.0 </parameter>
   <parameter name="ECALModuleGapCorrectionFactor" type="int"> 0.0 </parameter>
@@ -916,7 +916,7 @@ i<processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
   <!--CaloHit Relation Collection-->
   <parameter name="RelationOutputCollection" type="string"> RelationCaloHit</parameter>
   <!--Gap Correction-->
-  <parameter name="ECALGapCorrection" type="int"> 1 </parameter>
+  <parameter name="ECALGapCorrection" type="int"> 0 </parameter>
   <!--Gap Correction Fudge Factor-->
   <parameter name="ECALGapCorrectionFactor" type="int"> 1.0 </parameter>
   <parameter name="ECALModuleGapCorrectionFactor" type="int"> 0.0 </parameter>

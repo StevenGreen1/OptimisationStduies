@@ -7,7 +7,7 @@ from DIRAC.Resources.Catalog.FileCatalogClient import FileCatalogClient
 jobDescription = 'OptimisationStudies'
 fileType = 'Sim'
 
-detModelList = [84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95]
+detModelList = range(96,104) #[84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95]
 
 eventsToSimulate = [ { 'EventType': 'Z_uds', 'Energies': [91, 200, 360, 500] },
                      { 'EventType': 'Photon', 'Energies': [10] },

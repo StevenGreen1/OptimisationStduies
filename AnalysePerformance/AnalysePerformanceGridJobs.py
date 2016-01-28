@@ -20,3 +20,16 @@ def getRootFiles(jobDescription, detModel, recoVar, energy, eventType, pandoraSe
 
 ### ----------------------------------------------------------------------------------------------------
 
+def doesFileExist(lfn):
+    from DIRAC.DataManagementSystem.Client.DataManager import DataManager
+    dm = DataManager()
+    result = dm.getActiveReplicas(lfn)
+    if result[('Value')][('Successful')]:
+        return True
+#        print 'File exists.'
+    else:
+        return False
+#        print 'File does notexists.'
+
+### ----------------------------------------------------------------------------------------------------
+

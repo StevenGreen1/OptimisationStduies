@@ -37,6 +37,19 @@ reconstructionVariantList = range(69,77)
 #hcalCellSizeResults2.analyseOptimalData()
 #hcalCellSizeResults2.plotData()
 
+# Material
+resultsName = 'HCal Absorber Material'
+detectorModelList = [45,46,47,48]
+xAxisPlottingList = [1,2,3,4]
+xAxisTitle = 'HCal Absorber Material'
+
+hcalMaterialResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
+hcalMaterialResults.readData()
+hcalMaterialResults.optimiseData()
+#hcalMaterialResults.analyseOptimalData()
+#hcalMaterialResults.plotData()
+hcalMaterialResults.plotDataVsJetEnergy()
+
 #sys.exit()
 
 # ECal Cell Size Silicon
@@ -54,7 +67,9 @@ ecalCellSizeResults.generateConfusionTerms()
 ecalCellSizeResults.plotConfusionData(500)
 ecalCellSizeResults.plotConfusionData(91)
 
-# ECal Cell Size Silicon
+#sys.exit()
+
+# ECal Cell Size Silicon 2
 reconstructionVariantList2 = [79]
 
 resultsName = 'Silicon ECal Cell Size No Realistic Digitisation Effects'
@@ -67,9 +82,26 @@ ecalCellSizeResults2.readData()
 ecalCellSizeResults2.optimiseData()
 ecalCellSizeResults2.plotData()
 ecalCellSizeResults2.analyseOptimalData()
-ecalCellSizeResults2.generateConfusionTerms()
-ecalCellSizeResults2.plotConfusionData(500)
-ecalCellSizeResults2.plotConfusionData(91)
+#ecalCellSizeResults2.generateConfusionTerms()
+#ecalCellSizeResults2.plotConfusionData(500)
+#ecalCellSizeResults2.plotConfusionData(91)
+
+# ECal Cell Size Silicon 3
+reconstructionVariantList2 = [38]
+
+resultsName = 'Silicon ECal Cell Size Realistic Digitisation Effects No Timing Cuts'
+detectorModelList = [84,85,86,87,88,89]
+xAxisPlottingList = [3,5,7,10,15,20]
+xAxisTitle = 'Silicon ECal Cell Size [mm^{2}]'
+
+ecalCellSizeResults3 = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList2,jetEnergyList, False, 38)
+ecalCellSizeResults3.readData()
+ecalCellSizeResults3.optimiseData()
+ecalCellSizeResults3.plotData()
+ecalCellSizeResults3.analyseOptimalData()
+#ecalCellSizeResults3.generateConfusionTerms()
+#ecalCellSizeResults3.plotConfusionData(500)
+#ecalCellSizeResults3.plotConfusionData(91)
 
 # ECal Cell Size Scintillator
 resultsName = 'Scintillator ECal Cell Size'
@@ -82,9 +114,43 @@ ecalCellSize2Results.readData()
 ecalCellSize2Results.optimiseData()
 ecalCellSize2Results.plotData()
 #ecalCellSize2Results.analyseOptimalData()
-ecalCellSize2Results.generateConfusionTerms()
-ecalCellSize2Results.plotConfusionData(500)
-ecalCellSize2Results.plotConfusionData(91)
+#ecalCellSize2Results.generateConfusionTerms()
+#ecalCellSize2Results.plotConfusionData(500)
+#ecalCellSize2Results.plotConfusionData(91)
+
+# ECal Cell Size Scintillator 2
+reconstructionVariantList2 = [79]
+
+resultsName = 'Scintillator ECal Cell Size Basic ILD'
+detectorModelList = [90,91,92,93,94,95]
+xAxisPlottingList = [3,5,7,10,15,20]
+xAxisTitle = 'Scintillator ECal Cell Size [mm^{2}]'
+
+ecalCellSize2Results2 = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList2,jetEnergyList, False, 79)
+ecalCellSize2Results2.readData()
+ecalCellSize2Results2.optimiseData()
+ecalCellSize2Results2.plotData()
+#ecalCellSize2Results2.analyseOptimalData()
+#ecalCellSize2Results2.generateConfusionTerms()
+#ecalCellSize2Results2.plotConfusionData(500)
+#ecalCellSize2Results2.plotConfusionData(91)
+
+# ECal Cell Size Scintillator 3
+reconstructionVariantList2 = [63]
+
+resultsName = 'Scintillator ECal Cell Size Basic ILD No Timing Cuts'
+detectorModelList = [90,91,92,93,94,95]
+xAxisPlottingList = [3,5,7,10,15,20]
+xAxisTitle = 'Scintillator ECal Cell Size [mm^{2}]'
+
+ecalCellSize2Results3 = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList2,jetEnergyList, False, 63)
+ecalCellSize2Results3.readData()
+ecalCellSize2Results3.optimiseData()
+ecalCellSize2Results3.plotData()
+#ecalCellSize2Results3.analyseOptimalData()
+#ecalCellSize2Results3.generateConfusionTerms()
+#ecalCellSize2Results3.plotConfusionData(500)
+#ecalCellSize2Results3.plotConfusionData(91)
 
 sys.exit()
 
@@ -97,7 +163,11 @@ xAxisTitle = 'HCal Absorber Material'
 hcalMaterialResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
 hcalMaterialResults.readData()
 hcalMaterialResults.optimiseData()
-hcalMaterialResults.plotData()
+#hcalMaterialResults.analyseOptimalData()
+#hcalMaterialResults.plotData()
+hcalMaterialResults.plotDataVsJetEnergy()
+
+#sys.exit()
 
 # HCal Cell Size
 resultsName = 'HCal Cell Size'
@@ -110,7 +180,7 @@ hcalCellSizeResults.readData()
 hcalCellSizeResults.optimiseData()
 hcalCellSizeResults.analyseOptimalData()
 hcalCellSizeResults.plotData()
-hcalCellSizeResults.fancyPlot()
+hcalCellSizeResults.plotConfusionData(500)
 
 # Number of HCal Layers
 resultsName = 'Number Of Layers In The HCal'
@@ -122,7 +192,6 @@ layerResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitl
 layerResults.readData()
 layerResults.optimiseData()
 layerResults.plotData()
-layerResults.fancyPlot()
 
 # Number of HCal Interation Lengths
 resultsName = 'Number Of Nuclear Interation Lengths In The HCal'
@@ -134,7 +203,6 @@ lengthResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTit
 lengthResults.readData()
 lengthResults.optimiseData()
 lengthResults.plotData()
-lengthResults.fancyPlot()
 
 # Sampling Fraction in HCal
 resultsName = 'Sampling Fraction In The HCal'
@@ -146,7 +214,6 @@ sampFraclengthResults = Results(resultsName,detectorModelList,xAxisPlottingList,
 sampFraclengthResults.readData()
 sampFraclengthResults.optimiseData()
 sampFraclengthResults.plotData()
-sampFraclengthResults.fancyPlot()
 
 # B Field
 resultsName = 'Magnetic Field Strength'
@@ -158,7 +225,6 @@ bFieldResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTit
 bFieldResults.readData()
 bFieldResults.optimiseData()
 bFieldResults.plotData()
-bFieldResults.fancyPlot()
 
 # Sampling Fraction in HCal
 resultsName = 'ECal Inner Radius'
@@ -170,6 +236,5 @@ ecalInnerRadResults = Results(resultsName,detectorModelList,xAxisPlottingList,xA
 ecalInnerRadResults.readData()
 ecalInnerRadResults.optimiseData()
 ecalInnerRadResults.plotData()
-ecalInnerRadResults.fancyPlot()
 
 

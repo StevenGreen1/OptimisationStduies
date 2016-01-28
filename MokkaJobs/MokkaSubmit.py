@@ -21,7 +21,7 @@ eventsToSimulate = [ { 'EventType': "Z_uds"  , 'EventsPerFile' : 1000 , 'Energie
 ]
 
 baseXmlFile  = 'TemplateRepository/MokkaSteer.steer'
-eventsPerJob = 1000
+eventsPerJob = 100
 
 jobName = 'OptimisationStudies'
 
