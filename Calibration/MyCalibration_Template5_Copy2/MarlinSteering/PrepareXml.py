@@ -38,6 +38,8 @@ slcioFormat = re.sub('PARTICLE',particle,slcioFormat)
 # Calibration Numbers
 #===========================
 CalibrECal = sys.argv[7]
+CalibrECal2 = 2 * float(CalibrECal)
+CalibrECal = str(CalibrECal) + ' ' + str(CalibrECal2)
 CalibrHCalBarrel = sys.argv[8]
 CalibrHCalEndcap = sys.argv[9]
 CalibrHCalOther = sys.argv[10]
@@ -106,7 +108,7 @@ if allFiles:
             newContent = re.sub('GEAR_FILE',gearFile,newContent)
             
             # Digitisation Constants
-            newContent = re.sub('CALIBRECAL_XXXX',CalibrECal,newContent)
+            newContent = re.sub('CALIBRECAL_XXXX',CalibrECalToSub,newContent)
             newContent = re.sub('CALIBRHCALBARREL_XXXX',CalibrHCalBarrel,newContent)
             newContent = re.sub('CALIBRHCALENDCAP_XXXX',CalibrHCalEndcap,newContent)
             newContent = re.sub('CALIBRHCALOTHER_XXXX',CalibrHCalOther,newContent)

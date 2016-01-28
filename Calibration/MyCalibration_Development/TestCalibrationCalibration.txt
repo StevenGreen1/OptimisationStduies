@@ -1,0 +1,20 @@
+_____________________________________________________________________________________
+Digitisation of the HCal Ring                      : 
+
+For Muons with energy                              : 10 : 
+The MIP peaks for each part of the HCal were found : 
+to occur at the following SimCaloHit values:              : 
+HCal Barrel MIP Peak:                              : -2.5e-06 : 
+HCal EndCap MIP Peak:                              : -2.5e-06 : 
+HCal Ring MIP Peak:                                : -1.25e-05 : 
+ECal MIP Peak:                                     : -2.5e-06 : 
+_____________________________________________________________________________________
+Digitisation of the HCal Ring                      : 
+
+For Muons with energy                              : 10 : 
+The MIP peaks for each part of the HCal were found : 
+to occur at the following SimCaloHit values:              : 
+HCal Barrel MIP Peak:                              : -2.5e-06 : 
+HCal EndCap MIP Peak:                              : -2.5e-06 : 
+HCal Ring MIP Peak:                                : -1.25e-05 : 
+ECal MIP Peak:                                     : -2.5e-06 : 

@@ -100,9 +100,10 @@ do
     for recoStage in 79 #{69..76}
     do
         calibrationResultsPath="/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_${detModel}/Reco_Stage_${recoStage}/"
+        calibrationFilePath="/r04/lc/sg568/HCAL_Optimisation_Studies/Calibration/Detector_Model_${detModel}/Reco_Stage_${recoStage}/"
         currentMHHHE="${MHHHE[${recoStage}]}"
         cd MyCalibration_Template2_Copy2
-        ./Calibrate.sh "${slcioPath}" "${slcioFormat}" "${gearFile}" "${calibrationResultsPath}" "${pandoraSettingsFile}" "${currentMHHHE}" "${currentNumberOfHCalLayers}" "${ECalBarrelTimeWindowMax}" "${HCalBarrelTimeWindowMax}" "${ECalEndcapTimeWindowMax}" "${HCalEndcapTimeWindowMax}"
+        ./Calibrate.sh "${slcioPath}" "${slcioFormat}" "${gearFile}" "${calibrationResultsPath}" "${pandoraSettingsFile}" "${currentMHHHE}" "${currentNumberOfHCalLayers}" "${ECalBarrelTimeWindowMax}" "${HCalBarrelTimeWindowMax}" "${ECalEndcapTimeWindowMax}" "${HCalEndcapTimeWindowMax}" "${calibrationFilePath}" 
         cd -
     done
 done

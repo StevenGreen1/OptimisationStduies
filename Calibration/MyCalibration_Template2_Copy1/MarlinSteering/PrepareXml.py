@@ -50,6 +50,8 @@ slcioFormat = re.sub('PARTICLE',particle,slcioFormat)
 # Calibration Numbers
 #===========================
 CalibrECal = sys.argv[7]
+CalibrECal2 = 2 * float(CalibrECal)
+CalibrECal = str(CalibrECal) + ' ' + str(CalibrECal2)
 CalibrHCalBarrel = sys.argv[8]
 CalibrHCalEndcap = sys.argv[9]
 CalibrHCalOther = sys.argv[10]

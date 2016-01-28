@@ -65,6 +65,7 @@ numberOfHCalLayers[95]="48"
 
 #===== Reconstruction Settings =====#
 MHHHE[38]="1.0"
+MHHHE[43]="1000000.0"
 MHHHE[69]="0.5"
 MHHHE[70]="0.75"
 MHHHE[71]="1.0"
@@ -81,7 +82,7 @@ HCalEndcapTimeWindowMax="1000000.0"
 
 #===== End Settings =====#
 
-for detModel in {87..89}
+for detModel in {42..44}
 do
     slcioPath="/r04/lc/sg568/HCAL_Optimisation_Studies/Slcio/GJN${detModel}/"
     gearFile="/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN${detModel}_OutputSandbox/ILD_o1_v06_Detector_Model_${detModel}.gear"
@@ -89,12 +90,13 @@ do
     currentNumberOfHCalLayers=${numberOfHCalLayers[${detModel}]}
     slcioFormat="MokkaSim_Detector_Model_${detModel}_PARTICLE_ENERGYGeV_(.*?).slcio"
 
-    for recoStage in 38 #{69..76}
+    for recoStage in 43 #{69..76}
     do
         calibrationResultsPath="/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_${detModel}/Reco_Stage_${recoStage}/"
+        calibrationFilePath="/r04/lc/sg568/HCAL_Optimisation_Studies/Calibration/Detector_Model_${detModel}/Reco_Stage_${recoStage}/"
         currentMHHHE="${MHHHE[${recoStage}]}"
         cd MyCalibration_Template1_Copy2
-        ./Calibrate.sh "${slcioPath}" "${slcioFormat}" "${gearFile}" "${calibrationResultsPath}" "${pandoraSettingsFile}" "${currentMHHHE}" "${currentNumberOfHCalLayers}" "${ECalBarrelTimeWindowMax}" "${HCalBarrelTimeWindowMax}" "${ECalEndcapTimeWindowMax}" "${HCalEndcapTimeWindowMax}"
+        ./Calibrate.sh "${slcioPath}" "${slcioFormat}" "${gearFile}" "${calibrationResultsPath}" "${pandoraSettingsFile}" "${currentMHHHE}" "${currentNumberOfHCalLayers}" "${ECalBarrelTimeWindowMax}" "${HCalBarrelTimeWindowMax}" "${ECalEndcapTimeWindowMax}" "${HCalEndcapTimeWindowMax}" "${calibrationFilePath}" 
         cd -
     done
 done

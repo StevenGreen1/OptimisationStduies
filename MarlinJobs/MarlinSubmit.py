@@ -89,7 +89,7 @@ for eventSelection in eventsToSimulate:
             job.setJobGroup(jobDescription)
             job.setInputSandbox(pandoraSettingsFilesLocal.values()) # Local files
             job.setOutputSandbox(['*.log','*.gear','*.mac','*.steer','*.xml'])
-            job.setOutputData(outputFiles,OutputPath='/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '_Run2/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV') # On grid
+            job.setOutputData(outputFiles,OutputPath='/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '_Run4/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV') # On grid
             job.setName(jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar))
             job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp'])
             job.dontPromptMe()

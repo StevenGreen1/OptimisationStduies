@@ -125,13 +125,15 @@ path=$(pwd)
 
 PythonReadScripts="${path}/PythonReadScripts/"
 XmlGeneration="${path}/MarlinSteering/"
-MarlinXml="${path}/MarlinXml/"
 RootFileGeneration="${path}/MarlinSteering/Condor/"
-RootFiles="${path}/RootFiles/"
 
-kaon0LPath="${path}/RootFiles/ILD_o1_v06_${kaon0LEnergyCalibration}_GeV_Kaon0L_SN_*.root"
-photonPath="${path}/RootFiles/ILD_o1_v06_${photonEnergyCalibration}_GeV_Photon_SN_*.root"
-muonPath="${path}/RootFiles/ILD_o1_v06_${muonEnergyCalibration}_GeV_Muon_SN_*.root"
+calibrationFilePath="${12}"
+RootFiles="${calibrationFilePath}RootFiles/"
+MarlinXml="${calibrationFilePath}MarlinXml/"
+
+kaon0LPath="${RootFiles}ILD_o1_v06_${kaon0LEnergyCalibration}_GeV_Kaon0L_SN_*.root"
+photonPath="${RootFiles}ILD_o1_v06_${photonEnergyCalibration}_GeV_Photon_SN_*.root"
+muonPath="${RootFiles}ILD_o1_v06_${muonEnergyCalibration}_GeV_Muon_SN_*.root"
 
 #==============================================
 if [ "$useCondor" = "Yes" ];then

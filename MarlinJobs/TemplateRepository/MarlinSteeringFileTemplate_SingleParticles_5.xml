@@ -1110,6 +1110,8 @@ i<processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
 <!--########## MarlinPandora ###################################### -->
 
 <processor name="MyMarlinPandoraDefault" type="PandoraPFANewProcessor">
+  <parameter name="StripSplittingOn" type="bool">0</parameter>
+  <parameter name="UseEcalScLayers" type="bool">1</parameter>
 <parameter name="PandoraSettingsXmlFile" type="String">PANDORASETTINGSDEFAULT_XXXX</parameter>
   <!-- Collection names -->
   <parameter name="TrackCollections" type="StringVec">MarlinTrkTracks</parameter>
@@ -1127,19 +1129,27 @@ i<processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
   <parameter name="V0VertexCollections" type="StringVec">V0Vertices</parameter>
   <parameter name="ClusterCollectionName" type="String">PandoraClustersDefault</parameter>
   <parameter name="PFOCollectionName" type="String">PandoraPFOsDefault</parameter>
-  <!-- Calibration constants -->
-<parameter name="ECalToMipCalibration" type="float">ECALTOMIPCALIBRATION_XXXX</parameter>
-<parameter name="HCalToMipCalibration" type="float">HCALTOMIPCALIBRATION_XXXX</parameter>
-<parameter name="ECalMipThreshold" type="float">ECALMIPTHRESHOLD_XXXX</parameter>
-<parameter name="HCalMipThreshold" type="float">HCALMIPTHRESHOLD_XXXX</parameter>
-<parameter name="ECalToEMGeVCalibration" type="float">ECALTOEMGEVCALIBRATION_XXXX</parameter>
-<parameter name="HCalToEMGeVCalibration" type="float">HCALTOEMGEVCALIBRATION_XXXX</parameter>
-<parameter name="ECalToHadGeVCalibrationBarrel" type="float">ECALTOHADGEVCALIBRATION_XXXX</parameter>
-<parameter name="ECalToHadGeVCalibrationEndCap" type="float">ECALTOHADGEVCALIBRATION_XXXX</parameter>
-<parameter name="HCalToHadGeVCalibration" type="float">HCALTOHADGEVCALIBRATION_XXXX</parameter>
-<parameter name="MuonToMipCalibration" type="float">MUONTOMIPCALIBRATION_XXXX</parameter>
+  <!-- Calibration constants, ECalSc -->
+  <parameter name="ECalScToMipCalibration" type="float">ECALTOMIPCALIBRATION_XXXX</parameter>
+  <parameter name="ECalScMipThreshold" type="float">ECALMIPTHRESHOLD_XXXX</parameter>
+  <parameter name="ECalScToEMGeVCalibration" type="float">ECALTOEMGEVCALIBRATION_XXXX</parameter>
+  <parameter name="ECalScToHadGeVCalibrationBarrel" type="float">ECALTOHADGEVCALIBRATION_XXXX</parameter>
+  <parameter name="ECalScToHadGeVCalibrationEndCap" type="float">ECALTOHADGEVCALIBRATION_XXXX</parameter>
+  <!-- ECal other -->
+  <!-- Fixed taken from DetModel 38, Default Model, and Reco Var 71, 1 GeV Truncation, 100ns Timing Cuts, Realisitic Options -->
+  <parameter name="ECalToMipCalibration" type="float">153.846</parameter>
+  <parameter name="ECalMipThreshold" type="float">0.5</parameter>
+  <parameter name="ECalToEMGeVCalibration" type="float">1.00356141304</parameter>
+  <parameter name="ECalToHadGeVCalibrationBarrel" type="float">1.14127910463</parameter>
+  <parameter name="ECalToHadGeVCalibrationEndCap" type="float">1.14127910463</parameter>
+  <!-- HCal -->
+  <parameter name="HCalToMipCalibration" type="float">HCALTOMIPCALIBRATION_XXXX</parameter>
+  <parameter name="HCalMipThreshold" type="float">HCALMIPTHRESHOLD_XXXX</parameter>
+  <parameter name="HCalToEMGeVCalibration" type="float">HCALTOEMGEVCALIBRATION_XXXX</parameter>
+  <parameter name="HCalToHadGeVCalibration" type="float">HCALTOHADGEVCALIBRATION_XXXX</parameter>
+  <parameter name="MuonToMipCalibration" type="float">MUONTOMIPCALIBRATION_XXXX</parameter>
   <parameter name="DigitalMuonHits" type="int">0</parameter>
-<parameter name="MaxHCalHitHadronicEnergy" type="float">MAXHCALHITHADRONICENERGY_XXXX</parameter>
+  <parameter name="MaxHCalHitHadronicEnergy" type="float">MAXHCALHITHADRONICENERGY_XXXX</parameter>
   <parameter name="AbsorberRadLengthECal" type="float">0.2854</parameter>
   <parameter name="AbsorberIntLengthECal" type="float">0.0101</parameter>
   <parameter name="AbsorberRadLengthHCal" type="float">0.0569</parameter>

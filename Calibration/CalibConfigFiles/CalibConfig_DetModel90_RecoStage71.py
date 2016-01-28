@@ -20,14 +20,14 @@ CalibrHCalMIP = 0.0004925
 
 # MIP Peak position in directed corrected CaloHit energy distributions
 # used for MIP definition in PandoraPFA
-ECalToMIPCalibration = 232.558
+ECalToMIPCalibration = 153.846
 HCalToMIPCalibration = 38.61
 MuonToMIPCalibration = 10.3093
 
 # EM and Had Scale Settings
-ECalToEMGeVCalibration = 1.00317261494
+ECalToEMGeVCalibration = 1.00356141304
 HCalToEMGeVCalibration = 1.10917037816
-ECalToHadGeVCalibration = 0.949247664777
+ECalToHadGeVCalibration = 1.14127910463
 HCalToHadGeVCalibration = 1.10917037816
 
 # Pandora Threshold Cuts

@@ -45,7 +45,7 @@ outputPath = sys.argv[1]
 
 #======================
 
-baseFileName = 'FinalSteeringFileTemplate.xml'
+baseFileName = 'ILD_o1_v06_XX_YY.xml'
 
 jobList = ''
 

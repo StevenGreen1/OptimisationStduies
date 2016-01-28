@@ -1,0 +1,16 @@
+executable              = MarlinCalibrationScECal2.sh                                     
+initial_dir             = /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/Calibration/MyCalibration_Template5_Copy2/MarlinSteering/Condor/                                                    
+notification            = never                                                           
+Requirements            = (POOL == "GENERAL") && (OSTYPE == "SLC6")                   
+Rank                    = memory                                                          
+output                  = $ENV(HOME)/CondorLogs/MarlinCalibrationScECal2.out.$(Process)               
+error                   = $ENV(HOME)/CondorLogs/MarlinCalibrationScECal2.err.$(Process)               
+log                     = $ENV(HOME)/CondorLogs/MarlinCalibrationScECal2.log.$(Process)               
+environment             = CONDOR_JOB=true                                                 
+Universe                = vanilla                                                         
+getenv                  = false                                                           
+copy_to_spool           = true                                                            
+should_transfer_files   = yes                                                             
+when_to_transfer_output = on_exit_or_evict                                                
+arguments = /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/Calibration/MyCalibration_Template5_Copy2/MarlinSteering/../MarlinXml/ILD_o1_v06_10_GeV_Muon_SN_1000_48000.xml
+queue 1

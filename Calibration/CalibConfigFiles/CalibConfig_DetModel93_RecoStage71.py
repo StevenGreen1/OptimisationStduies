@@ -25,10 +25,10 @@ HCalToMIPCalibration = 39.5257
 MuonToMIPCalibration = 10.3093
 
 # EM and Had Scale Settings
-ECalToEMGeVCalibration = 0.980958710673
-HCalToEMGeVCalibration = 1.11491749914
-ECalToHadGeVCalibration = 0.788625804343
-HCalToHadGeVCalibration = 1.11491749914
+ECalToEMGeVCalibration = 1.00356141304
+HCalToEMGeVCalibration = 1.11488803119
+ECalToHadGeVCalibration = 1.14127910463
+HCalToHadGeVCalibration = 1.11488803119
 
 # Pandora Threshold Cuts
 ECalMIPThresholdPandora = 0.5
