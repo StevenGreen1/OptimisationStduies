@@ -186,7 +186,6 @@ class Calibration:
         self.checkCondorJobs()
 
         executable = os.path.join(self._PandoraAnalysisPath,'SimCaloHitEnergyDistribution')
-        print self._MuonRootFiles
         runExecutable = subprocess.Popen([executable, '-a', self._MuonRootFiles, '-b', str(self._MuonEnergyCalibration), '-c', self._ResultsPath])
         runExecutable.wait()
         self.setMIPScaleDigitser()
@@ -514,7 +513,6 @@ class Calibration:
                     absRegex = re.compile("(.*?)absorberThickness=\"(.*?)e+(.*?)\" cellSize0=(.*?)")
                     absResults = absRegex.search(line)
                     if absResults is not None:
-                        print line
                         self._AbsorberThicknessHCalRing = float(absResults.group(2)) * pow(10,float(absResults.group(3)))
 
                     actRegex = re.compile("(.*?)Hcal_scintillator_thickness(.*?)value=\"(.*?)e+(.*?)\"(.*?)")
