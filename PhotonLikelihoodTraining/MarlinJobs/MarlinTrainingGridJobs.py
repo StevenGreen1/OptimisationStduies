@@ -5,18 +5,18 @@ import sys
 
 ### ----------------------------------------------------------------------------------------------------
 
-def generatePandoraSettingsActive(photonLikelihoodFileName,numberOfECalLayers):
-    baseFileName = 'PandoraSettings/PandoraSettingsDefault.xml'
+#def generatePandoraSettingsActive(photonLikelihoodFileName,numberOfECalLayers):
+#    baseFileName = 'PandoraSettings/PandoraSettingsDefault.xml'
 
-    baseFile = open(baseFileName,'r')
-    pandoraSettingsTemplate = baseFile.read()
-    baseFile.close()
+#    baseFile = open(baseFileName,'r')
+#    pandoraSettingsTemplate = baseFile.read()
+#    baseFile.close()
 
-    pandoraSettingsTemplate = re.sub('PANDORATRAININGXMLFILENAME_XXXX',photonLikelihoodFileName,pandoraSettingsTemplate)
-    pandoraSettingsTemplate = re.sub('NUMBEROFECALLAYERS_XXXX',str(numberOfECalLayers),pandoraSettingsTemplate)
+#    pandoraSettingsTemplate = re.sub('PANDORATRAININGXMLFILENAME_XXXX',photonLikelihoodFileName,pandoraSettingsTemplate)
+#    pandoraSettingsTemplate = re.sub('NUMBEROFECALLAYERS_XXXX',str(numberOfECalLayers),pandoraSettingsTemplate)
 
-    with open("PandoraSettingsActive.xml" ,"w") as pandoraSettingsFile:
-        pandoraSettingsFile.write(pandoraSettingsTemplate)
+#    with open("PandoraSettingsActive.xml" ,"w") as pandoraSettingsFile:
+#        pandoraSettingsFile.write(pandoraSettingsTemplate)
 
 ### ----------------------------------------------------------------------------------------------------
 

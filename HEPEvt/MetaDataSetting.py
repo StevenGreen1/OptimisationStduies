@@ -4,8 +4,8 @@ from DIRAC.Core.Base import Script
 Script.parseCommandLine()
 from DIRAC.Resources.Catalog.FileCatalogClient import FileCatalogClient
 
-energies = [20]
-particles = ['Kaon0L']
+energies = [100]
+particles = ['Photon']
 
 fc = FileCatalogClient()
 

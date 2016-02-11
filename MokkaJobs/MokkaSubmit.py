@@ -14,14 +14,14 @@ from MokkaGridJobs import *
 
 detectorModelNumber = sys.argv[1] 
 
-eventsToSimulate = [ { 'EventType': "Z_uds"  , 'EventsPerFile' : 1000 , 'Energies':  ['91','200','360','500'] }, 
-                     { 'EventType': "Muon"  , 'EventsPerFile' : 1000 , 'Energies':  ['10'] },
-                     { 'EventType': "Photon"  , 'EventsPerFile' : 1000 , 'Energies':  ['10'] },
-                     { 'EventType': "Kaon0L"  , 'EventsPerFile' : 1000 , 'Energies':  ['20'] }
+eventsToSimulate = [ #{ 'EventType': "Z_uds"  , 'EventsPerFile' : 1000 , 'Energies':  ['91','200','360','500'] }, 
+                     #{ 'EventType': "Muon"  , 'EventsPerFile' : 1000 , 'Energies':  ['10'] },
+                     { 'EventType': "Photon"  , 'EventsPerFile' : 1000 , 'Energies':  ['100'] }
+                     #{ 'EventType': "Kaon0L"  , 'EventsPerFile' : 1000 , 'Energies':  ['20'] }
 ]
 
 baseXmlFile  = 'TemplateRepository/MokkaSteer.steer'
-eventsPerJob = 100
+eventsPerJob = 1000
 
 jobName = 'OptimisationStudies'
 

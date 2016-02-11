@@ -21,29 +21,29 @@ eventsToSimulate = [ { 'EventType': "Z_uds", 'Energies': [500] } ]
 
 baseXmlFile = 'TemplateRepository/MarlinSteeringFileTemplate_Jets_' + str(templateNumber) + '.xml'
 
-# Notes: 
-# Turned off the slcio output processor to speed up job processing in xml file.
-
 pandoraSettingsFiles = {}
-pandoraSettingsFiles['Active'] = 'PandoraSettingsActive.xml' 
+pandoraSettingsFiles['Active'] = 'PandoraSettingsMuon.xml' 
 
 #===== Second level user input =====
-# If using naming scheme doesn't need changing 
 
 gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_Detector_Model_' + str(detModel) + '.gear'
-calibConfigFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
+calibConfigFile = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PhotonLikelihoodTraining/CalibrationInfo/CalibrationConfigMuon/CalibConfig_DetModel84_RecoStage71_Muon.py'
+
+'/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
+
+                   /usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PhotonLikelihoodTraining/CalibrationInfo/CalibrationConfigMuon
 
 # Edit pandora settings file used for training
 
 numberECalLayers = numberECalLayersDict[(int)(detModel)] 
 photonLikelihoodFileName = 'PandoraLikelihoodData_DetModel_' + str(detModel) + '_RecoStage_' + str(recoVar) + '.xml'
-generatePandoraSettingsActive(photonLikelihoodFileName,numberECalLayers)
 
 #=====
 
 # Copy gear file and pandora settings files to local directory as is needed for submission.
 os.system('cp ' + gearFile + ' .')
 gearFileLocal = os.path.basename(gearFile)
+os.system('cp PandoraSettings/PandoraSettingsMuon.xml .')
 
 # Start submission
 JobIdentificationString = jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar)
@@ -98,6 +98,7 @@ for eventSelection in eventsToSimulate:
 
 # Tidy Up
 os.system('rm MarlinSteering.steer')
+os.system('rm PandoraSettingsMuon.xml')
 os.system('rm ' + gearFileLocal)
 for key, value in pandoraSettingsFiles.iteritems():
     os.system('rm ' + value)
