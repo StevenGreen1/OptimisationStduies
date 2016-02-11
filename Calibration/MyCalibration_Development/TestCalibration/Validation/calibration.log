@@ -1,0 +1,5 @@
+2016-02-11 13:26:58,505 - CalibrateLogic - INFO - Output path : /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/Calibration/MyCalibration_Development/TestCalibration
+2016-02-11 13:26:58,511 - CalibrateLogic - INFO - Realistic digitsation setting : True
+2016-02-11 13:26:58,511 - CalibrateLogic - INFO - self.ApplyECalRealisticDigi   : 1
+2016-02-11 13:26:58,511 - CalibrateLogic - INFO - self.ApplyHCalRealisticDigi   : 1
+2016-02-11 13:26:58,511 - CalibrateLogic - INFO - Checking that calibration text document, root folder and marlin folder exists and if not make them

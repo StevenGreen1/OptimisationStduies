@@ -11,4 +11,4 @@ for detectorModel in [96, 97]:
         pandoraSettings = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/Calibration/PandoraSettings_MarlinPandora_v02-00-00/PandoraSettingsMuon.xml'
         timingCut = 100
         hadronicEnergyTrunc = 1
-        Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc)
+        Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Si', True)
