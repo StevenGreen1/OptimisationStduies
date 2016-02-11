@@ -2,7 +2,7 @@
 
 from CalibrateLogic import *
 
-for detectorModel in [96, 97]:
+for detectorModel in [98, 99]:
     for recoStage in [71]:
         outputPath = '/r04/lc/sg568/HCAL_Optimisation_Studies/Calibration/Detector_Model_' + str(detectorModel) + '/Reco_Stage_' + str(recoStage) + '/MuonCalibration'
         slcioFormat = 'MokkaSim_Detector_Model_' + str(detectorModel) + '_PARTICLE_ENERGYGeV_(.*?).slcio'

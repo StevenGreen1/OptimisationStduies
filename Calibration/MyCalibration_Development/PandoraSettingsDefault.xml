@@ -70,7 +70,7 @@
         <ReplaceCurrentClusterList>false</ReplaceCurrentClusterList>
         <ShouldMakePdfHistograms>false</ShouldMakePdfHistograms>
         <NEnergyBins>9</NEnergyBins>
-        <HistogramFile>PandoraLikelihoodData9EBin.xml</HistogramFile>
+        <HistogramFile>/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/Calibration/MyCalibration_Development/PandoraLikelihoodData9EBin.xml</HistogramFile>
     </algorithm>
 
     <!-- Clustering parent algorithm runs a daughter clustering algorithm -->

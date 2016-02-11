@@ -4,7 +4,7 @@
 
 void ECALEndcapCorrectionFactorCalculator()
 {
-    std::string detectorModel("91");
+    std::string detectorModel("89");
     std::string recoVar("71");
 
     TString rootFilesToCompare("/r04/lc/sg568/HCAL_Optimisation_Studies/Calibration/Detector_Model_" + detectorModel + "/Reco_Stage_" + recoVar + "/MuonCalibration/RootFiles/*Photon*.root");
