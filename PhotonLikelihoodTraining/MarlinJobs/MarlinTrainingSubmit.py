@@ -8,46 +8,9 @@ from ILCDIRAC.Interfaces.API.DiracILC import  DiracILC
 from ILCDIRAC.Interfaces.API.NewInterface.UserJob import *
 from ILCDIRAC.Interfaces.API.NewInterface.Applications import *
 
-from XmlGenerationLogic import * 
-
-### ----------------------------------------------------------------------------------------------------
-### Start of getSlcioFiles function
-### ----------------------------------------------------------------------------------------------------
-
-def getSlcioFiles(jobDescription, detModel, energy, eventType):
-    slcioFiles = []
-    os.system('dirac-ilc-find-in-FC /ilc JobDescription=' + jobDescription + ' Type=Sim_PhotonLikelihoodTraining MokkaJobNumber=' + str(detModel) + ' Energy=' + str(energy) + ' EvtType=' + eventType + ' > tmp.txt')
-    with open('tmp.txt') as f:
-        lines = f.readlines()
-        for idx, line in enumerate(lines):
-            line = line.strip()
-            slcioFiles.append(line)
-    os.system('rm tmp.txt')
-    return slcioFiles
-
-### ----------------------------------------------------------------------------------------------------
-### End of getSlcioFiles function
-### ----------------------------------------------------------------------------------------------------
-### Start of ECal detector information
-### ----------------------------------------------------------------------------------------------------
-
-numberECalLayersDict = {}
-
-for detModel in range(1,96):
-    numberECalLayersDict[detModel] = 30
-
-numberECalLayersDict[96] = 30
-numberECalLayersDict[97] = 26
-numberECalLayersDict[98] = 20
-numberECalLayersDict[99] = 16
-numberECalLayersDict[100] = 30
-numberECalLayersDict[101] = 26
-numberECalLayersDict[102] = 20
-numberECalLayersDict[103] = 16
-
-### ----------------------------------------------------------------------------------------------------
-### End of ECal detector information
-### ----------------------------------------------------------------------------------------------------
+from Logic.XmlGenerationLogic import * 
+from Logic.DiracTools import *
+from Logic.DetectorInfo import *
 
 #===== User Input =====
 
@@ -95,16 +58,16 @@ for eventSelection in eventsToSimulate:
     eventType = eventSelection['EventType']
     for energy in eventSelection['Energies']:
         slcioFilesToProcess = getSlcioFiles(jobDescription,detModel,energy,eventType)
-        slcioFilesInputSteeringFileString = ''
+        slcioFilesString = ''
         slcioFilesGridFilesString = []
 
         for slcioFile in slcioFilesToProcess:
             slcioFileNoPath = os.path.basename(slcioFile)
-            slcioFilesInputSteeringFileString += slcioFileNoPath + '\n'
+            slcioFilesString += slcioFileNoPath + '\n'
             slcioFilesGridFilesString.append('lfn:' + slcioFile)
 
         print 'Submitting ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.'  
-        xmlGeneration = XmlGeneration(calibConfigFile,'Si',True,pandoraSettingsFile,gearFileLocal,slcioFilesInputSteeringFileString)
+        xmlGeneration = XmlGeneration(calibConfigFile,ecalAbsMatType[detModel],realisticDigi[recoVar],pandoraSettingsFile,gearFileLocal,slcioFilesString)
         xmlTemplate = xmlGeneration.produceXml()
 
         with open("MarlinSteering.steer" ,"w") as SteeringFile:

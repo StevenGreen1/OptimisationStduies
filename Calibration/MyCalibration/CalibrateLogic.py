@@ -1331,6 +1331,7 @@ class Calibration:
   <parameter name="V0VertexCollections" type="StringVec">V0Vertices</parameter>
   <parameter name="ClusterCollectionName" type="String">PandoraClustersDefault</parameter>
   <parameter name="PFOCollectionName" type="String">PandoraPFOsDefault</parameter>
+  <parameter name="StartVertexCollectionName" type="String">StartVerticesDefault</parameter>
   <!-- Calibration constants, ECalSc -->
   <parameter name="ECalScToMipCalibration" type="float">""" + str(self._ECalGeVToMIP) + """</parameter>
   <parameter name="ECalScMipThreshold" type="float">""" + str(self._ECalMIPThresholdPandora) + """</parameter>

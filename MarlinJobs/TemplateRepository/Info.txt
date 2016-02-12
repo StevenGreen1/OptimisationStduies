@@ -1,6 +1,0 @@
-Template number 1 : Silicon ECal.  ILDCaloDigi digitiser.  Realistic ECal and HCal options.
-Template number 2 : Silicon ECal.  ILDCaloDigi digitiser.  No realistic options in digitiser (no implicit energy truncation in ECal or HCal).
-Template number 3 : Silicon ECal.  NewLDCCaloDigi digitiser.
-Template number 4 : Silicon ECal.  ILDCaloDigi digitiser.  No realistic options in digitiser (no implicit energy truncation in HCal).
-Template number 5 : Scintillator ECal.  ILDCaloDigi digitiser.  Realistic ECal and HCal options.  
-Template number 6 : Scintillator ECal.  ILDCaloDigi digitiser.  No realistic options in digitiser (no implicit energy truncation in ECal or HCal). 
