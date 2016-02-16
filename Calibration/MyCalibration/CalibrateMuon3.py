@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import sys 
 from CalibrateLogic import *
 
 for detectorModel in [96]:
@@ -15,11 +16,8 @@ for detectorModel in [96]:
 
         pandoraSettings = ''
         if 'Muon' in calibraitonStage:
-            pandoraSettings = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/Calibration/PandoraSettings_MarlinPandora_v02-00-00/PandoraSettingsMuon.xml'
+            pandoraSettings = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibration/PandoraSettings_MarlinPandora_v02-00-00/PandoraSettingsMuon.xml'
         else:
-            pandoraSettings = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonLikelihoodTraining/LikelihoodData/Detector_Model_' + str(detectorModel) + '/Reco_Stage_' + str(recoStage) + '/Z_uds'
-            if not os.path.isfile(pandoraSettings):
-                print 'No photon likelihood file.  Exiting calibration.'
-                sys.exit
+            pandoraSettings = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonLikelihoodTraining/LikelihoodData/Detector_Model_' + str(detectorModel) + '/Reco_Stage_' + str(recoStage) + '/Z_uds/500GeV/PandoraSettingsDefault.xml'
 
         Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Si', True)

@@ -61,12 +61,22 @@ class Calibration:
         self._SlcioFiles = self.getSlcioFiles()
 
         'Gear File'
+        if not os.path.isfile(gearFile):
+            self.logger.error('Gear file does not exist!  Exiting calibration.')
+            self.logger.error('Gear file : ' + gearFile)
+            sys.exit()
+
         self._GearFile = gearFile
 
         'Detector Info'
         self._NumberHCalLayers = 48
 
         'Pandora Settings File'
+        if not os.path.isfile(pandoraSettings):
+            self.logger.error('Pandora settings file does not exist!  Exiting calibration.')
+            self.logger.error('Pandora settings file : ' + pandoraSettings)
+            sys.exit()
+
         self._PandoraSettingsFile = pandoraSettings
 
         'Si or Sw ECal'
@@ -149,11 +159,6 @@ class Calibration:
         self._GaussianFitKaon0LBarrelMean = -1
         self._ActiveAbsorberThicknessRatio = -1
 
-        'Condor'
-        self._UseCondor = True
-        self._CondorRunList = []
-        self._CondorMaxRuns = 500 
-
         'Pandora Analysis'
         self._PandoraAnalysisPath = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/bin'
         self._HadronicScaleSettingPandora = 'CSM' # or 'TEM'
@@ -166,10 +171,23 @@ class Calibration:
         self._Kaon0LMass = 0.497614
         self._Kaon0LKineticEnergy = math.sqrt(self._Kaon0LEnergyCalibration * self._Kaon0LEnergyCalibration - self._Kaon0LMass * self._Kaon0LMass)
 
+        'Condor'
+        self._UseCondor = True
+        self._CondorRunList = []
+        self._CondorMaxRuns = 500
+
         'Random String For Job Submission'
         self._RandomString = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
+        self._MarlinExecutable = 'MarlinCalibration_' + self._RandomString + '.sh'
+
+        os.system('cp MarlinCalibration.sh ' + self._MarlinExecutable)
+        if not os.path.isfile(self._MarlinExecutable):
+            self.logger.error('Marlin executable missing.  Exiting calibration.')
+            self.logger.error('Marlin executable : ' + self._MarlinExecutable)
+            sys.exit()
 
         self.calibrationProcess()
+        os.system('rm ' + self._MarlinExecutable)
 
 ### ----------------------------------------------------------------------------------------------------
 ### End of constructor
@@ -1501,7 +1519,7 @@ class Calibration:
 ### ----------------------------------------------------------------------------------------------------
 
     def getCondorJobString(self):
-        jobString  = 'executable              = ' + os.getcwd() + '/MarlinCalibration.sh                             \n'
+        jobString  = 'executable              = ' + os.getcwd() + '/' + self._MarlinExecutable + '                   \n'
         jobString += 'initial_dir             = ' + os.getcwd() + '                                                  \n'
         jobString += 'notification            = never                                                                \n'
         jobString += 'Requirements            = (OSTYPE == \"SLC6\")                                                 \n'
@@ -1543,7 +1561,7 @@ class Calibration:
         self.logger.debug('Checking on the number of running condor jobs.')
         queueProcess = subprocess.Popen(['condor_q','-w'], stdout=subprocess.PIPE)
         queueOutput = queueProcess.communicate()[0]
-        regex = re.compile('MarlinCalibration.sh')
+        regex = re.compile(self._MarlinExecutable)
         queueList = regex.findall(queueOutput)
         return int(len(queueList))
 

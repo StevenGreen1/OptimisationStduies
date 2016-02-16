@@ -3,7 +3,7 @@
 import sys 
 from CalibrateLogic import *
 
-for detectorModel in [96]:
+for detectorModel in [99]:
     for recoStage in [71]:
         #calibraitonStage = 'Muon'
         calibraitonStage = 'Default'
