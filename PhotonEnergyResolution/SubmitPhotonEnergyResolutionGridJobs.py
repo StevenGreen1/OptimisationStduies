@@ -38,8 +38,6 @@ for eventSelection in eventsToSimulate:
                 runFile.write("%s %s\n" % (fileName, detModel))
             runFile.close()
 
-        sys.exit()
-
         arguements = [
                        'RunFile.txt',
                        'PhotonEnergyResolution_' + str(energy) + 'GeV_RecoVar' + str(recoVar) + '.root'
@@ -55,9 +53,9 @@ for eventSelection in eventsToSimulate:
         job.setJobGroup(JobIdentificationString)
         job.setInputSandbox(['LFN:/ilc/user/s/sgreen/PhotonEnergyResolutionTarBall/lib.tar.gz', 'RunFile.txt']) 
         job.setInputData(allRootFilesToUse)
-        job.setOutputData(outputFiles,OutputPath='/OptimisationStudies/PhotonEnergyResolution/SiECalLayers/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy))
+        job.setOutputData(outputFiles,OutputPath='/OptimisationStudies/PhotonEnergyResolution/SiECalLayers/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV')
         job.setName(JobIdentificationString)
-        job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.CIT.us'])
+        job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.CIT.us','OSG.PNNL.us'])
         job.dontPromptMe()
         res = job.append(genericApplication)
 
