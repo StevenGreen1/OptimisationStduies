@@ -12,12 +12,12 @@ class XmlGeneration:
     def __init__(self, configFileName, ecalType, realisticDigitisation, pandoraSettings, gearFile, lcioFile):
 
         'Logger'
-        calibrationLogFullPath = os.path.join('PhotonLikelihoodGridJobs.log')
-        if os.path.isfile(calibrationLogFullPath):
-            os.remove(calibrationLogFullPath)
+        marlinLogFullPath = os.path.join('MarlinGridJobs.log')
+        if os.path.isfile(marlinLogFullPath):
+            os.remove(marlinLogFullPath)
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.INFO)
-        handler = logging.FileHandler(calibrationLogFullPath)
+        handler = logging.FileHandler(marlinLogFullPath)
         handler.setLevel(logging.INFO)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
@@ -102,7 +102,7 @@ class XmlGeneration:
 ### ====================================================================================================
 
     def produceXml(self):
-        baseSteeringFile = os.path.join(os.getcwd(), 'ILD_o1_v06_XX_YY.xml')
+        baseSteeringFile = os.path.join(os.getcwd(), 'Logic/ILD_o1_v06_XX_YY.xml')
         base = open(baseSteeringFile,'r')
         xmlTemplate = base.read()
         base.close()

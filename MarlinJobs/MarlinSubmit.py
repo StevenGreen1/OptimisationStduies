@@ -19,19 +19,19 @@ recoVar = sys.argv[2]
 
 eventsToSimulate = [ { 'EventType': "Z_uds", 'Energies': [91, 200, 360, 500] } ]
 
+#===== Second level user input =====
+
 # All keys are given separate MarlinPandora processor, unless the word Likelihood appears as a substring of the key
 pandoraSettingsFiles = {}
-pandoraSettingsFiles['Default'] = 'PandoraSettings/PandoraSettingsDefault.xml' 
-pandoraSettingsFiles['Default_LikelihoodData'] = 'PandoraSettings/PandoraLikelihoodData9EBin.xml' 
+pandoraSettingsFiles['Default'] = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonLikelihoodTraining/LikelihoodData/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/Z_uds/500GeV/PandoraSettingsDefault.xml' 
+pandoraSettingsFiles['Default_LikelihoodData'] = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonLikelihoodTraining/LikelihoodData/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/Z_uds/500GeV/PandoraLikelihoodData_DetModel_' + str(detModel) + '_RecoStage_' + str(recoVar) + '.xml' 
 pandoraSettingsFiles['Muon'] = 'PandoraSettings/PandoraSettingsMuon.xml'
 pandoraSettingsFiles['PerfectPhoton'] = 'PandoraSettings/PandoraSettingsPerfectPhoton.xml'
 pandoraSettingsFiles['PerfectPhotonNK0L'] = 'PandoraSettings/PandoraSettingsPerfectPhotonNeutronK0L.xml'
 pandoraSettingsFiles['PerfectPFA'] = 'PandoraSettings/PandoraSettingsPerfectPFA.xml'
 
-#===== Second level user input =====
-
 gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_Detector_Model_' + str(detModel) + '.gear'
-calibConfigFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
+calibConfigFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/Calibration/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/DefaultCalibration/Validation/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
 
 #=====
 
@@ -44,6 +44,14 @@ for key, value in pandoraSettingsFiles.iteritems():
     os.system('cp ' + value + ' .')
     pandoraSettingsFilesLocal[key] = os.path.basename(value)
 
+# Edit local Pandora settings default to remove likelihood data path
+pandoraSettingsDefaultContent = ''
+with open(pandoraSettingsFilesLocal['Default'], 'r') as localPandoraSettingsDefault:
+    pandoraSettingsDefaultContent = localPandoraSettingsDefault.read()
+pandoraSettingsDefaultContent = re.sub('<HistogramFile>(.*?)</HistogramFile>','<HistogramFile>' + pandoraSettingsFilesLocal['Default_LikelihoodData'] + '</HistogramFile>',pandoraSettingsDefaultContent)
+with open(pandoraSettingsFilesLocal['Default'] ,'w') as localPandoraSettingsDefault:
+    localPandoraSettingsDefault.write(pandoraSettingsDefaultContent)
+
 # Start submission
 JobIdentificationString = jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar)
 diracInstance = DiracILC(withRepo=True,repoLocation="%s.cfg" %( JobIdentificationString))
@@ -52,8 +60,13 @@ for eventSelection in eventsToSimulate:
     eventType = eventSelection['EventType']
     for energy in eventSelection['Energies']:
         slcioFilesToProcess = getSlcioFiles(jobDescription,detModel,energy,eventType)
+
+        if not slcioFilesToProcess:
+            print 'No slcio files found.  Exiting job submission.'
+            sys.exit()
+
         for slcioFile in slcioFilesToProcess:
-            print 'Submitting ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.'  
+            print 'Submitting ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.  Slcio file ' + slcioFile + '.'  
 
             slcioFileNoPath = os.path.basename(slcioFile)
             xmlGeneration = XmlGeneration(calibConfigFile,'Si',True,pandoraSettingsFilesLocal,gearFileLocal,slcioFileNoPath)
@@ -62,8 +75,6 @@ for eventSelection in eventsToSimulate:
 
             with open("MarlinSteering.steer" ,"w") as SteeringFile:
                 SteeringFile.write(xmlTemplate)
-
-            sys.exit()
 
             ma = Marlin()
             ma.setVersion('ILCSoft-01-17-07')
@@ -75,7 +86,7 @@ for eventSelection in eventsToSimulate:
             job.setJobGroup(jobDescription)
             job.setInputSandbox(pandoraSettingsFilesLocal.values()) # Local files
             job.setOutputSandbox(['*.log','*.gear','*.mac','*.steer','*.xml'])
-            job.setOutputData(outputFiles,OutputPath='/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '_Run4/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV') # On grid
+            job.setOutputData(outputFiles,OutputPath='/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '_Run5/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV') # On grid
             job.setName(jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar))
             job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp'])
             job.dontPromptMe()
