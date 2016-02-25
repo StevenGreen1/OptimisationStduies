@@ -15,8 +15,8 @@ from Logic.DetectorInfo import *
 #===== User Input =====
 
 jobDescription = 'OptimisationStudies'
-detModel = sys.argv[1] 
-recoVar = sys.argv[2]
+detModel = int(sys.argv[1])
+recoVar = int(sys.argv[2])
 
 eventsToSimulate = [ { 'EventType': "Z_uds", 'Energies': [500] } ]
 
@@ -57,6 +57,14 @@ diracInstance = DiracILC(withRepo=True,repoLocation="%s.cfg" %( JobIdentificatio
 for eventSelection in eventsToSimulate:
     eventType = eventSelection['EventType']
     for energy in eventSelection['Energies']:
+        outputPath = '/' + jobDescription + '/TrainingPhotonLikelihoodData/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
+        outputFiles = []
+        outputFiles.append(photonLikelihoodFileName)
+
+        lfn = '/ilc/user/s/sgreen/' + outputPath + '/' + outputFiles[0]
+        if doesFileExist(lfn):
+            continue
+
         slcioFilesToProcess = getSlcioFiles(jobDescription,detModel,energy,eventType)
         slcioFilesString = ''
         slcioFilesGridFilesString = []
@@ -79,15 +87,12 @@ for eventSelection in eventsToSimulate:
         ma.setGearFile(gearFileLocal)
         ma.setInputFile(slcioFilesGridFilesString)
 
-        outputFiles = []
-        outputFiles.append(photonLikelihoodFileName)
-
         inputSandbox = [pandoraSettingsFile]
         job = UserJob()
         job.setJobGroup(jobDescription)
         job.setInputSandbox(inputSandbox) # Local files
         job.setOutputSandbox(['*.log','*.gear','*.mac','*.steer'])
-        job.setOutputData(outputFiles,OutputPath='/' + jobDescription + '/TrainingPhotonLikelihoodData/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV') # On grid
+        job.setOutputData(outputFiles,OutputPath=outputPath) # On grid
         job.setName(jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar))
         job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us'])
         job.dontPromptMe()
