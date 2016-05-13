@@ -4,7 +4,7 @@ currentDirectory=$(pwd)
 
 for detModel in {84..103}
 do
-    for recoVar in 38 71 #{69..76}
+    for recoVar in 38 63 71 
     do
         cd ${currentDirectory}
         mkdir Detector_Model_${detModel}

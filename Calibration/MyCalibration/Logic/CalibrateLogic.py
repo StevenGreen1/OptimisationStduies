@@ -1180,7 +1180,7 @@ class Calibration:
   <!--CaloHit Relation Collection-->
   <parameter name="RelationOutputCollection" type="string"> RelationCaloHit</parameter>
   <!--Gap Correction-->
-  <parameter name="ECALGapCorrection" type="int"> 0 </parameter>
+  <parameter name="ECALGapCorrection" type="int"> 1 </parameter>
   <!--Gap Correction Fudge Factor-->
   <parameter name="ECALGapCorrectionFactor" type="float">""" + str(self._ECalGapCorrectionFactor) + """</parameter>
   <parameter name="ECALModuleGapCorrectionFactor" type="int"> 0.0 </parameter>
