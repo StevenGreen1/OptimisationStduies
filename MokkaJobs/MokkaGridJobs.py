@@ -88,10 +88,10 @@ def getMokkaSteeringFileTemplate(baseFileName,detectorConfigFile):
     mokkaSteeringTemplate = re.sub('ECAL_RADIATOR_LAYERS_SET3_THICKNESS_XXXX',str(config['ECalAbsorberLayerThickness3']),mokkaSteeringTemplate)
 
     # Thickenss of scintillator layers in the ECal
-    mokkaSteeringTemplate = re.sub('ECAL_SC_THICKNESS_XXXX',str(config['ECalSiliconThickness']),mokkaSteeringTemplate)
+    mokkaSteeringTemplate = re.sub('ECAL_SC_THICKNESS_XXXX',str(config['ECalScintillatorThickness']),mokkaSteeringTemplate)
 
     # Thickenss of silicon layers in the ECal
-    mokkaSteeringTemplate = re.sub('ECAL_SI_THICKNESS_XXXX',str(config['ECalScintillatorThickness']),mokkaSteeringTemplate)
+    mokkaSteeringTemplate = re.sub('ECAL_SI_THICKNESS_XXXX',str(config['ECalSiliconThickness']),mokkaSteeringTemplate)
 
     # Ecal Sc N strips across module
     mokkaSteeringTemplate = re.sub('ECAL_SC_NSTRIPS_ACROSS_MODULE_XXXX',str(config['ECalScNStripsAcrossModule']),mokkaSteeringTemplate)
