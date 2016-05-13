@@ -1,3 +1,0 @@
-For the barrel the best fit is : 10.0169
-For the endcap the best fit is : 10.1329
-ECALEndcapCorrectionFactorCalculator -> 0.988553

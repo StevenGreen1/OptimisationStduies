@@ -70,11 +70,19 @@ int main(int argc, char **argv)
         PhotonResolution->SetPoint(pointNumber,DetectorModelLabel(it->first),pSingleDetectorContainer->GetResolution());
         PhotonResolution->SetPointError(pointNumber,0,pSingleDetectorContainer->GetResolutionError());
         TH1F *pPhotonEnergyHist = pSingleDetectorContainer->GetEnergyHist();
+        TH1F *pPhotonRawEnergyHist = pSingleDetectorContainer->GetRawEnergyHist();
+        TH1F *pECosThetaHist = pSingleDetectorContainer->GetECosThetaHist();
+        TH1F *pEResCosThetaHist = pSingleDetectorContainer-> GetEResCosThetaHist();
 
         std::string directoryName = "DetectorModel" + IntToString(detModel);
         TDirectory *pTDirectory = pTFile->mkdir(directoryName.c_str());
         pTDirectory->cd();
+        pPhotonRawEnergyHist->Write();
         pPhotonEnergyHist->Write();
+        pECosThetaHist->Write();
+        pEResCosThetaHist->Write();
+        std::cout << "Entries in hist : " << pPhotonEnergyHist->GetEntries() << std::endl;
+        std::cout << "Entries in raw hist : " << pPhotonRawEnergyHist->GetEntries() << std::endl;
         delete pPhotonEnergyHist;
     }
 

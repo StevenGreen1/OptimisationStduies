@@ -9,6 +9,8 @@
 .././include/SingleDetectorContainer.h
 iostream
 -
+limits
+-
 sstream
 -
 stdexcept
@@ -23,6 +25,8 @@ TF1.h
 .././include/TF1.h
 TH1F.h
 .././include/TH1F.h
+TFitResult.h
+.././include/TFitResult.h
 
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Buttons.h
 
@@ -30,11 +34,33 @@ TH1F.h
 
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/ESTLType.h
 
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Fit/FitResult.h
+Math/IFunctionfwd.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Fit/Math/IFunctionfwd.h
+Math/IParamFunctionfwd.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Fit/Math/IParamFunctionfwd.h
+vector
+-
+map
+-
+string
+-
+cmath
+-
+cassert
+-
+
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Foption.h
 
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/GuiTypes.h
 Rtypes.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Rtypes.h
+
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Math/IFunctionfwd.h
+
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Math/IParamFunctionfwd.h
+Math/IFunctionfwd.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Math/Math/IFunctionfwd.h
 
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Math/ParamFunctor.h
 vector
@@ -184,20 +210,6 @@ Riosfwd.h
 string.h
 -
 
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TBox.h
-TObject.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TObject.h
-TAttLine.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TAttLine.h
-TAttFill.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TAttFill.h
-TAttBBox2D.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TAttBBox2D.h
-TPoint.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TPoint.h
-GuiTypes.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/GuiTypes.h
-
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TBranch.h
 TNamed.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TNamed.h
@@ -264,10 +276,6 @@ TString.h
 TDictionary.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TDictionary.h
 
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TDatime.h
-Rtypes.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Rtypes.h
-
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TDictionary.h
 TNamed.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TNamed.h
@@ -276,19 +284,11 @@ Property.h
 ESTLType.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/ESTLType.h
 
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TDirectory.h
-TNamed.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TNamed.h
-TList.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TList.h
-TDatime.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TDatime.h
-TUUID.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TUUID.h
-
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TDirectoryFile.h
-TDirectory.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TDirectory.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TError.h
+Rtypes.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Rtypes.h
+stdarg.h
+-
 
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TF1.h
 TFormula.h
@@ -302,15 +302,13 @@ TAttMarker.h
 Math/ParamFunctor.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Math/ParamFunctor.h
 
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TFile.h
-atomic
--
-TDirectoryFile.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TDirectoryFile.h
-TMap.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMap.h
-TUrl.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TUrl.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TFitResult.h
+TNamed.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TNamed.h
+Fit/FitResult.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Fit/FitResult.h
+TMatrixDSym.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixDSym.h
 
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TFitResultPtr.h
 Rtypes.h
@@ -329,26 +327,6 @@ vector
 -
 TSchemaHelper.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TSchemaHelper.h
-
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TGraph.h
-TNamed.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TNamed.h
-TAttLine.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TAttLine.h
-TAttFill.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TAttFill.h
-TAttMarker.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TAttMarker.h
-TVectorFfwd.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TVectorFfwd.h
-TVectorDfwd.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TVectorDfwd.h
-TFitResultPtr.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TFitResultPtr.h
-
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TGraphErrors.h
-TGraph.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TGraph.h
 
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TH1.h
 TAxis.h
@@ -384,37 +362,9 @@ TFitResultPtr.h
 TH1.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TH1.h
 
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/THashTable.h
-TCollection.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TCollection.h
-TString.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TString.h
-
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TIterator.h
 Rtypes.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Rtypes.h
-
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TLegend.h
-TPave.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TPave.h
-TAttText.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TAttText.h
-
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TList.h
-TSeqCollection.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TSeqCollection.h
-TString.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TString.h
-iterator
--
-
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMap.h
-TCollection.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TCollection.h
-THashTable.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/THashTable.h
-iterator
--
 
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMathBase.h
 Rtypes.h
@@ -423,6 +373,62 @@ cstdlib
 -
 cmath
 -
+
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixDBasefwd.h
+Rtypes.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Rtypes.h
+
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixDSym.h
+TMatrixTSym.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixTSym.h
+TMatrixDSymfwd.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixDSymfwd.h
+TMatrixDUtils.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixDUtils.h
+
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixDSymfwd.h
+Rtypes.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Rtypes.h
+
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixDUtils.h
+TMatrixTUtils.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixTUtils.h
+TMatrixDUtilsfwd.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixDUtilsfwd.h
+
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixDUtilsfwd.h
+Rtypes.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Rtypes.h
+
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixFBasefwd.h
+Rtypes.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Rtypes.h
+
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixTBase.h
+limits
+-
+TNamed.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TNamed.h
+TMatrixFBasefwd.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixFBasefwd.h
+TMatrixDBasefwd.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixDBasefwd.h
+TVectorFfwd.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TVectorFfwd.h
+TVectorDfwd.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TVectorDfwd.h
+TError.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TError.h
+
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixTSym.h
+TMatrixTBase.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixTBase.h
+TMatrixTUtils.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixTUtils.h
+
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixTUtils.h
+TMatrixTBase.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMatrixTBase.h
 
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TNamed.h
 TObject.h
@@ -466,12 +472,6 @@ TPoint.h
 GuiTypes.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/GuiTypes.h
 
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TPave.h
-TBox.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TBox.h
-TString.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TString.h
-
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TPoint.h
 Rtypes.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Rtypes.h
@@ -487,14 +487,6 @@ TString.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TString.h
 TQClass.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TQClass.h
-
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TROOT.h
-TDirectory.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TDirectory.h
-TList.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TList.h
-atomic
--
 
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TSchemaHelper.h
 Rtypes.h
@@ -545,18 +537,6 @@ TClass.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TClass.h
 TVirtualTreePlayer.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TVirtualTreePlayer.h
-
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TUUID.h
-Rtypes.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Rtypes.h
-
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TUrl.h
-TObject.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TObject.h
-TString.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TString.h
-TMap.h
-/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TMap.h
 
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TVectorDfwd.h
 Rtypes.h
@@ -634,27 +614,7 @@ unistd.h
 sys/types.h
 -
 
-/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonEnergyResolution/PhotonEnergyResolution/src/PhotonResolution.cxx
-fstream
--
-iostream
--
-sstream
--
-string
--
-vector
--
-TCanvas.h
-/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonEnergyResolution/PhotonEnergyResolution/src/TCanvas.h
-TLegend.h
-/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonEnergyResolution/PhotonEnergyResolution/src/TLegend.h
-TFile.h
-/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonEnergyResolution/PhotonEnergyResolution/src/TFile.h
-TGraphErrors.h
-/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonEnergyResolution/PhotonEnergyResolution/src/TGraphErrors.h
-TROOT.h
-/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonEnergyResolution/PhotonEnergyResolution/src/TROOT.h
+/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonEnergyResolution/PhotonEnergyResolution/src/SingleDetectorContainer.cc
 SingleDetectorContainer.h
 /usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonEnergyResolution/PhotonEnergyResolution/src/SingleDetectorContainer.h
 

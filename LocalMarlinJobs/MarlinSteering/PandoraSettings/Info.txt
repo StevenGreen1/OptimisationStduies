@@ -1,1 +1,0 @@
-These are the steering files from svn MarlinPandora v02-00-00, which was used in ilcsoft v01-17-07.  Use svn info to check details.
