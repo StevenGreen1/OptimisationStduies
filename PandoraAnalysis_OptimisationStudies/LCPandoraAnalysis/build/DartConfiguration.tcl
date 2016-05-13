@@ -4,14 +4,14 @@
 
 
 # Configuration directories and files
-SourceDirectory: /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis
-BuildDirectory: /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build
+SourceDirectory: /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis
+BuildDirectory: /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: pcla
+Site: pcky
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
 BuildName: Linux-c++
@@ -33,7 +33,7 @@ ScpCommand: /usr/bin/scp
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis"
+ConfigureCommand: "/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/CMake/2.8.5/bin/cmake" "/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis"
 MakeCommand: /usr/bin/gmake -i
 DefaultCTestConfigurationType: Release
 
@@ -44,7 +44,6 @@ CVSUpdateOptions: -d -A -P
 
 # Subversion options
 SVNCommand: /usr/bin/svn
-SVNOptions: 
 SVNUpdateOptions: 
 
 # Git options
@@ -60,17 +59,14 @@ UpdateType:
 # Compiler info
 Compiler: /usr/lib64/ccache/c++
 
-# Dynamic analysis (MemCheck)
+# Dynamic analysis and coverage
 PurifyCommand: 
 ValgrindCommand: 
 ValgrindCommandOptions: 
 MemoryCheckCommand: /usr/bin/valgrind
 MemoryCheckCommandOptions: 
 MemoryCheckSuppressionFile: 
-
-# Coverage
 CoverageCommand: /usr/bin/gcov
-CoverageExtraFlags: -l
 
 # Cluster commands
 SlurmBatchCommand: SLURM_SBATCH_COMMAND-NOTFOUND

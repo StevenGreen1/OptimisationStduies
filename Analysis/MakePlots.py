@@ -11,19 +11,38 @@ from MakePlotsLogic import *
 
 #===== User Input =====#
 jetEnergyList = [91,200,360,500]
-reconstructionVariantList = range(69,77)
+reconstructionVariantList = [71] #range(69,77)
+
+# ECal Cell Size Silicon
+resultsName = 'Silicon ECal Number of Layers'
+detectorModelList = [99,98,97,96]
+xAxisPlottingList = [16,20,26,30]
+xAxisTitle = 'Silicon ECal Number of Layers'
+
+ecalLayersResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
+ecalLayersResults.readData()
+ecalLayersResults.optimiseData()
+ecalLayersResults.plotData()
+#ecalLayersResults.analyseOptimalData()
+ecalLayersResults.generateConfusionTerms()
+ecalLayersResults.plotConfusionData(500)
+ecalLayersResults.plotConfusionData(91)
+
+sys.exit()
 
 # Optimised HCal Cell Size
-#resultsName = 'Optimised HCal Cell Size'
-#detectorModelList = [39,40,38,41,42,43]
-#xAxisPlottingList = [10,20,30,40,50,100]
-#xAxisTitle = 'Optimised HCal Cell Size [mm^{2}]'
+resultsName = 'Optimised HCal Cell Size'
+detectorModelList = [39,40,38,41,42,43]
+xAxisPlottingList = [10,20,30,40,50,100]
+xAxisTitle = 'Optimised HCal Cell Size [mm^{2}]'
 
-#hcalCellSizeResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, True)
-#hcalCellSizeResults.readData()
-#hcalCellSizeResults.optimiseData()
-#hcalCellSizeResults.analyseOptimalData()
+hcalCellSizeResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, True, 0)
+hcalCellSizeResults.readData()
+hcalCellSizeResults.optimiseData()
+hcalCellSizeResults.analyseOptimalData()
 #hcalCellSizeResults.plotData()
+
+sys.exit()
 
 # No Truncation HCal Cell Size
 #resultsName = 'No Truncation HCal Cell Size'

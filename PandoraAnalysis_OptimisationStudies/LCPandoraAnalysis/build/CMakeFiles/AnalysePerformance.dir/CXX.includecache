@@ -432,15 +432,15 @@ unistd.h
 sys/types.h
 -
 
-/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/performance/AnalysePerformance.cc
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/performance/AnalysePerformance.cc
 TFile.h
-/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/performance/TFile.h
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/performance/TFile.h
 TH1F.h
-/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/performance/TH1F.h
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/performance/TH1F.h
 TChain.h
-/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/performance/TChain.h
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/performance/TChain.h
 AnalysisHelper.h
-/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/performance/AnalysisHelper.h
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/performance/AnalysisHelper.h
 cmath
 -
 iostream

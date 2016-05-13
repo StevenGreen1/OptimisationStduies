@@ -3,17 +3,17 @@
 # http://www.cmake.org/Wiki/CMake_FAQ
 ##########################################
 
-IF(NOT EXISTS "/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/install_manifest.txt")
-  MESSAGE(FATAL_ERROR "Cannot find install manifest: \"/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/install_manifest.txt\"")
-ENDIF(NOT EXISTS "/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/install_manifest.txt")
+IF(NOT EXISTS "/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/install_manifest.txt")
+  MESSAGE(FATAL_ERROR "Cannot find install manifest: \"/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/install_manifest.txt\"")
+ENDIF(NOT EXISTS "/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/install_manifest.txt")
 
-FILE(READ "/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/install_manifest.txt" files)
+FILE(READ "/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/install_manifest.txt" files)
 STRING(REGEX REPLACE "\n" ";" files "${files}")
 FOREACH(file ${files})
   MESSAGE(STATUS "Uninstalling \"$ENV{DESTDIR}${file}\"")
   IF(EXISTS "$ENV{DESTDIR}${file}")
     EXEC_PROGRAM(
-      "/usr/bin/cmake" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
+      "/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/CMake/2.8.5/bin/cmake" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
       OUTPUT_VARIABLE rm_out
       RETURN_VALUE rm_retval
       )

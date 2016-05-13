@@ -20,3 +20,18 @@ def getSlcioFiles(jobDescription, detModel, energy, eventType):
 ### ----------------------------------------------------------------------------------------------------
 ### End of getSlcioFiles function
 ### ----------------------------------------------------------------------------------------------------
+### Start of doesFileExist function
+### ----------------------------------------------------------------------------------------------------
+
+def doesFileExist(lfn):
+    from DIRAC.DataManagementSystem.Client.DataManager import DataManager
+    dm = DataManager()
+    result = dm.getActiveReplicas(lfn)
+    if result[('Value')][('Successful')]:
+        return True
+    else:
+        return False
+
+### ----------------------------------------------------------------------------------------------------
+### End of doesFileExist function
+### ----------------------------------------------------------------------------------------------------

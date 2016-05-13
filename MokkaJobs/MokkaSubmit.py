@@ -14,21 +14,21 @@ from MokkaGridJobs import *
 
 detectorModelNumber = sys.argv[1] 
 
-eventsToSimulate = [ #{ 'EventType': "Z_uds"  , 'EventsPerFile' : 1000 , 'Energies':  ['91','200','360','500'] }, 
-                     #{ 'EventType': "Muon"  , 'EventsPerFile' : 1000 , 'Energies':  ['10'] },
-                     { 'EventType': "Photon"  , 'EventsPerFile' : 1000 , 'Energies':  ['100'] }
-                     #{ 'EventType': "Kaon0L"  , 'EventsPerFile' : 1000 , 'Energies':  ['20'] }
+eventsToSimulate = [ { 'EventType': "Z_uds"  , 'EventsPerFile' : 1000 , 'Energies':  ['91','200','360','500'] }, 
+                     { 'EventType': "Muon"  , 'EventsPerFile' : 1000 , 'Energies':  ['10'] },
+                     { 'EventType': "Photon"  , 'EventsPerFile' : 1000 , 'Energies':  ['10','20','50','100','200','500'] },
+                     { 'EventType': "Kaon0L"  , 'EventsPerFile' : 1000 , 'Energies':  ['10','20','50','100','200','500'] }
 ]
 
-baseXmlFile  = 'TemplateRepository/MokkaSteer.steer'
+baseXmlFile  = '../MokkaTemplateSteering/MokkaSteer.steer'
 eventsPerJob = 1000
 
-jobName = 'OptimisationStudies'
+jobName = 'OptimisationStudies_ECalStudies'
 
 #===== Second level user input =====
 # If using naming scheme doesn't need changing 
 
-detModelConfigFile = 'DetectorModelConfigFiles/Detector_Model_' + str(detectorModelNumber) + '_Config.py'
+detModelConfigFile = '../DetectorModelConfigFiles/Detector_Model_' + str(detectorModelNumber) + '_Config.py'
 gearFile     = 'ILD_o1_v06_Detector_Model_' + str(detectorModelNumber) + '.gear'
 
 #=====

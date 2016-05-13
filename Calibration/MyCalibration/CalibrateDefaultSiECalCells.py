@@ -1,0 +1,53 @@
+#!/usr/bin/python
+
+import sys 
+import os
+from CalibrateLogic import *
+
+for detectorModel in range(84,90):
+    for recoStage in [71]:
+        #calibraitonStage = 'Muon'
+        calibraitonStage = 'Default'
+        outputPath = '/r04/lc/sg568/HCAL_Optimisation_Studies/Calibration/Detector_Model_' + str(detectorModel) + '/Reco_Stage_' + str(recoStage) + '/' + calibraitonStage + 'Calibration'
+        slcioFormat = 'MokkaSim_Detector_Model_' + str(detectorModel) + '_PARTICLE_ENERGYGeV_(.*?).slcio'
+        slcioPath = '/r04/lc/sg568/HCAL_Optimisation_Studies/Slcio/GJN'+ str(detectorModel)  
+        gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detectorModel) + '_OutputSandbox/ILD_o1_v06_Detector_Model_' + str(detectorModel) + '.gear'
+        timingCut = 100
+        hadronicEnergyTrunc = 1
+
+        pandoraSettings = ''
+        if 'Muon' in calibraitonStage:
+            pandoraSettings = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibration/PandoraSettings_MarlinPandora_v02-00-00/PandoraSettingsMuon.xml'
+        else:
+            pandoraSettings = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonLikelihoodTraining/LikelihoodData/Detector_Model_' + str(detectorModel) + '/Reco_Stage_' + str(recoStage) + '/Z_uds/500GeV/PandoraSettingsDefault.xml'
+            photonLikelihoodData = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonLikelihoodTraining/LikelihoodData/Detector_Model_' + str(detectorModel) + '/Reco_Stage_' + str(recoStage) + '/Z_uds/500GeV/PandoraLikelihoodData_DetModel_' + str(detectorModel) + '_RecoStage_' + str(recoStage) + '.xml'
+            if not os.path.isfile(photonLikelihoodData):
+                continue
+
+        print 'Calibrating detector model ' + str(detectorModel) + ' reco var ' + str(recoStage)
+        Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Si', True)
+
+
+for detectorModel in range(84,90):
+    for recoStage in [38]:
+        #calibraitonStage = 'Muon'
+        calibraitonStage = 'Default'
+        outputPath = '/r04/lc/sg568/HCAL_Optimisation_Studies/Calibration/Detector_Model_' + str(detectorModel) + '/Reco_Stage_' + str(recoStage) + '/' + calibraitonStage + 'Calibration'
+        slcioFormat = 'MokkaSim_Detector_Model_' + str(detectorModel) + '_PARTICLE_ENERGYGeV_(.*?).slcio'
+        slcioPath = '/r04/lc/sg568/HCAL_Optimisation_Studies/Slcio/GJN'+ str(detectorModel)
+        gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detectorModel) + '_OutputSandbox/ILD_o1_v06_Detector_Model_' + str(detectorModel) + '.gear'
+        timingCut = 1000000
+        hadronicEnergyTrunc = 1
+
+        pandoraSettings = ''
+        if 'Muon' in calibraitonStage:
+            pandoraSettings = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibration/PandoraSettings_MarlinPandora_v02-00-00/PandoraSettingsMuon.xml'
+        else:
+            pandoraSettings = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonLikelihoodTraining/LikelihoodData/Detector_Model_' + str(detectorModel) + '/Reco_Stage_' + str(recoStage) + '/Z_uds/500GeV/PandoraSettingsDefault.xml'
+            photonLikelihoodData = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonLikelihoodTraining/LikelihoodData/Detector_Model_' + str(detectorModel) + '/Reco_Stage_' + str(recoStage) + '/Z_uds/500GeV/PandoraLikelihoodData_DetModel_' + str(detectorModel) + '_RecoStage_' + str(recoStage) + '.xml'
+            if not os.path.isfile(photonLikelihoodData):
+                continue
+
+        print 'Calibrating detector model ' + str(detectorModel) + ' reco var ' + str(recoStage)
+        Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Si', True)
+

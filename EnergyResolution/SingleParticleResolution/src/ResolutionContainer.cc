@@ -139,7 +139,6 @@ void ResolutionContainer::RMSFitPercentageRange()
         return;
     }
 
-    // Calculate raw properties of distribution (ie rms100)
     float sum = 0., total = 0.;
     double sx = 0., sxx = 0.;
     const unsigned int nbins(m_hEnergy->GetNbinsX());
@@ -160,7 +159,6 @@ void ResolutionContainer::RMSFitPercentageRange()
     sum = 0.;
     unsigned int is0 = 0;
 
-    //  The /10 comes from the fact that for rms 90 the start point for the fit must occur in the first 10% of the data.
     float frac = (1 - (m_FitPercentage/100.0));
     for (unsigned int i = 0; (i <= nbins) && (sum < total * frac); ++i)
     {
@@ -168,7 +166,6 @@ void ResolutionContainer::RMSFitPercentageRange()
         is0 = i;
     }
 
-    // Calculate truncated properties
     float rmsmin(FLOAT_MAX), mean(FLOAT_MAX), low(FLOAT_MAX);
     float high(0.f);
 
@@ -184,13 +181,10 @@ void ResolutionContainer::RMSFitPercentageRange()
         {
             const float binx(m_hEnergy->GetBinLowEdge(i) + (0.5 * m_hEnergy->GetBinWidth(i)));
             const float yi(m_hEnergy->GetBinContent(i));
-            //csum is the sum of yi from istart and is used to stop the sum when this exceeds X% of data.
             csum += yi;
 
             if (sumn < (m_FitPercentage/100) * total)
             {
-                // These variables define the final sums required once we have considered X% of data, anything else is 
-                // continuously overwritten.
                 sumn += yi;
                 sumx += yi * binx;
                 sumxx+= yi * binx * binx;
@@ -200,7 +194,6 @@ void ResolutionContainer::RMSFitPercentageRange()
 
         const float localMean(sumx / sumn);
         const float localMeanSquared(sumxx / sumn);
-        // Standard deviation formula
         const float localRms(std::sqrt(localMeanSquared - localMean * localMean));
 
         if (localRms < rmsmin)
@@ -224,8 +217,6 @@ void ResolutionContainer::RMSFitPercentageRange()
     }
     
     m_RMSFitRange = rmsmin;
- 
-    //std::cout << m_hEnergy->GetName() << " (" << m_hEnergy->GetEntries() << " entries), rawrms: " << rawRms << ", rmsx: " << rmsmin << " (" << low << "-" << high << "), low_fit and high_fit " << " (" << m_FitStartPoint << "-" << m_FitEndPoint << "), << mean: " << mean << std::endl;
 }
 
 //==========================================

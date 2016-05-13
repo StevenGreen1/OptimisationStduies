@@ -84,23 +84,23 @@ class Calibration:
 
         'Realistic Digitisation'
         self._RealisticDigitisation = realisticDigitisation
-        self.ApplyECalRealisticDigi = 0
-        self.ApplyHCalRealisticDigi = 0
-        self.ECalMaxDynamicRangeMIP = 0.0 # Set to 0 to avoid accidental truncation if not using realistic digitisation options
-        self.HCalMaxDynamicRangeMIP = 0.0 # Set to 0 to avoid accidental truncation if not using realistic digitisation options
+        self._ApplyECalRealisticDigi = 0
+        self._ApplyHCalRealisticDigi = 0
+        self._ECalMaxDynamicRangeMIP = 0.0 # Set to 0 to avoid accidental truncation if not using realistic digitisation options
+        self._HCalMaxDynamicRangeMIP = 0.0 # Set to 0 to avoid accidental truncation if not using realistic digitisation options
 
         if self._RealisticDigitisation:
-            self.ECalMaxDynamicRangeMIP = 2500       # Realistic Values
-            self.HCalMaxDynamicRangeMIP = 99999999   # Realistic Values
-            self.ApplyHCalRealisticDigi = 1
+            self._ECalMaxDynamicRangeMIP = 2500       # Realistic Values
+            self._HCalMaxDynamicRangeMIP = 99999999   # Realistic Values
+            self._ApplyHCalRealisticDigi = 1
             if self._ECalType.lower() in ['si']:
-                self.ApplyECalRealisticDigi = 1
+                self._ApplyECalRealisticDigi = 1
             if self._ECalType.lower() in ['sc']:
-                self.ApplyECalRealisticDigi = 2
+                self._ApplyECalRealisticDigi = 2
 
         self.logger.info('Realistic digitsation setting : ' + str(self._RealisticDigitisation))
-        self.logger.info('self.ApplyECalRealisticDigi   : ' + str(self.ApplyECalRealisticDigi))
-        self.logger.info('self.ApplyHCalRealisticDigi   : ' + str(self.ApplyHCalRealisticDigi))
+        self.logger.info('self._ApplyECalRealisticDigi   : ' + str(self._ApplyECalRealisticDigi))
+        self.logger.info('self._ApplyHCalRealisticDigi   : ' + str(self._ApplyHCalRealisticDigi))
 
         'Default Energies Of Calibration Particles'
         self._Kaon0LEnergyCalibration = 20
@@ -115,6 +115,12 @@ class Calibration:
         self._CalibrECal = 42.77
         self._CalibrECalMIP = 0.00015
         self._ECalGapCorrectionFactor = 1.0
+
+        if self._ECalType.lower() in ['si']:
+            self._ECalGapCorrectionFactor = 1.0
+        if self._ECalType.lower() in ['sc']:
+            self._ECalGapCorrectionFactor = 1.027 # Unaffected by variations to ECal cell size. 
+
         self._ECalBarrelTimeWindowMax = timingCut
         self._ECalEndCapTimeWindowMax = timingCut
 
@@ -935,9 +941,9 @@ class Calibration:
   <parameter name="ECALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <parameter name="HCALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <!-- Realistic ECal -->
-  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self.ApplyECalRealisticDigi) + """</parameter>
+  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self._ApplyECalRealisticDigi) + """</parameter>
   <parameter name="CalibECALMIP" type="float">""" + str(self._CalibrECalMIP) + """</parameter>
-  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self.ECalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self._ECalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
   <parameter name="ECAL_deadCellRate" type="float">0</parameter>
   <parameter name="ECAL_miscalibration_uncorrel" type="float">0</parameter>
@@ -949,10 +955,10 @@ class Calibration:
   <parameter name="ECAL_PPD_N_Pixels_uncertainty" type="float">0.05</parameter>
   <parameter name="ECAL_pixel_spread" type="float">0.05</parameter>
   <!-- Realistic HCal -->
-  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self.ApplyHCalRealisticDigi) + """</parameter>
+  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self._ApplyHCalRealisticDigi) + """</parameter>
   <parameter name="HCALThresholdUnit" type="string">MIP</parameter>
   <parameter name="CalibHCALMIP" type="float">""" + str(self._CalibrHCalMIP) + """</parameter>
-  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self.HCalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self._HCalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="HCAL_elec_noise_mips" type="float">0.06</parameter>
   <parameter name="HCAL_deadCellRate" type="float">0</parameter>
   <parameter name="HCAL_PPD_N_Pixels" type="int">2000</parameter>
@@ -974,6 +980,11 @@ class Calibration:
 
     def writeILDCaloDigiScECalXml(self):
         self.logger.debug('Writing ILDCaloDigi xml block for Sc ECal.')
+
+        ecalOtherRealisticDigi = 0
+        if self._ApplyECalRealisticDigi != 0:
+            ecalOtherRealisticDigi = 1 # ECal other is always silicon, not scintillator according to digitiser
+
         ildCaloDigi  = """
 <processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
   <!--ILD digitizer...-->
@@ -1027,9 +1038,9 @@ class Calibration:
   <parameter name="ECALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <parameter name="HCALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <!-- Realistic ECal -->
-  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self.ApplyECalRealisticDigi) + """</parameter>
+  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self._ApplyECalRealisticDigi) + """</parameter>
   <parameter name="CalibECALMIP" type="float">""" + str(self._CalibrECalMIP) + """</parameter>
-  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self.ECalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self._ECalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
   <parameter name="ECAL_deadCellRate" type="float">0</parameter>
   <parameter name="ECAL_miscalibration_uncorrel" type="float">0</parameter>
@@ -1041,10 +1052,10 @@ class Calibration:
   <parameter name="ECAL_PPD_N_Pixels_uncertainty" type="float">0.05</parameter>
   <parameter name="ECAL_pixel_spread" type="float">0.05</parameter>
   <!-- Realistic HCal -->
-  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self.ApplyHCalRealisticDigi) + """</parameter>
+  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self._ApplyHCalRealisticDigi) + """</parameter>
   <parameter name="HCALThresholdUnit" type="string">MIP</parameter>
   <parameter name="CalibHCALMIP" type="float">""" + str(self._CalibrHCalMIP) + """</parameter>
-  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self.HCalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self._HCalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="HCAL_elec_noise_mips" type="float">0.06</parameter>
   <parameter name="HCAL_deadCellRate" type="float">0</parameter>
   <parameter name="HCAL_PPD_N_Pixels" type="int">2000</parameter>
@@ -1107,9 +1118,9 @@ class Calibration:
   <parameter name="ECALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <parameter name="HCALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <!-- Realistic ECal -->
-  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self.ApplyECalRealisticDigi) + """</parameter>
+  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self._ApplyECalRealisticDigi) + """</parameter>
   <parameter name="CalibECALMIP" type="float">""" + str(self._CalibrECalMIP) + """</parameter>
-  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self.ECalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self._ECalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
   <parameter name="ECAL_deadCellRate" type="float">0</parameter>
   <parameter name="ECAL_miscalibration_uncorrel" type="float">0</parameter>
@@ -1121,10 +1132,10 @@ class Calibration:
   <parameter name="ECAL_PPD_N_Pixels_uncertainty" type="float">0.05</parameter>
   <parameter name="ECAL_pixel_spread" type="float">0.05</parameter>
   <!-- Realistic HCal -->
-  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self.ApplyHCalRealisticDigi) + """</parameter>
+  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self._ApplyHCalRealisticDigi) + """</parameter>
   <parameter name="HCALThresholdUnit" type="string">MIP</parameter>
   <parameter name="CalibHCALMIP" type="float">""" + str(self._CalibrHCalMIP) + """</parameter>
-  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self.HCalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self._HCalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="HCAL_elec_noise_mips" type="float">0.06</parameter>
   <parameter name="HCAL_deadCellRate" type="float">0</parameter>
   <parameter name="HCAL_PPD_N_Pixels" type="int">2000</parameter>
@@ -1187,9 +1198,9 @@ class Calibration:
   <parameter name="ECALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <parameter name="HCALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <!-- Realistic ECal -->
-  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self.ApplyECalRealisticDigi) + """</parameter>
+  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(ecalOtherRealisticDigi) + """</parameter>
   <parameter name="CalibECALMIP" type="float">""" + str(self._CalibrECalMIP) + """</parameter>
-  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self.ECalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self._ECalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
   <parameter name="ECAL_deadCellRate" type="float">0</parameter>
   <parameter name="ECAL_miscalibration_uncorrel" type="float">0</parameter>
@@ -1201,10 +1212,10 @@ class Calibration:
   <parameter name="ECAL_PPD_N_Pixels_uncertainty" type="float">0.05</parameter>
   <parameter name="ECAL_pixel_spread" type="float">0.05</parameter>
   <!-- Realistic HCal -->
-  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self.ApplyHCalRealisticDigi) + """</parameter>
+  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self._ApplyHCalRealisticDigi) + """</parameter>
   <parameter name="HCALThresholdUnit" type="string">MIP</parameter>
   <parameter name="CalibHCALMIP" type="float">""" + str(self._CalibrHCalMIP) + """</parameter>
-  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self.HCalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self._HCalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="HCAL_elec_noise_mips" type="float">0.06</parameter>
   <parameter name="HCAL_deadCellRate" type="float">0</parameter>
   <parameter name="HCAL_PPD_N_Pixels" type="int">2000</parameter>

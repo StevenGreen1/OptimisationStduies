@@ -32,6 +32,7 @@ pandoraSettingsFiles['PerfectPFA'] = 'PandoraSettings/PandoraSettingsPerfectPFA.
 
 gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_Detector_Model_' + str(detModel) + '.gear'
 calibConfigFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/Calibration/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/DefaultCalibration/Validation/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
+#calibConfigFile = '/usera/sg568/ilcsoft_v01_17_07/DESYCollaboration/MarlinJobs/CalibConfig_DetModel38_RecoStage76.py'
 
 #=====
 
@@ -66,7 +67,7 @@ for eventSelection in eventsToSimulate:
             sys.exit()
 
         for slcioFile in slcioFilesToProcess:
-            print 'Submitting ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.  Slcio file ' + slcioFile + '.'  
+            print 'Checking ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.  Slcio file ' + slcioFile + '.'  
 
             slcioFileNoPath = os.path.basename(slcioFile)
             xmlGeneration = XmlGeneration(calibConfigFile,'Si',True,pandoraSettingsFilesLocal,gearFileLocal,slcioFileNoPath)
@@ -75,6 +76,16 @@ for eventSelection in eventsToSimulate:
 
             with open("MarlinSteering.steer" ,"w") as SteeringFile:
                 SteeringFile.write(xmlTemplate)
+
+
+            sys.exit()
+            outputPath = '/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '_Run5/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
+
+            lfn = '/ilc/user/s/sgreen/' + outputPath + '/' + outputFiles[0]
+            if doesFileExist(lfn):
+                continue
+
+            print 'Submitting ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.  Slcio file ' + slcioFile + '.'  
 
             ma = Marlin()
             ma.setVersion('ILCSoft-01-17-07')
@@ -86,9 +97,9 @@ for eventSelection in eventsToSimulate:
             job.setJobGroup(jobDescription)
             job.setInputSandbox(pandoraSettingsFilesLocal.values()) # Local files
             job.setOutputSandbox(['*.log','*.gear','*.mac','*.steer','*.xml'])
-            job.setOutputData(outputFiles,OutputPath='/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '_Run5/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV') # On grid
+            job.setOutputData(outputFiles,OutputPath=outputPath) # On grid
             job.setName(jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar))
-            job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp'])
+            job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us'])
             job.dontPromptMe()
             res = job.append(ma)
 

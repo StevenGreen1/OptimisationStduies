@@ -9,16 +9,16 @@
 /Mokka/init/savingPrimaries false
 /Mokka/init/lcioWriteMode WRITE_NEW
 /Mokka/init/lcioStoreCalHitPosition true
-/Mokka/init/MokkaGearFileName ILD_o1_v06_Detector_Model_87.gear 
+/Mokka/init/MokkaGearFileName ILD_o1_v06_Detector_Model_95.gear 
 
 /Mokka/init/EditGeometry/rmSubDetector SServices00
 
-
-
-/Mokka/init/globalModelParameter Ecal_Sc_Si_mix 000000000000000 
+/Mokka/init/userInitString Ecal_Sc_cellDim1_string 20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20
+/Mokka/init/userInitString Ecal_Sc_cellDim2_string 20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20_20
+/Mokka/init/globalModelParameter Ecal_Sc_Si_mix 333333333333333 
 /Mokka/init/globalModelParameter Ecal_Sc_number_of_virtual_cells 1
-/Mokka/init/globalModelParameter Ecal_cells_size 10
-/Mokka/init/globalModelParameter Ecal_Sc_N_strips_across_module 18
+/Mokka/init/globalModelParameter Ecal_cells_size 20
+/Mokka/init/globalModelParameter Ecal_Sc_N_strips_across_module 9
 /Mokka/init/globalModelParameter Ecal_MPPC_size 0.91
 /Mokka/init/globalModelParameter Ecal_guard_ring_size 0.00001
 /Mokka/init/globalModelParameter Ecal_nlayers1 20
@@ -26,10 +26,12 @@
 /Mokka/init/globalModelParameter Ecal_nlayers3 0
 /Mokka/init/globalModelParameter Ecal_radiator_layers_set1_thickness 2.1
 /Mokka/init/globalModelParameter Ecal_radiator_layers_set2_thickness 4.2
-/Mokka/init/globalModelParameter Ecal_radiator_layers_set3_thickness 0
+/Mokka/init/globalModelParameter Ecal_radiator_layers_set3_thickness 0.0
 /Mokka/init/globalModelParameter Ecal_Si_thickness 0.5
 /Mokka/init/globalModelParameter Ecal_Sc_thickness 2.0
 /Mokka/init/globalModelParameter Ecal_Slab_Sc_PCB_thickness 0.9
+
+/Mokka/init/globalModelParameter Lcal_n_layers 30
 
 /Mokka/init/globalModelParameter Hcal_Ecal_gap 30.0
 /Mokka/init/globalModelParameter Hcal_endcap_ecal_gap 15.0
@@ -52,7 +54,7 @@
 
 /Mokka/init/lcioDetailedShowerMode true
 /Mokka/init/BatchMode true
-/Mokka/init/lcioFilename MokkaSim_Detector_Model_87_Kaon0L_20GeV_1000_44000.slcio 
+/Mokka/init/lcioFilename MokkaSim_Detector_Model_95_Photon_10GeV_1000_21000.slcio 
 /Mokka/init/initialMacroFile $workDir/$2_$3_SiW.g4macro
 
 ### User Provided Geometry

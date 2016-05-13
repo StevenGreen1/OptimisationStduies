@@ -16,15 +16,15 @@ detectorModelNumber = sys.argv[1]
 
 eventsToSimulate = [ { 'EventType': "Z_uds"  , 'EventsPerFile' : 200 , 'Energies':  ['500'] } ]
 
-baseXmlFile  = 'TemplateRepository/MokkaSteer.steer'
-eventsPerJob = 100
+baseXmlFile  = '../../MokkaTemplateSteering/MokkaSteer.steer'
+eventsPerJob = 200
 
-jobName = 'OptimisationStudies'
+jobName = 'OptimisationStudies_ECalStudies'
 
 #===== Second level user input =====
 # If using naming scheme doesn't need changing 
 
-detModelConfigFile = 'DetectorModelConfigFiles/Detector_Model_' + str(detectorModelNumber) + '_Config.py'
+detModelConfigFile = '../../DetectorModelConfigFiles/Detector_Model_' + str(detectorModelNumber) + '_Config.py'
 gearFile     = 'ILD_o1_v06_Detector_Model_' + str(detectorModelNumber) + '.gear'
 
 #=====

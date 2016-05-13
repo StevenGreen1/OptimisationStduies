@@ -1,0 +1,16 @@
+executable              = /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibration/MyCalibration/MarlinCalibration_EJNX2.sh                   
+initial_dir             = /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibration/MyCalibration                                                  
+notification            = never                                                                
+Requirements            = (OSTYPE == "SLC6")                                                 
+Rank                    = memory                                                               
+output                  = /usera/sg568/CondorLogs/Marlin.out                     
+error                   = /usera/sg568/CondorLogs/Marlin.err                     
+log                     = /usera/sg568/CondorLogs/Marlin.log                     
+environment             = CONDOR_JOB=true                                                      
+Universe                = vanilla                                                              
+getenv                  = false                                                                
+copy_to_spool           = true                                                                 
+should_transfer_files   = yes                                                                  
+when_to_transfer_output = on_exit_or_evict                                                     
+arguments = /r04/lc/sg568/HCAL_Optimisation_Studies/Calibration/Detector_Model_84/Reco_Stage_71/DefaultCalibration/MarlinXml/ILD_o1_v06_Calibration_10_GeV_Photon_SN_1000_2000.xml
+queue 1 

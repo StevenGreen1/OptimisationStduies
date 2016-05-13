@@ -4,15 +4,15 @@ from DIRAC.Core.Base import Script
 Script.parseCommandLine()
 from DIRAC.Resources.Catalog.FileCatalogClient import FileCatalogClient
 
-#evtType = 'Z_uds'
-evtType = 'Photon'
+evtType = 'Z_uds'
+#evtType = 'Photon'
 jobDescription = 'OptimisationStudies'
 detNumbers = range(96,100) 
 recoStages = [71] 
 fileType = 'Rec'
 
-#energies = [91,200,360,500] 
-energies = [100] 
+energies = [91,200,360,500] 
+#energies = [100] 
 
 fc = FileCatalogClient()
 for detNumber in detNumbers:

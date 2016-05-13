@@ -97,7 +97,7 @@ class XmlGeneration:
 ### ====================================================================================================
 
     def produceXml(self):
-        baseSteeringFile = os.path.join(os.getcwd(), 'ILD_o1_v06_XX_YY.xml')
+        baseSteeringFile = os.path.join(os.getcwd(), 'Logic/ILD_o1_v06_XX_YY.xml')
         base = open(baseSteeringFile,'r')
         xmlTemplate = base.read()
         base.close()

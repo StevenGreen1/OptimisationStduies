@@ -4,7 +4,7 @@
 #=============================================================================
 # Special targets provided by cmake.
 
-# Disable implicit rules so canonical targets will work.
+# Disable implicit rules so canoncical targets will work.
 .SUFFIXES:
 
 # Remove some rules from gmake that .SUFFIXES does not remove.
@@ -26,30 +26,24 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/CMake/2.8.5/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E remove -f
-
-# Escaping for special characters.
-EQUALS = =
+RM = /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/CMake/2.8.5/bin/cmake -E remove -f
 
 # The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+CMAKE_EDIT_COMMAND = /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/CMake/2.8.5/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis
+CMAKE_SOURCE_DIR = /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build
+CMAKE_BINARY_DIR = /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build
 
 # Utility rule file for ExperimentalCoverage.
 
-# Include the progress variables for this target.
-include CMakeFiles/ExperimentalCoverage.dir/progress.make
-
 CMakeFiles/ExperimentalCoverage:
-	/usr/bin/ctest -D ExperimentalCoverage
+	/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/CMake/2.8.5/bin/ctest -D ExperimentalCoverage
 
 ExperimentalCoverage: CMakeFiles/ExperimentalCoverage
 ExperimentalCoverage: CMakeFiles/ExperimentalCoverage.dir/build.make
@@ -64,6 +58,6 @@ CMakeFiles/ExperimentalCoverage.dir/clean:
 .PHONY : CMakeFiles/ExperimentalCoverage.dir/clean
 
 CMakeFiles/ExperimentalCoverage.dir/depend:
-	cd /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/CMakeFiles/ExperimentalCoverage.dir/DependInfo.cmake --color=$(COLOR)
+	cd /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/CMakeFiles/ExperimentalCoverage.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ExperimentalCoverage.dir/depend
 

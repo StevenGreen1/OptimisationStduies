@@ -4,7 +4,7 @@
 #=============================================================================
 # Special targets provided by cmake.
 
-# Disable implicit rules so canonical targets will work.
+# Disable implicit rules so canoncical targets will work.
 .SUFFIXES:
 
 # Remove some rules from gmake that .SUFFIXES does not remove.
@@ -26,22 +26,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/CMake/2.8.5/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E remove -f
-
-# Escaping for special characters.
-EQUALS = =
+RM = /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/CMake/2.8.5/bin/cmake -E remove -f
 
 # The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+CMAKE_EDIT_COMMAND = /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/CMake/2.8.5/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis
+CMAKE_SOURCE_DIR = /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build
+CMAKE_BINARY_DIR = /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ECalDigitisation_ContainedEvents.dir/depend.make
@@ -54,17 +51,17 @@ include CMakeFiles/ECalDigitisation_ContainedEvents.dir/flags.make
 
 CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.o: CMakeFiles/ECalDigitisation_ContainedEvents.dir/flags.make
 CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.o: ../calibration/ECalDigitisation_ContainedEvents.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.o"
-	/usr/lib64/ccache/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.o -c /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/calibration/ECalDigitisation_ContainedEvents.cc
+	/usr/lib64/ccache/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.o -c /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/calibration/ECalDigitisation_ContainedEvents.cc
 
 CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.i"
-	/usr/lib64/ccache/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/calibration/ECalDigitisation_ContainedEvents.cc > CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.i
+	/usr/lib64/ccache/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/calibration/ECalDigitisation_ContainedEvents.cc > CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.i
 
 CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.s"
-	/usr/lib64/ccache/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/calibration/ECalDigitisation_ContainedEvents.cc -o CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.s
+	/usr/lib64/ccache/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/calibration/ECalDigitisation_ContainedEvents.cc -o CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.s
 
 CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.o.requires:
 .PHONY : CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.o.requires
@@ -83,7 +80,6 @@ ECalDigitisation_ContainedEvents_OBJECTS = \
 ECalDigitisation_ContainedEvents_EXTERNAL_OBJECTS =
 
 bin/ECalDigitisation_ContainedEvents: CMakeFiles/ECalDigitisation_ContainedEvents.dir/calibration/ECalDigitisation_ContainedEvents.cc.o
-bin/ECalDigitisation_ContainedEvents: CMakeFiles/ECalDigitisation_ContainedEvents.dir/build.make
 bin/ECalDigitisation_ContainedEvents: /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/Marlin/v01-06/lib/libMarlin.so
 bin/ECalDigitisation_ContainedEvents: /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/lcio/v02-06/lib/liblcio.so
 bin/ECalDigitisation_ContainedEvents: /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/lcio/v02-06/lib/libsio.so
@@ -153,6 +149,7 @@ bin/ECalDigitisation_ContainedEvents: /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01
 bin/ECalDigitisation_ContainedEvents: /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/lib/libMathCore.so
 bin/ECalDigitisation_ContainedEvents: /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/lib/libThread.so
 bin/ECalDigitisation_ContainedEvents: /usr/lib64/libdl.so
+bin/ECalDigitisation_ContainedEvents: CMakeFiles/ECalDigitisation_ContainedEvents.dir/build.make
 bin/ECalDigitisation_ContainedEvents: CMakeFiles/ECalDigitisation_ContainedEvents.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable bin/ECalDigitisation_ContainedEvents"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ECalDigitisation_ContainedEvents.dir/link.txt --verbose=$(VERBOSE)
@@ -169,6 +166,6 @@ CMakeFiles/ECalDigitisation_ContainedEvents.dir/clean:
 .PHONY : CMakeFiles/ECalDigitisation_ContainedEvents.dir/clean
 
 CMakeFiles/ECalDigitisation_ContainedEvents.dir/depend:
-	cd /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudiesScECal/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/CMakeFiles/ECalDigitisation_ContainedEvents.dir/DependInfo.cmake --color=$(COLOR)
+	cd /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraAnalysis_OptimisationStudies/LCPandoraAnalysis/build/CMakeFiles/ECalDigitisation_ContainedEvents.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ECalDigitisation_ContainedEvents.dir/depend
 

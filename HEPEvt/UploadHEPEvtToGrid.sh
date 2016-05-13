@@ -1,8 +1,8 @@
 #!/bin/bash
 
-energy=100
-particle="Photon" #Kaon0L Muon Photon
-pdg="22"
+energy=10
+particle="Kaon0L" #Kaon0L Muon Photon
+pdg="130"
 
 cd HEPEvtFiles
 

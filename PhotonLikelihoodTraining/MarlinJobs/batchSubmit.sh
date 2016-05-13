@@ -1,13 +1,19 @@
 #!/bin/bash
 
-# 1 is silicon ECal, realistic options
-# 5 is scintillator ECal, realistic options 
+#for detModel in {84..89}
+#do
+#    for recoVar in 38 71 
+#    do
+#         python MarlinTrainingSubmit.py ${detModel} ${recoVar}
+#    done
+#done
 
-for detModel in {96..99}
+for detModel in 98 #{96..99}
 do
-    for recoVar in 71 
+    for recoVar in 71 #38 71
     do
-         python MarlinTrainingSubmit.py ${detModel} ${recoVar} ${templateNumber}
+         python MarlinTrainingSubmit.py ${detModel} ${recoVar}
     done
 done
+
 

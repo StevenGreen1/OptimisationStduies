@@ -50,6 +50,9 @@ pandoraActive.close()
 os.system('cp ' + gearFile + ' .')
 gearFileLocal = os.path.basename(gearFile)
 
+# Tidy Up?
+tidyUp = True
+
 # Start submission
 JobIdentificationString = jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar)
 diracInstance = DiracILC(withRepo=True,repoLocation="%s.cfg" %( JobIdentificationString))
@@ -63,16 +66,20 @@ for eventSelection in eventsToSimulate:
 
         lfn = '/ilc/user/s/sgreen/' + outputPath + '/' + outputFiles[0]
         if doesFileExist(lfn):
+            tidyUp = False
             continue
 
         slcioFilesToProcess = getSlcioFiles(jobDescription,detModel,energy,eventType)
+        slcioFilesToProcess = slcioFilesToProcess[:25] # Photons trained on 2500 zuds events, each file has 100 events
         slcioFilesString = ''
         slcioFilesGridFilesString = []
+        inputDataString = []
 
         for slcioFile in slcioFilesToProcess:
             slcioFileNoPath = os.path.basename(slcioFile)
             slcioFilesString += slcioFileNoPath + '\n'
             slcioFilesGridFilesString.append('lfn:' + slcioFile)
+            inputDataString.append(slcioFile)
 
         print 'Submitting ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.'  
         xmlGeneration = XmlGeneration(calibConfigFile,ecalAbsMatType[detModel],realisticDigi[recoVar],pandoraSettingsFile,gearFileLocal,slcioFilesString)
@@ -91,6 +98,7 @@ for eventSelection in eventsToSimulate:
         job = UserJob()
         job.setJobGroup(jobDescription)
         job.setInputSandbox(inputSandbox) # Local files
+        job.setInputData(inputDataString)
         job.setOutputSandbox(['*.log','*.gear','*.mac','*.steer'])
         job.setOutputData(outputFiles,OutputPath=outputPath) # On grid
         job.setName(jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar))
@@ -105,6 +113,8 @@ for eventSelection in eventsToSimulate:
         os.system('rm *.cfg')
 
 # Tidy Up
-os.system('rm MarlinSteering.steer')
+if tidyUp:
+    os.system('rm MarlinSteering.steer')
+
 os.system('rm ' + pandoraSettingsFile)
 os.system('rm ' + gearFileLocal)
