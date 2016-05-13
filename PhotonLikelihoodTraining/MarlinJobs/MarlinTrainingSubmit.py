@@ -14,18 +14,18 @@ from Logic.DetectorInfo import *
 
 #===== User Input =====
 
-jobDescription = 'OptimisationStudies'
+jobDescription = 'OptimisationStudies_ECalStudies'
 detModel = int(sys.argv[1])
 recoVar = int(sys.argv[2])
 
 eventsToSimulate = [ { 'EventType': "Z_uds", 'Energies': [500] } ]
 
-pandoraSettingsFile = 'PandoraSettingsDefaultForTraining.xml' 
+pandoraSettingsFile = '../../PandoraSettings/PandoraSettingsDefaultForTraining.xml' 
 
 #===== Second level user input =====
 
 gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_Detector_Model_' + str(detModel) + '.gear'
-calibConfigFile = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonLikelihoodTraining/CalibrationInfo/CalibrationConfigMuon/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
+calibConfigFile = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibration/CalibConfigFiles/MuonCalibration/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
 
 #===== Begin =====
 
@@ -51,7 +51,7 @@ os.system('cp ' + gearFile + ' .')
 gearFileLocal = os.path.basename(gearFile)
 
 # Tidy Up?
-tidyUp = True
+idyUp = True
 
 # Start submission
 JobIdentificationString = jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar)
@@ -70,7 +70,7 @@ for eventSelection in eventsToSimulate:
             continue
 
         slcioFilesToProcess = getSlcioFiles(jobDescription,detModel,energy,eventType)
-        slcioFilesToProcess = slcioFilesToProcess[:25] # Photons trained on 2500 zuds events, each file has 100 events
+        slcioFilesToProcess = slcioFilesToProcess[:15] # Photons trained on 3000 zuds events, each file has 200 events
         slcioFilesString = ''
         slcioFilesGridFilesString = []
         inputDataString = []
@@ -102,7 +102,7 @@ for eventSelection in eventsToSimulate:
         job.setOutputSandbox(['*.log','*.gear','*.mac','*.steer'])
         job.setOutputData(outputFiles,OutputPath=outputPath) # On grid
         job.setName(jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar))
-        job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us'])
+        job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us','OSG.CIT.us'])
         job.dontPromptMe()
         res = job.append(ma)
 

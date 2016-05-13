@@ -8,11 +8,11 @@ from ILCDIRAC.Interfaces.API.DiracILC import  DiracILC
 from ILCDIRAC.Interfaces.API.NewInterface.UserJob import *
 from ILCDIRAC.Interfaces.API.NewInterface.Applications import *
 
-from PhotonEnergyResolutionGridJobs import *
+from Logic.PhotonEnergyResolutionGridJobs import *
 
 #===== User Input =====
 
-jobDescription = 'OptimisationStudies'
+jobDescription = 'OptimisationStudies_ECalStudies'
 recoVar = 71
 eventsToSimulate = [ { 'EventType': 'Photon', 'Energies': [100], 'DetectorModels': [96, 97, 98, 99] } ]
 

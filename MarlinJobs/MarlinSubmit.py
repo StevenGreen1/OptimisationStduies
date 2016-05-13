@@ -13,7 +13,7 @@ from Logic.DiracTools import *
 
 #===== User Input =====
 
-jobDescription = 'OptimisationStudies'
+jobDescription = 'OptimisationStudies_ECalStudies'
 detModel = sys.argv[1] 
 recoVar = sys.argv[2]
 
@@ -22,17 +22,19 @@ eventsToSimulate = [ { 'EventType': "Z_uds", 'Energies': [91, 200, 360, 500] } ]
 #===== Second level user input =====
 
 # All keys are given separate MarlinPandora processor, unless the word Likelihood appears as a substring of the key
+basePath = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraSettings/TrainedSettings/LikelihoodData/Detector_Model_' + str(detectorModel) + '/Reco_Stage_' + str(recoStage) + '/Z_uds/500GeV'
 pandoraSettingsFiles = {}
-pandoraSettingsFiles['Default'] = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonLikelihoodTraining/LikelihoodData/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/Z_uds/500GeV/PandoraSettingsDefault.xml' 
-pandoraSettingsFiles['Default_LikelihoodData'] = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PhotonLikelihoodTraining/LikelihoodData/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/Z_uds/500GeV/PandoraLikelihoodData_DetModel_' + str(detModel) + '_RecoStage_' + str(recoVar) + '.xml' 
-pandoraSettingsFiles['Muon'] = 'PandoraSettings/PandoraSettingsMuon.xml'
-pandoraSettingsFiles['PerfectPhoton'] = 'PandoraSettings/PandoraSettingsPerfectPhoton.xml'
-pandoraSettingsFiles['PerfectPhotonNK0L'] = 'PandoraSettings/PandoraSettingsPerfectPhotonNeutronK0L.xml'
-pandoraSettingsFiles['PerfectPFA'] = 'PandoraSettings/PandoraSettingsPerfectPFA.xml'
+pandoraSettingsFiles['Default'] = os.path.join(basePath,'PandoraSettingsDefault.xml')  
+pandoraSettingsFiles['Default_LikelihoodData'] = os.path.join(basePath,'PandoraLikelihoodData_DetModel_' + str(detectorModel) + '_RecoStage_' + str(recoStage) + '.xml')
+pandoraSettingsFiles['Muon'] = '../PandoraSettings/PandoraSettingsMuon.xml'
+pandoraSettingsFiles['PerfectPhoton'] = '../PandoraSettings/PandoraSettingsPerfectPhoton.xml'
+pandoraSettingsFiles['PerfectPhotonNK0L'] = '../PandoraSettings/PandoraSettingsPerfectPhotonNeutronK0L.xml'
+pandoraSettingsFiles['PerfectPFA'] = '../PandoraSettings/PandoraSettingsPerfectPFA.xml'
 
 gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_Detector_Model_' + str(detModel) + '.gear'
-calibConfigFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/Calibration/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/DefaultCalibration/Validation/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
-#calibConfigFile = '/usera/sg568/ilcsoft_v01_17_07/DESYCollaboration/MarlinJobs/CalibConfig_DetModel38_RecoStage76.py'
+
+calibConfigPath = '/r04/lc/sg568/HCAL_Optimisation_Studies/Calibration/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/DefaultCalibration/Validation'
+calibConfigFile = os.path.join(calibConfigPath,'CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py')
 
 #=====
 
@@ -99,7 +101,7 @@ for eventSelection in eventsToSimulate:
             job.setOutputSandbox(['*.log','*.gear','*.mac','*.steer','*.xml'])
             job.setOutputData(outputFiles,OutputPath=outputPath) # On grid
             job.setName(jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar))
-            job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us'])
+            job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us','OSG.CIT.us'])
             job.dontPromptMe()
             res = job.append(ma)
 

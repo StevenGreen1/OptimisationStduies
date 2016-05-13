@@ -77,7 +77,7 @@ for eventSelection in eventsToSimulate:
                 job.setOutputData(outputFile, OutputPath=outputPath)
                 job.setInputData(hepevtFile)
                 job.setName(jobName + '_Detector_Model_' + str(detectorModelNumber))
-                job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp'])
+                job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us','OSG.CIT.us'])
 
                 res = job.append(MokkaApplication)
                 if not res['OK']:

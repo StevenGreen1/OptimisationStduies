@@ -8,11 +8,11 @@ from ILCDIRAC.Interfaces.API.DiracILC import  DiracILC
 from ILCDIRAC.Interfaces.API.NewInterface.UserJob import *
 from ILCDIRAC.Interfaces.API.NewInterface.Applications import *
 
-from EnergyResolutionAnalysisGridJobs import *
+from Logic.EnergyResolutionAnalysisGridJobs import *
 
 #===== User Input =====
 
-jobDescription = 'OptimisationStudies'
+jobDescription = 'OptimisationStudies_ECalStudies'
 detModel = sys.argv[1] 
 recoVar = sys.argv[2]
 #eventsToSimulate = [ { 'EventType': "Kaon0L", 'Energies': [1,2,3,4,5,6,7,8,9,10,15,20,25,30,35,40,45,50] } ]
@@ -61,7 +61,7 @@ for eventSelection in eventsToSimulate:
     job.setInputData(allRootFilesToUse)
     job.setOutputData(outputFiles,OutputPath='/OptimisationStudies/EnergyResolution/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType)
     job.setName(JobIdentificationString)
-    job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.CIT.us'])
+    job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us','OSG.CIT.us'])
     job.dontPromptMe()
     res = job.append(genericApplication)
 

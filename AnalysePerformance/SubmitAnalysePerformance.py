@@ -8,11 +8,11 @@ from ILCDIRAC.Interfaces.API.DiracILC import  DiracILC
 from ILCDIRAC.Interfaces.API.NewInterface.UserJob import *
 from ILCDIRAC.Interfaces.API.NewInterface.Applications import *
 
-from AnalysePerformanceGridJobs import *
+from Logic.AnalysePerformanceGridJobs import *
 
 #===== User Input =====
 
-jobDescription = 'OptimisationStudies'
+jobDescription = 'OptimisationStudies_ECalStudies'
 detModel = sys.argv[1] 
 recoVar = sys.argv[2]
 eventsToSimulate = [ { 'EventType': "Z_uds", 'Energies': [91, 200, 360, 500] } ]
@@ -35,7 +35,8 @@ for eventSelection in eventsToSimulate:
     eventType = eventSelection['EventType']
     for energy in eventSelection['Energies']:
         rootFilesToProcess = getRootFiles(jobDescription,detModel,recoVar,energy,eventType,pandoraSettings)
-        print 'Submitting analysis of ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.  Pandora settings ' + str(pandoraSettings) + '.'  
+#        print 'Submitting analysis of ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.  Pandora settings ' + str(pandoraSettings) + '.'  
+
         runFileName = 'runfile.txt'
         runFile = open(runFileName,'w')
         for rootFile in rootFilesToProcess:
@@ -50,7 +51,7 @@ for eventSelection in eventsToSimulate:
                      ]
 
         outputFiles = arguements[1:]
-        outputPath = '/OptimisationStudies/AnalysePerformance/Detector_Model_' + str(detModel) + '_Run4/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
+        outputPath = '/' + jobDescription + '/AnalysePerformance/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
 
         lfn = '/ilc/user/s/sgreen/' + outputPath + '/' + arguements[1]
         if doesFileExist(lfn):
@@ -68,7 +69,7 @@ for eventSelection in eventsToSimulate:
         job.setOutputData(outputFiles,OutputPath=outputPath)
 
         job.setName(JobIdentificationString)
-        job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.CIT.us'])
+        job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us','OSG.CIT.us'])
         job.dontPromptMe()
         #job.setCPUTime(1000)
         res = job.append(genericApplication)
