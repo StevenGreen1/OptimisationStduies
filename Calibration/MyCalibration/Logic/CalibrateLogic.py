@@ -127,13 +127,13 @@ class Calibration:
 
         if detModelNumber in range(1,96):
             self._ECalLayerChange = 20
-        elif detModelNumber in [96, 100]
+        elif detModelNumber in [96, 100]:
             self._ECalLayerChange = 20
-        elif detModelNumber in [97, 101]
+        elif detModelNumber in [97, 101]:
             self._ECalLayerChange = 17
-        elif detModelNumber in [98, 102]
+        elif detModelNumber in [98, 102]:
             self._ECalLayerChange = 13
-        elif detModelNumber in [99, 103]
+        elif detModelNumber in [99, 103]:
             self._ECalLayerChange = 10
 
         'ECal Calibration Variables - Pandora'
