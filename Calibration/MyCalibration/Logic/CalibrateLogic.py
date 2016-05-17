@@ -1171,7 +1171,7 @@ class Calibration:
 <processor name="MyILDCaloDigi" type="ILDCaloDigi">
   <!--ILD digitizer...-->
   <!--Calibration coefficients for ECAL-->
-  <parameter name="CalibrECAL" type="FloatVec">""" + str(calibrECalSiOption) + ' ' + str(calibrECalSiOption)  + """</parameter>
+  <parameter name="CalibrECAL" type="FloatVec">""" + str(calibrECalSiOption) + ' ' + str(2*calibrECalSiOption)  + """</parameter>
   <!--Calibration coefficients for HCAL barrel, endcap, other-->
   <parameter name="CalibrHCALBarrel" type="FloatVec">""" + str(self._CalibrHCalBarrel) + """</parameter>
   <parameter name="CalibrHCALEndcap" type="FloatVec">""" + str(self._CalibrHCalEndCap) + """</parameter>
