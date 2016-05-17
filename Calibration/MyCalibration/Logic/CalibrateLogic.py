@@ -117,12 +117,24 @@ class Calibration:
         self._ECalGapCorrectionFactor = 1.0
 
         if self._ECalType.lower() in ['si']:
-            self._ECalGapCorrectionFactor = 1.0
+            self._ECalGapCorrectionFactor = 1.012314 # Default of 1.025 slightly too large based on ECal cell size scan.
         if self._ECalType.lower() in ['sc']:
-            self._ECalGapCorrectionFactor = 1.027 # Unaffected by variations to ECal cell size. 
+            self._ECalGapCorrectionFactor = 1.052675 # Needed scaling up by 1.027, but default 1.025 so new value is.
 
         self._ECalBarrelTimeWindowMax = timingCut
         self._ECalEndCapTimeWindowMax = timingCut
+        self._ECalLayerChange = 0
+
+        if detModelNumber in range(1,96):
+            self._ECalLayerChange = 20
+        elif detModelNumber in [96, 100]
+            self._ECalLayerChange = 20
+        elif detModelNumber in [97, 101]
+            self._ECalLayerChange = 17
+        elif detModelNumber in [98, 102]
+            self._ECalLayerChange = 13
+        elif detModelNumber in [99, 103]
+            self._ECalLayerChange = 10
 
         'ECal Calibration Variables - Pandora'
         self._ECalGeVToMIP = 160.0
@@ -186,7 +198,7 @@ class Calibration:
         self._RandomString = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
         self._MarlinExecutable = 'MarlinCalibration_' + self._RandomString + '.sh'
 
-        os.system('cp MarlinCalibration.sh ' + self._MarlinExecutable)
+        os.system('cp Logic/MarlinCalibration.sh ' + self._MarlinExecutable)
         if not os.path.isfile(self._MarlinExecutable):
             self.logger.error('Marlin executable missing.  Exiting calibration.')
             self.logger.error('Marlin executable : ' + self._MarlinExecutable)
@@ -749,7 +761,7 @@ class Calibration:
         activeSlcioFormat = re.sub('PARTICLE',particle,activeSlcioFormat)
 
         baseFileName = 'ILD_o1_v06_Calibration_XX_YY.xml'
-        baseSteeringFile = os.path.join(os.getcwd(), 'ILD_o1_v06_XX_YY.xml')
+        baseSteeringFile = os.path.join(os.getcwd(), 'Logic/ILD_o1_v06_XX_YY.xml')
 
         jobList = []
 
@@ -900,7 +912,7 @@ class Calibration:
   <!--ECAL Collection Names-->
   <parameter name="ECALCollections" type="StringVec">EcalBarrelSiliconCollection EcalEndcapSiliconCollection  EcalEndcapRingCollection </parameter>
   <!--Index of ECal Layers-->
-  <parameter name="ECALLayers" type="IntVec">20 100 </parameter>
+  <parameter name="ECALLayers" type="IntVec">""" + str(self._ECalLayerChange) + """ 100 </parameter>
   <!--Threshold for ECAL Hits in GeV-->
   <parameter name="ECALThreshold" type="float">5e-05 </parameter>
   <!--HCAL Collection Names-->
@@ -997,7 +1009,7 @@ class Calibration:
   <!--ECAL Collection Names-->
   <parameter name="ECALCollections" type="StringVec">EcalBarrelScintillatorTransverseStrips EcalEndcapScintillatorTransverseStrips dummy1</parameter>
   <!--Index of ECal Layers-->
-  <parameter name="ECALLayers" type="IntVec">20 100  </parameter>
+  <parameter name="ECALLayers" type="IntVec">""" + str(self._ECalLayerChange) + """ 100  </parameter>
   <!--Threshold for ECAL Hits in GeV-->
   <parameter name="ECALThreshold" type="float">5e-05 </parameter>
   <!--HCAL Collection Names-->
@@ -1077,7 +1089,7 @@ class Calibration:
   <!--ECAL Collection Names-->
   <parameter name="ECALCollections" type="StringVec">EcalBarrelScintillatorLongitudinalStrips EcalEndcapScintillatorLongitudinalStrips dummy5 </parameter>
   <!--Index of ECal Layers-->
-  <parameter name="ECALLayers" type="IntVec">20 100  </parameter>
+  <parameter name="ECALLayers" type="IntVec">""" + str(self._ECalLayerChange) + """ 100  </parameter>
   <!--Threshold for ECAL Hits in GeV-->
   <parameter name="ECALThreshold" type="float">5e-05 </parameter>
   <!--HCAL Collection Names-->
@@ -1157,7 +1169,7 @@ class Calibration:
   <!--ECAL Collection Names-->
   <parameter name="ECALCollections" type="StringVec">EcalBarrelSiliconCollection EcalEndcapSiliconCollection EcalEndcapRingCollection </parameter>
   <!--Index of ECal Layers-->
-  <parameter name="ECALLayers" type="IntVec">20 100  </parameter>
+  <parameter name="ECALLayers" type="IntVec">""" + str(self._ECalLayerChange) + """ 100  </parameter>
   <!--Threshold for ECAL Hits in GeV-->
   <parameter name="ECALThreshold" type="float">5e-05 </parameter>
   <!--HCAL Collection Names-->
@@ -1180,7 +1192,7 @@ class Calibration:
   <!--CaloHit Relation Collection-->
   <parameter name="RelationOutputCollection" type="string"> RelationCaloHit</parameter>
   <!--Gap Correction-->
-  <parameter name="ECALGapCorrection" type="int"> 1 </parameter>
+  <parameter name="ECALGapCorrection" type="int"> 0 </parameter>
   <!--Gap Correction Fudge Factor-->
   <parameter name="ECALGapCorrectionFactor" type="float">""" + str(self._ECalGapCorrectionFactor) + """</parameter>
   <parameter name="ECALModuleGapCorrectionFactor" type="int"> 0.0 </parameter>
