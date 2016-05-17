@@ -993,9 +993,19 @@ class Calibration:
     def writeILDCaloDigiScECalXml(self):
         self.logger.debug('Writing ILDCaloDigi xml block for Sc ECal.')
 
+        # ECal other is always silicon, not scintillator
         ecalOtherRealisticDigi = 0
         if self._ApplyECalRealisticDigi != 0:
-            ecalOtherRealisticDigi = 1 # ECal other is always silicon, not scintillator according to digitiser
+            ecalOtherRealisticDigi = 1 
+
+        # As such need to use CalibrECal for si option for ECal other calibration, to first order these are roughly correct
+        calibrECalSiOption = 42.749
+        if self._DetectorModelNumber == 101:
+            calibrECalSiOption = 49.338 
+        if self._DetectorModelNumber == 102:
+            calibrECalSiOption = 63.266
+        if self._DetectorModelNumber == 103:
+            calibrECalSiOption = 79.310
 
         ildCaloDigi  = """
 <processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
@@ -1161,7 +1171,7 @@ class Calibration:
 <processor name="MyILDCaloDigi" type="ILDCaloDigi">
   <!--ILD digitizer...-->
   <!--Calibration coefficients for ECAL-->
-  <parameter name="CalibrECAL" type="FloatVec">""" + str(self._CalibrECal) + ' ' + str(2*self._CalibrECal)  + """</parameter>
+  <parameter name="CalibrECAL" type="FloatVec">""" + str(calibrECalSiOption) + ' ' + str(calibrECalSiOption)  + """</parameter>
   <!--Calibration coefficients for HCAL barrel, endcap, other-->
   <parameter name="CalibrHCALBarrel" type="FloatVec">""" + str(self._CalibrHCalBarrel) + """</parameter>
   <parameter name="CalibrHCALEndcap" type="FloatVec">""" + str(self._CalibrHCalEndCap) + """</parameter>
@@ -1192,7 +1202,7 @@ class Calibration:
   <!--CaloHit Relation Collection-->
   <parameter name="RelationOutputCollection" type="string"> RelationCaloHit</parameter>
   <!--Gap Correction-->
-  <parameter name="ECALGapCorrection" type="int"> 0 </parameter>
+  <parameter name="ECALGapCorrection" type="int"> 1 </parameter>
   <!--Gap Correction Fudge Factor-->
   <parameter name="ECALGapCorrectionFactor" type="float">""" + str(self._ECalGapCorrectionFactor) + """</parameter>
   <parameter name="ECALModuleGapCorrectionFactor" type="int"> 0.0 </parameter>
