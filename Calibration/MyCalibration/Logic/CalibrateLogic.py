@@ -117,9 +117,9 @@ class Calibration:
         self._ECalGapCorrectionFactor = 1.0
 
         if self._ECalType.lower() in ['si']:
-            self._ECalGapCorrectionFactor = 1.012314 # Default of 1.025 slightly too large based on ECal cell size scan.
+            self._ECalGapCorrectionFactor = 1.00299 # Default of 1.025 slightly too large based on ECal cell size scan. 1.012314 too high going to 1.00229
         if self._ECalType.lower() in ['sc']:
-            self._ECalGapCorrectionFactor = 1.052675 # Needed scaling up by 1.027, but default 1.025 so new value is.
+            self._ECalGapCorrectionFactor = 1.07939 # Needed scaling up by 1.027, but default 1.025 so new value is. 1.052675 too low going to 1.07939
 
         self._ECalBarrelTimeWindowMax = timingCut
         self._ECalEndCapTimeWindowMax = timingCut

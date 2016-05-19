@@ -14,7 +14,7 @@ for detectorModel in range(100,104):
     timingCut = 1000000
     hadronicEnergyTrunc = 1
     pandoraSettings = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraSettings/PandoraSettingsMuon.xml'
-    Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Si', True)
+    Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Sc', True)
 
 # No timing cut, 1 GeV truncation, no realistic digi
 for detectorModel in range(100,104):
@@ -27,7 +27,7 @@ for detectorModel in range(100,104):
     timingCut = 1000000
     hadronicEnergyTrunc = 1
     pandoraSettings = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraSettings/PandoraSettingsMuon.xml'
-    Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Si', False)
+    Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Sc', False)
 
 # 100ns timing cut, 1 GeV truncation, realistic digi
 for detectorModel in range(100,104):
@@ -40,6 +40,6 @@ for detectorModel in range(100,104):
     timingCut = 100
     hadronicEnergyTrunc = 1
     pandoraSettings = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraSettings/PandoraSettingsMuon.xml'
-    Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Si', True)
+    Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Sc', True)
 
 
