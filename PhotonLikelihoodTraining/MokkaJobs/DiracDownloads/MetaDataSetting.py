@@ -4,7 +4,7 @@ from DIRAC.Core.Base import Script
 Script.parseCommandLine()
 from DIRAC.Resources.Catalog.FileCatalogClient import FileCatalogClient
 
-jobDescription = 'OptimisationStudies'
+jobDescription = 'OptimisationStudies_ECalStudies'
 fileType = 'Sim_PhotonLikelihoodTraining'
 
 detModelList = range(84,104)
