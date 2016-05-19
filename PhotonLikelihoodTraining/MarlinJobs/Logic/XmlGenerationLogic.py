@@ -38,30 +38,60 @@ class XmlGeneration:
 
         'Realistic Digitisation'
         self._RealisticDigitisation = realisticDigitisation
-        self.ApplyECalRealisticDigi = 0
-        self.ApplyHCalRealisticDigi = 0
-        self.ECalMaxDynamicRangeMIP = 0.0 # Set to 0 to avoid accidental truncation if not using realistic digitisation options
-        self.HCalMaxDynamicRangeMIP = 0.0 # Set to 0 to avoid accidental truncation if not using realistic digitisation options
+        self._ApplyECalRealisticDigi = 0
+        self._ApplyHCalRealisticDigi = 0
+        self._ECalMaxDynamicRangeMIP = 0.0 # Set to 0 to avoid accidental truncation if not using realistic digitisation options
+        self._HCalMaxDynamicRangeMIP = 0.0 # Set to 0 to avoid accidental truncation if not using realistic digitisation options
 
         if self._RealisticDigitisation:
-            self.ECalMaxDynamicRangeMIP = 2500       # Realistic Values
-            self.HCalMaxDynamicRangeMIP = 99999999   # Realistic Values
-            self.ApplyHCalRealisticDigi = 1
+            self._ECalMaxDynamicRangeMIP = 2500       # Realistic Values
+            self._HCalMaxDynamicRangeMIP = 99999999   # Realistic Values
+            self._ApplyHCalRealisticDigi = 1
             if self._ECalType.lower() in ['si']:
-                self.ApplyECalRealisticDigi = 1
+                self._ApplyECalRealisticDigi = 1
             if self._ECalType.lower() in ['sc']:
-                self.ApplyECalRealisticDigi = 2
+                self._ApplyECalRealisticDigi = 2
 
         self.logger.info('Realistic digitsation setting : ' + str(self._RealisticDigitisation))
-        self.logger.info('self.ApplyECalRealisticDigi   : ' + str(self.ApplyECalRealisticDigi))
-        self.logger.info('self.ApplyHCalRealisticDigi   : ' + str(self.ApplyHCalRealisticDigi))
+        self.logger.info('self._ApplyECalRealisticDigi   : ' + str(self._ApplyECalRealisticDigi))
+        self.logger.info('self._ApplyHCalRealisticDigi   : ' + str(self._ApplyHCalRealisticDigi))
 
         'ECal Calibration Variables - Digitisation'
         self._CalibrECal = config['CalibrECal'] 
         self._CalibrECalMIP = config['CalibrECalMIP']
-        self._ECalGapCorrectionFactor = 1
+        self._ECalGapCorrectionFactor = 1.0
+
+        if self._ECalType.lower() in ['si']:
+            self._ECalGapCorrectionFactor = 1.00299 # Default of 1.025 slightly too large based on ECal cell size scan. 1.012314 too high going to 1.00229
+        if self._ECalType.lower() in ['sc']:
+            self._ECalGapCorrectionFactor = 1.05102 # Needed scaling up from defualt of 1.025
+
         self._ECalBarrelTimeWindowMax = config['ECalBarrelTimeWindowMax']
         self._ECalEndCapTimeWindowMax = config['ECalEndcapTimeWindowMax']
+        self._ECalLayerChange = 20
+
+        'Extract detector model info from calibration config file name.  It is a bit ugly but will work.'
+        configFile = os.path.basename(configFileName)
+        matchObj = re.match('CalibConfig_DetModel(.*?)_RecoStage(.*?).py', configFile, re.M|re.I)
+        detModelNumber = 0
+        recoStageNumber = 0
+        if matchObj:
+            detModelNumber = int(matchObj.group(1))
+            recoStageNumber = int(matchObj.group(2))
+        else:
+            self.logger.debug('Calibration config file not of correct format.  Exiting now.')
+            sys.exit()
+
+        if detModelNumber in range(1,96):
+            self._ECalLayerChange = 20
+        elif detModelNumber in [96, 100]:
+            self._ECalLayerChange = 20
+        elif detModelNumber in [97, 101]:
+            self._ECalLayerChange = 17
+        elif detModelNumber in [98, 102]:
+            self._ECalLayerChange = 13
+        elif detModelNumber in [99, 103]:
+            self._ECalLayerChange = 10
 
         'ECal Calibration Variables - Pandora'
         self._ECalGeVToMIP = config['ECalToMIPCalibration']
@@ -207,7 +237,7 @@ class XmlGeneration:
   <!--ECAL Collection Names-->
   <parameter name="ECALCollections" type="StringVec">EcalBarrelSiliconCollection EcalEndcapSiliconCollection  EcalEndcapRingCollection </parameter>
   <!--Index of ECal Layers-->
-  <parameter name="ECALLayers" type="IntVec">20 100 </parameter>
+  <parameter name="ECALLayers" type="IntVec">""" + str(self._ECalLayerChange) + """ 100 </parameter>
   <!--Threshold for ECAL Hits in GeV-->
   <parameter name="ECALThreshold" type="float">5e-05 </parameter>
   <!--HCAL Collection Names-->
@@ -233,7 +263,7 @@ class XmlGeneration:
   <parameter name="ECALGapCorrection" type="int"> 1 </parameter>
   <!--Gap Correction Fudge Factor-->
   <parameter name="ECALGapCorrectionFactor" type="float">""" + str(self._ECalGapCorrectionFactor) + """</parameter>
-  <parameter name="ECALModuleGapCorrectionFactor" type="int"> 0.0 </parameter>
+  <parameter name="ECALModuleGapCorrectionFactor" type="float"> 0.0 </parameter>
   <!-- Timing -->
   <parameter name="UseEcalTiming" type="int">1</parameter>
   <parameter name="UseHcalTiming" type="int">1</parameter>
@@ -248,9 +278,9 @@ class XmlGeneration:
   <parameter name="ECALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <parameter name="HCALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <!-- Realistic ECal -->
-  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self.ApplyECalRealisticDigi) + """</parameter>
+  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self._ApplyECalRealisticDigi) + """</parameter>
   <parameter name="CalibECALMIP" type="float">""" + str(self._CalibrECalMIP) + """</parameter>
-  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self.ECalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self._ECalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
   <parameter name="ECAL_deadCellRate" type="float">0</parameter>
   <parameter name="ECAL_miscalibration_uncorrel" type="float">0</parameter>
@@ -262,10 +292,10 @@ class XmlGeneration:
   <parameter name="ECAL_PPD_N_Pixels_uncertainty" type="float">0.05</parameter>
   <parameter name="ECAL_pixel_spread" type="float">0.05</parameter>
   <!-- Realistic HCal -->
-  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self.ApplyHCalRealisticDigi) + """</parameter>
+  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self._ApplyHCalRealisticDigi) + """</parameter>
   <parameter name="HCALThresholdUnit" type="string">MIP</parameter>
   <parameter name="CalibHCALMIP" type="float">""" + str(self._CalibrHCalMIP) + """</parameter>
-  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self.HCalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self._HCalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="HCAL_elec_noise_mips" type="float">0.06</parameter>
   <parameter name="HCAL_deadCellRate" type="float">0</parameter>
   <parameter name="HCAL_PPD_N_Pixels" type="int">2000</parameter>
@@ -287,6 +317,21 @@ class XmlGeneration:
 
     def writeILDCaloDigiScECalXml(self):
         self.logger.debug('Writing ILDCaloDigi xml block for Sc ECal.')
+
+        # ECal other is always silicon, not scintillator
+        ecalOtherRealisticDigi = 0
+        if self._ApplyECalRealisticDigi != 0:
+            ecalOtherRealisticDigi = 1
+
+        # As such need to use CalibrECal for si option for ECal other calibration, to first order these are roughly correct
+        calibrECalSiOption = 42.749
+        if self._DetectorModelNumber == 101:
+            calibrECalSiOption = 49.338
+        if self._DetectorModelNumber == 102:
+            calibrECalSiOption = 63.266
+        if self._DetectorModelNumber == 103:
+            calibrECalSiOption = 79.310
+
         ildCaloDigi  = """
 <processor name="MyILDCaloDigi_ScTrans" type="ILDCaloDigi">
   <!--ILD digitizer...-->
@@ -299,7 +344,7 @@ class XmlGeneration:
   <!--ECAL Collection Names-->
   <parameter name="ECALCollections" type="StringVec">EcalBarrelScintillatorTransverseStrips EcalEndcapScintillatorTransverseStrips dummy1</parameter>
   <!--Index of ECal Layers-->
-  <parameter name="ECALLayers" type="IntVec">20 100  </parameter>
+  <parameter name="ECALLayers" type="IntVec">""" + str(self._ECalLayerChange) + """ 100  </parameter>
   <!--Threshold for ECAL Hits in GeV-->
   <parameter name="ECALThreshold" type="float">5e-05 </parameter>
   <!--HCAL Collection Names-->
@@ -324,8 +369,8 @@ class XmlGeneration:
   <!--Gap Correction-->
   <parameter name="ECALGapCorrection" type="int"> 0 </parameter>
   <!--Gap Correction Fudge Factor-->
-  <parameter name="ECALGapCorrectionFactor" type="int">""" + str(self._ECalGapCorrectionFactor) + """</parameter>
-  <parameter name="ECALModuleGapCorrectionFactor" type="int"> 0.0 </parameter>
+  <parameter name="ECALGapCorrectionFactor" type="float">""" + str(self._ECalGapCorrectionFactor) + """</parameter>
+  <parameter name="ECALModuleGapCorrectionFactor" type="float"> 0.0 </parameter>
   <!-- Timing -->
   <parameter name="UseEcalTiming" type="int">1</parameter>
   <parameter name="UseHcalTiming" type="int">1</parameter>
@@ -340,9 +385,9 @@ class XmlGeneration:
   <parameter name="ECALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <parameter name="HCALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <!-- Realistic ECal -->
-  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self.ApplyECalRealisticDigi) + """</parameter>
+  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self._ApplyECalRealisticDigi) + """</parameter>
   <parameter name="CalibECALMIP" type="float">""" + str(self._CalibrECalMIP) + """</parameter>
-  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self.ECalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self._ECalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
   <parameter name="ECAL_deadCellRate" type="float">0</parameter>
   <parameter name="ECAL_miscalibration_uncorrel" type="float">0</parameter>
@@ -354,10 +399,10 @@ class XmlGeneration:
   <parameter name="ECAL_PPD_N_Pixels_uncertainty" type="float">0.05</parameter>
   <parameter name="ECAL_pixel_spread" type="float">0.05</parameter>
   <!-- Realistic HCal -->
-  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self.ApplyHCalRealisticDigi) + """</parameter>
+  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self._ApplyHCalRealisticDigi) + """</parameter>
   <parameter name="HCALThresholdUnit" type="string">MIP</parameter>
   <parameter name="CalibHCALMIP" type="float">""" + str(self._CalibrHCalMIP) + """</parameter>
-  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self.HCalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self._HCalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="HCAL_elec_noise_mips" type="float">0.06</parameter>
   <parameter name="HCAL_deadCellRate" type="float">0</parameter>
   <parameter name="HCAL_PPD_N_Pixels" type="int">2000</parameter>
@@ -379,7 +424,7 @@ class XmlGeneration:
   <!--ECAL Collection Names-->
   <parameter name="ECALCollections" type="StringVec">EcalBarrelScintillatorLongitudinalStrips EcalEndcapScintillatorLongitudinalStrips dummy5 </parameter>
   <!--Index of ECal Layers-->
-  <parameter name="ECALLayers" type="IntVec">20 100  </parameter>
+  <parameter name="ECALLayers" type="IntVec">""" + str(self._ECalLayerChange) + """ 100  </parameter>
   <!--Threshold for ECAL Hits in GeV-->
   <parameter name="ECALThreshold" type="float">5e-05 </parameter>
   <!--HCAL Collection Names-->
@@ -405,7 +450,7 @@ class XmlGeneration:
   <parameter name="ECALGapCorrection" type="int"> 0 </parameter>
   <!--Gap Correction Fudge Factor-->
   <parameter name="ECALGapCorrectionFactor" type="float">""" + str(self._ECalGapCorrectionFactor) + """</parameter>
-  <parameter name="ECALModuleGapCorrectionFactor" type="int"> 0.0 </parameter>
+  <parameter name="ECALModuleGapCorrectionFactor" type="float"> 0.0 </parameter>
   <!-- Timing -->
   <parameter name="UseEcalTiming" type="int">1</parameter>
   <parameter name="UseHcalTiming" type="int">1</parameter>
@@ -420,9 +465,9 @@ class XmlGeneration:
   <parameter name="ECALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <parameter name="HCALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <!-- Realistic ECal -->
-  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self.ApplyECalRealisticDigi) + """</parameter>
+  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self._ApplyECalRealisticDigi) + """</parameter>
   <parameter name="CalibECALMIP" type="float">""" + str(self._CalibrECalMIP) + """</parameter>
-  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self.ECalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self._ECalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
   <parameter name="ECAL_deadCellRate" type="float">0</parameter>
   <parameter name="ECAL_miscalibration_uncorrel" type="float">0</parameter>
@@ -434,10 +479,10 @@ class XmlGeneration:
   <parameter name="ECAL_PPD_N_Pixels_uncertainty" type="float">0.05</parameter>
   <parameter name="ECAL_pixel_spread" type="float">0.05</parameter>
   <!-- Realistic HCal -->
-  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self.ApplyHCalRealisticDigi) + """</parameter>
+  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self._ApplyHCalRealisticDigi) + """</parameter>
   <parameter name="HCALThresholdUnit" type="string">MIP</parameter>
   <parameter name="CalibHCALMIP" type="float">""" + str(self._CalibrHCalMIP) + """</parameter>
-  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self.HCalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self._HCalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="HCAL_elec_noise_mips" type="float">0.06</parameter>
   <parameter name="HCAL_deadCellRate" type="float">0</parameter>
   <parameter name="HCAL_PPD_N_Pixels" type="int">2000</parameter>
@@ -451,7 +496,7 @@ class XmlGeneration:
 <processor name="MyILDCaloDigi" type="ILDCaloDigi">
   <!--ILD digitizer...-->
   <!--Calibration coefficients for ECAL-->
-  <parameter name="CalibrECAL" type="FloatVec">""" + str(self._CalibrECal) + ' ' + str(2*self._CalibrECal)  + """</parameter>
+  <parameter name="CalibrECAL" type="FloatVec">""" + str(calibrECalSiOption) + ' ' + str(2*calibrECalSiOption)  + """</parameter>
   <!--Calibration coefficients for HCAL barrel, endcap, other-->
   <parameter name="CalibrHCALBarrel" type="FloatVec">""" + str(self._CalibrHCalBarrel) + """</parameter>
   <parameter name="CalibrHCALEndcap" type="FloatVec">""" + str(self._CalibrHCalEndCap) + """</parameter>
@@ -459,7 +504,7 @@ class XmlGeneration:
   <!--ECAL Collection Names-->
   <parameter name="ECALCollections" type="StringVec">EcalBarrelSiliconCollection EcalEndcapSiliconCollection EcalEndcapRingCollection </parameter>
   <!--Index of ECal Layers-->
-  <parameter name="ECALLayers" type="IntVec">20 100  </parameter>
+  <parameter name="ECALLayers" type="IntVec">""" + str(self._ECalLayerChange) + """ 100  </parameter>
   <!--Threshold for ECAL Hits in GeV-->
   <parameter name="ECALThreshold" type="float">5e-05 </parameter>
   <!--HCAL Collection Names-->
@@ -485,7 +530,7 @@ class XmlGeneration:
   <parameter name="ECALGapCorrection" type="int"> 0 </parameter>
   <!--Gap Correction Fudge Factor-->
   <parameter name="ECALGapCorrectionFactor" type="float">""" + str(self._ECalGapCorrectionFactor) + """</parameter>
-  <parameter name="ECALModuleGapCorrectionFactor" type="int"> 0.0 </parameter>
+  <parameter name="ECALModuleGapCorrectionFactor" type="float"> 0.0 </parameter>
   <!-- Timing -->
   <parameter name="UseEcalTiming" type="int">1</parameter>
   <parameter name="UseHcalTiming" type="int">1</parameter>
@@ -500,9 +545,9 @@ class XmlGeneration:
   <parameter name="ECALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <parameter name="HCALDeltaTimeHitResolution" type="float"> 20.0 </parameter>
   <!-- Realistic ECal -->
-  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(self.ApplyECalRealisticDigi) + """</parameter>
+  <parameter name="ECAL_apply_realistic_digi" type="int">""" + str(ecalOtherRealisticDigi) + """</parameter>
   <parameter name="CalibECALMIP" type="float">""" + str(self._CalibrECalMIP) + """</parameter>
-  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self.ECalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="ECAL_maxDynamicRange_MIP" type="float">""" + str(self._ECalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="ECAL_elec_noise_mips" type="float">0.07</parameter>
   <parameter name="ECAL_deadCellRate" type="float">0</parameter>
   <parameter name="ECAL_miscalibration_uncorrel" type="float">0</parameter>
@@ -514,10 +559,10 @@ class XmlGeneration:
   <parameter name="ECAL_PPD_N_Pixels_uncertainty" type="float">0.05</parameter>
   <parameter name="ECAL_pixel_spread" type="float">0.05</parameter>
   <!-- Realistic HCal -->
-  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self.ApplyHCalRealisticDigi) + """</parameter>
+  <parameter name="HCAL_apply_realistic_digi" type="int">""" + str(self._ApplyHCalRealisticDigi) + """</parameter>
   <parameter name="HCALThresholdUnit" type="string">MIP</parameter>
   <parameter name="CalibHCALMIP" type="float">""" + str(self._CalibrHCalMIP) + """</parameter>
-  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self.HCalMaxDynamicRangeMIP) + """</parameter>
+  <parameter name="HCAL_maxDynamicRange_MIP" type="float">""" + str(self._HCalMaxDynamicRangeMIP) + """</parameter>
   <parameter name="HCAL_elec_noise_mips" type="float">0.06</parameter>
   <parameter name="HCAL_deadCellRate" type="float">0</parameter>
   <parameter name="HCAL_PPD_N_Pixels" type="int">2000</parameter>

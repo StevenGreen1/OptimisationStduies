@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ../../env.sh
+
 for detModel in {84..103}
 do
     for recoVar in 38 63 71

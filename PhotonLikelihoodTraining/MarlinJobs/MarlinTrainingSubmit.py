@@ -20,12 +20,12 @@ recoVar = int(sys.argv[2])
 
 eventsToSimulate = [ { 'EventType': "Z_uds", 'Energies': [500] } ]
 
-pandoraSettingsFile = '../../PandoraSettings/PandoraSettingsDefaultForTraining.xml' 
+pandoraSettingsFile = 'PandoraSettingsDefaultForTraining.xml' 
 
 #===== Second level user input =====
 
 gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_Detector_Model_' + str(detModel) + '.gear'
-calibConfigFile = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibration/CalibConfigFiles/MuonCalibration/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
+calibConfigFile = '../../Calibration/CalibConfigFiles/MuonCalibration/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
 
 #===== Begin =====
 
@@ -33,7 +33,7 @@ calibConfigFile = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibratio
 numberECalLayers = numberECalLayersDict[(int)(detModel)] 
 photonLikelihoodFileName = 'PandoraLikelihoodData_DetModel_' + str(detModel) + '_RecoStage_' + str(recoVar) + '.xml'
 
-os.system('cp PandoraSettings/' + pandoraSettingsFile + ' .')
+os.system('cp ../../PandoraSettings/' + pandoraSettingsFile + ' .')
 
 pandoraBase = open(pandoraSettingsFile,'r')
 pandoraContentBase = pandoraBase.read()
@@ -51,7 +51,7 @@ os.system('cp ' + gearFile + ' .')
 gearFileLocal = os.path.basename(gearFile)
 
 # Tidy Up?
-idyUp = True
+tidyUp = True
 
 # Start submission
 JobIdentificationString = jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar)
