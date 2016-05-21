@@ -70,7 +70,7 @@
         <ReplaceCurrentClusterList>false</ReplaceCurrentClusterList>
         <ShouldMakePdfHistograms>false</ShouldMakePdfHistograms>
         <NEnergyBins>9</NEnergyBins>
-        <HistogramFile>PhotonLikelihoodData</HistogramFile>
+        <HistogramFile>/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraSettings/TrainedSettings/LikelihoodData/Detector_Model_96/Reco_Stage_38/Z_uds/500GeV/PandoraLikelihoodData_DetModel_96_RecoStage_38.xml</HistogramFile>
     </algorithm>
 
     <!-- Clustering parent algorithm runs a daughter clustering algorithm -->
