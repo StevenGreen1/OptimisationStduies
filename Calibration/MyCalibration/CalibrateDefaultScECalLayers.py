@@ -21,7 +21,7 @@ for detectorModel in range(100,104):
     if not os.path.isfile(photonLikelihoodData):
         continue
 
-    Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Si', True)
+    Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Sc', True)
 
 # No timing cut, 1 GeV truncation, no realistic digi
 for detectorModel in range(100,104):
@@ -40,7 +40,7 @@ for detectorModel in range(100,104):
     if not os.path.isfile(photonLikelihoodData):
         continue
 
-    Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Si', False)
+    Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Sc', False)
 
 # 100ns timing cut, 1 GeV truncation, realistic digi
 for detectorModel in range(100,104):
@@ -59,5 +59,5 @@ for detectorModel in range(100,104):
     if not os.path.isfile(photonLikelihoodData):
         continue
 
-    Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Si', True)
+    Calibration(detectorModel, recoStage, slcioFormat, slcioPath, gearFile, pandoraSettings, outputPath, timingCut, hadronicEnergyTrunc, 'Sc', True)
 
