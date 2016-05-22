@@ -25,10 +25,10 @@ eventsToSimulate = [
 #===== Second level user input =====
 
 # All keys are given separate MarlinPandora processor, unless the word Likelihood appears as a substring of the key
-basePath = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraSettings/TrainedSettings/LikelihoodData/Detector_Model_' + str(detectorModel) + '/Reco_Stage_' + str(recoStage) + '/Z_uds/500GeV'
+basePath = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/PandoraSettings/TrainedSettings/LikelihoodData/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/Z_uds/500GeV'
 pandoraSettingsFiles = {}
 pandoraSettingsFiles['Default'] = os.path.join(basePath,'PandoraSettingsDefault.xml')  
-pandoraSettingsFiles['Default_LikelihoodData'] = os.path.join(basePath,'PandoraLikelihoodData_DetModel_' + str(detectorModel) + '_RecoStage_' + str(recoStage) + '.xml')
+pandoraSettingsFiles['Default_LikelihoodData'] = os.path.join(basePath,'PandoraLikelihoodData_DetModel_' + str(detModel) + '_RecoStage_' + str(recoVar) + '.xml')
 #pandoraSettingsFiles['Muon'] = '../PandoraSettings/PandoraSettingsMuon.xml'
 #pandoraSettingsFiles['PerfectPhoton'] = '../PandoraSettings/PandoraSettingsPerfectPhoton.xml'
 #pandoraSettingsFiles['PerfectPhotonNK0L'] = '../PandoraSettings/PandoraSettingsPerfectPhotonNeutronK0L.xml'
@@ -36,7 +36,7 @@ pandoraSettingsFiles['PerfectPFA'] = '../PandoraSettings/PandoraSettingsPerfectP
 
 gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_Detector_Model_' + str(detModel) + '.gear'
 
-calibConfigPath = '/r04/lc/sg568/HCAL_Optimisation_Studies/Calibration/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/DefaultCalibration/Validation'
+calibConfigPath = '/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/Calibration/CalibConfigFiles/DefaultCalibration'
 calibConfigFile = os.path.join(calibConfigPath,'CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py')
 
 #=====
@@ -84,7 +84,7 @@ for eventSelection in eventsToSimulate:
 
 
             sys.exit()
-            outputPath = '/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '_Run5/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
+            outputPath = '/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
 
             lfn = '/ilc/user/s/sgreen/' + outputPath + '/' + outputFiles[0]
             if doesFileExist(lfn):
@@ -104,7 +104,7 @@ for eventSelection in eventsToSimulate:
             job.setOutputSandbox(['*.log','*.gear','*.mac','*.steer','*.xml'])
             job.setOutputData(outputFiles,OutputPath=outputPath) # On grid
             job.setName(jobDescription + '_Detector_Model_' + str(detModel) + '_Reco_' + str(recoVar))
-            job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us','OSG.CIT.us'])
+            job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us','OSG.CIT.us','LCG.LAPP.fr'])
             job.dontPromptMe()
             res = job.append(ma)
 
