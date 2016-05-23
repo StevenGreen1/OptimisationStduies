@@ -15,8 +15,7 @@ from Logic.EnergyResolutionAnalysisGridJobs import *
 jobDescription = 'OptimisationStudies_ECalStudies'
 detModel = sys.argv[1] 
 recoVar = sys.argv[2]
-#eventsToSimulate = [ { 'EventType': "Kaon0L", 'Energies': [1,2,3,4,5,6,7,8,9,10,15,20,25,30,35,40,45,50] } ]
-eventsToSimulate = [ { 'EventType': "Kaon0L", 'Energies': [1,2,5,10,15,20,25,30,40,50] } ]
+eventsToSimulate = [ { 'EventType': "Kaon0L", 'Energies': [10,20,50,100,200,500] } ]
 pandoraSettings = 'Default'
 
 #===== Second level user input =====
@@ -59,7 +58,8 @@ for eventSelection in eventsToSimulate:
     job.setJobGroup(JobIdentificationString)
     job.setInputSandbox(['LFN:/ilc/user/s/sgreen/EnergyResolutionTarBall/lib.tar.gz', 'RunFile.txt']) 
     job.setInputData(allRootFilesToUse)
-    job.setOutputData(outputFiles,OutputPath='/OptimisationStudies/EnergyResolution/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType)
+    outputPath = '/' + jobDescription + '/EnergyResolution/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType
+    job.setOutputData(outputFiles,OutputPath=outputPath)
     job.setName(JobIdentificationString)
     job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us','OSG.CIT.us'])
     job.dontPromptMe()
