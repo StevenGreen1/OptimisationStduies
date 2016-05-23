@@ -1,4 +1,4 @@
-# Example to submit Marlin job: MarlinExample.py
+# Example to submit AnalysePerformance job: SubmitAnalysePerformance.py
 import os
 import sys
 
@@ -18,11 +18,6 @@ recoVar = sys.argv[2]
 eventsToSimulate = [ { 'EventType': "Z_uds", 'Energies': [91, 200, 360, 500] } ]
 pandoraSettings = sys.argv[3]
 
-# MarlinReco_ILD_o1_v06_GJN38_uds91_10_600_Muon.root
-# MarlinReco_ILD_o1_v06_GJN38_uds91_10_600_PerfectPFA.root
-# MarlinReco_ILD_o1_v06_GJN38_uds91_10_600_PerfectPhoton.root
-# MarlinReco_ILD_o1_v06_GJN38_uds91_10_600_PerfectPhotonNK0L.root
-# MarlinReco_ILD_o1_v06_GJN38_uds91_10_700_Default.root
 #===== Second level user input =====
 
 #=====
@@ -35,7 +30,6 @@ for eventSelection in eventsToSimulate:
     eventType = eventSelection['EventType']
     for energy in eventSelection['Energies']:
         rootFilesToProcess = getRootFiles(jobDescription,detModel,recoVar,energy,eventType,pandoraSettings)
-#        print 'Submitting analysis of ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.  Pandora settings ' + str(pandoraSettings) + '.'  
 
         runFileName = 'runfile.txt'
         runFile = open(runFileName,'w')
@@ -69,7 +63,7 @@ for eventSelection in eventsToSimulate:
         job.setOutputData(outputFiles,OutputPath=outputPath)
 
         job.setName(JobIdentificationString)
-        job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us','OSG.CIT.us'])
+        job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us','OSG.CIT.us','LCG.LAPP.fr'])
         job.dontPromptMe()
         #job.setCPUTime(1000)
         res = job.append(genericApplication)
@@ -77,6 +71,7 @@ for eventSelection in eventsToSimulate:
         if not res['OK']:
             print res['Message']
             exit()
+        print 'Submitting job. (' + str(detModel) + ', ' + str(recoVar) + ', ' + eventType + ', ' + str(energy) + ')'
         job.submit(diracInstance)
         os.system('rm *.cfg')
         os.system('rm runfile.txt')

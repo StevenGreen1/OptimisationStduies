@@ -1,24 +1,25 @@
 #!/bin/bash
 
-for detModel in {96..99}
+for detModel in {84..103}
 do
-    for recoVar in 71 
+    for recoVar in 38 63 71
     do
-        for pandora in "PerfectPFA" "PerfectPhoton" "PerfectPhotonNK0L" "Default"
+        for pandora in "Default"
         do
             python SubmitAnalysePerformance.py ${detModel} ${recoVar} ${pandora}
         done
     done
 done
 
-#for detModel in {90..95}
-#do
-#    for recoVar in 79 63
-#    do
-#        for pandora in "PerfectPFA" "PerfectPhoton" "PerfectPhotonNK0L" "Default"
-#        do
-#            python SubmitAnalysePerformance.py ${detModel} ${recoVar} ${pandora}
-#        done
-#    done
-#done
+for detModel in {84..103}
+do
+    for recoVar in 38 63 71
+    do
+        for pandora in "PerfectPFA" "PerfectPhoton" "PerfectPhotonNK0L" "Muon"
+        do
+            python SubmitAnalysePerformance.py ${detModel} ${recoVar} ${pandora}
+        done
+    done
+done
+
 
