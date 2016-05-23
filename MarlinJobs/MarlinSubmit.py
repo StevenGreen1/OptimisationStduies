@@ -82,8 +82,6 @@ for eventSelection in eventsToSimulate:
             with open("MarlinSteering.steer" ,"w") as SteeringFile:
                 SteeringFile.write(xmlTemplate)
 
-
-            sys.exit()
             outputPath = '/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
 
             lfn = '/ilc/user/s/sgreen/' + outputPath + '/' + outputFiles[0]
