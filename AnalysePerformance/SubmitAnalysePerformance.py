@@ -23,13 +23,15 @@ pandoraSettings = sys.argv[3]
 #=====
 
 # Start submission
-JobIdentificationString = jobDescription + '_AnalysePerformance'
+JobIdentificationString = jobDescription + '_AnalysePerformance_DetectorModel_' + str(detModel) + '_ReconstructionVariant_' + str(recoVar) + '_PandoraSettings' + pandoraSettings
 diracInstance = DiracILC(withRepo=True,repoLocation="%s.cfg" %( JobIdentificationString))
 
 for eventSelection in eventsToSimulate:
     eventType = eventSelection['EventType']
     for energy in eventSelection['Energies']:
         rootFilesToProcess = getRootFiles(jobDescription,detModel,recoVar,energy,eventType,pandoraSettings)
+
+#        rootFilesToProcess = rootFilesToProcess[:1] # Testing with one file.
 
         runFileName = 'runfile.txt'
         runFile = open(runFileName,'w')
