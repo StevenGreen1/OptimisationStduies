@@ -47,7 +47,7 @@ for eventSelection in eventsToSimulate:
                      ]
 
         outputFiles = arguements[1:]
-        outputPath = '/' + jobDescription + '/AnalysePerformance/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
+        outputPath = '/' + jobDescription + '/AnalysePerformance/Detector_Model_' + str(detModel) + '_Run2/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
 
         lfn = '/ilc/user/s/sgreen/' + outputPath + '/' + arguements[1]
         if doesFileExist(lfn):
@@ -66,6 +66,7 @@ for eventSelection in eventsToSimulate:
 
         job.setName(JobIdentificationString)
         job.setBannedSites(['LCG.IN2P3-CC.fr','LCG.IN2P3-IRES.fr','LCG.KEK.jp','OSG.PNNL.us','OSG.CIT.us','LCG.LAPP.fr'])
+        job.setDestination('LCG.CERN.ch')
         job.dontPromptMe()
         #job.setCPUTime(1000)
         res = job.append(genericApplication)
