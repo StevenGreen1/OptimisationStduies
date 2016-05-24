@@ -85,10 +85,14 @@ for eventSelection in eventsToSimulate:
 
             outputPath = '/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '_Run2/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
 
+            skipJob = False
             for outputFile in outputFiles:
                 lfn = '/ilc/user/s/sgreen/' + outputPath + '/' + outputFile
-                if doesFileExist(lfn):
-                    continue
+                if not doesFileExist(lfn):
+                    skipJob = True
+
+            if skipJob:
+                continue
 
             print 'Submitting ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.  Slcio file ' + slcioFile + '.'  
 
