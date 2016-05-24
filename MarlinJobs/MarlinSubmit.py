@@ -10,12 +10,13 @@ from ILCDIRAC.Interfaces.API.NewInterface.Applications import *
 
 from Logic.XmlGenerationLogic import *
 from Logic.DiracTools import *
+from Logic.DetectorInfo import *
 
 #===== User Input =====
 
 jobDescription = 'OptimisationStudies_ECalStudies'
-detModel = sys.argv[1] 
-recoVar = sys.argv[2]
+detModel = int(sys.argv[1])
+recoVar = int(sys.argv[2])
 
 eventsToSimulate = [ { 'EventType': "Z_uds", 'Energies': [91, 200, 360, 500] }
 #                       'EventType': "Kaon0L", 'Energies': [10, 20, 50, 100, 200, 500] },
@@ -75,14 +76,16 @@ for eventSelection in eventsToSimulate:
             print 'Checking ' + eventType + ' ' + str(energy) + 'GeV jobs.  Detector model ' + str(detModel) + '.  Reconstruction stage ' + str(recoVar) + '.  Slcio file ' + slcioFile + '.'  
 
             slcioFileNoPath = os.path.basename(slcioFile)
-            xmlGeneration = XmlGeneration(calibConfigFile,'Si',True,pandoraSettingsFilesLocal,gearFileLocal,slcioFileNoPath)
+            xmlGeneration = XmlGeneration(calibConfigFile,ecalAbsMatType[detModel],realisticDigi[recoVar],pandoraSettingsFilesLocal,gearFileLocal,slcioFileNoPath)
             xmlTemplate = xmlGeneration.produceXml()
             outputFiles = xmlGeneration.listOutputFiles()
 
             with open("MarlinSteering.steer" ,"w") as SteeringFile:
                 SteeringFile.write(xmlTemplate)
 
-            outputPath = '/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
+            sys.exit()
+
+            outputPath = '/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '_Run2/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
 
             lfn = '/ilc/user/s/sgreen/' + outputPath + '/' + outputFiles[0]
             if doesFileExist(lfn):
