@@ -610,6 +610,14 @@ TString.h
 TQClass.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TQClass.h
 
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TROOT.h
+TDirectory.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TDirectory.h
+TList.h
+/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TList.h
+atomic
+-
+
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/TSchemaHelper.h
 Rtypes.h
 /cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/v01-17-07/root/5.34.30/include/Rtypes.h
@@ -766,7 +774,27 @@ unistd.h
 sys/types.h
 -
 
-/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/SingleParticleResolution/src/GroupedContainer.cc
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/TarballForGrid/SingleParticleResolutionDevelopment/src/GroupedContainer.cc
 GroupedContainer.h
-/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/SingleParticleResolution/src/GroupedContainer.h
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/TarballForGrid/SingleParticleResolutionDevelopment/src/GroupedContainer.h
+
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/TarballForGrid/SingleParticleResolutionDevelopment/src/ResolutionContainer.cc
+ResolutionContainer.h
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/TarballForGrid/SingleParticleResolutionDevelopment/src/ResolutionContainer.h
+
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/TarballForGrid/SingleParticleResolutionDevelopment/src/SingleParticleResolution.cxx
+fstream
+-
+iostream
+-
+sstream
+-
+vector
+-
+TFile.h
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/TarballForGrid/SingleParticleResolutionDevelopment/src/TFile.h
+TROOT.h
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/TarballForGrid/SingleParticleResolutionDevelopment/src/TROOT.h
+GroupedContainer.h
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/TarballForGrid/SingleParticleResolutionDevelopment/src/GroupedContainer.h
 

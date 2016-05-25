@@ -20,31 +20,32 @@ class GroupedContainer
         /*
          * Private Variables
          */
+        typedef std::map<const int,std::vector<std::string> > EnergyRootFileMap;
+        typedef std::vector<std::string> StringVector;
+        typedef std::vector<float> FloatVector;
+        typedef std::vector<int> IntVector;
+        typedef std::vector<TH1F*> HistVector;
+
+        const int m_DetectorModel;
+        const int m_ReconstructionVariant;
         TFile *m_pTFile;
-        int m_StageNumber;
-        std::vector<float> m_TrueEnergies;
-        std::vector<TH1F*> m_hPFOEnergy;
-        std::vector<float> m_MeanPFOEnergies;
-        std::vector<float> m_StdDevPFOEnergies;
-        std::vector<float> m_EnergyResolutions;
-        std::vector<float> m_EnergyResolutionErrors;
+        EnergyRootFileMap m_energyRootFileMap;
+        FloatVector m_TrueEnergies;
+        HistVector m_hPFOEnergy;
+        FloatVector m_MeanPFOEnergies;
+        FloatVector m_StdDevPFOEnergies;
+        FloatVector m_EnergyResolutions;
+        FloatVector m_EnergyResolutionErrors;
         TGraph *m_pResolutionPlot; 
-        TGraph *m_pScaledResolutionPlot; 
         TGraph *m_pLinearityPlot; 
-        TGraph *m_pLinearityDifferencePlot; 
-        TF1 *m_pResolutionFit;
-        TF1 *m_pLinearityFit;
-        float m_StochasticTerm;
-        float m_ConstantTerm;
-        float m_NoiseTerm;
-        float m_LinearityGradTerm;
-        float m_LinearityIntTerm;
+        TGraph *m_pFracLinearityPlot; 
+        int m_MaxEnergy;
 
     public:
         /*
          * Default Constructor
          */
-        GroupedContainer(TFile *pTFile, int stageNumber, std::vector<float> energies, std::vector<std::vector<std::string> > rootFiles);
+        GroupedContainer(const int detectorModel, const int reconstructionVariant, TFile *pTFile, EnergyRootFileMap energyRootFileMap);
 
         /*
          * Default Destructor
@@ -62,39 +63,14 @@ class GroupedContainer
         void LinearityMakePlot();
 
         /*
-         * Make plot of PFO energy - true energy vs true energy
+         * Make plot of PFO energy / true energy vs true energy
          */
-        void LinearityMakeDifferencePlot();
-
-        /*
-         * Fit the linearity plot 
-         */
-        void LinearityFit();
-
-        /*
-         * Draw the resolution plot
-         */
-        void LinearityDrawPlot();
+        void FractionalLinearityMakePlot();
 
         /*
          * Make the resolution plot
          */
         void ResolutionMakePlot();
-
-        /*
-         * Make the resolution scaled plot (resolution * sqrt(True Energy)
-         */
-        void ResolutionMakeScaledPlot();
-
-        /*
-         * Fit the resolution plot
-         */
-        void ResolutionFit();
-
-        /*
-         * Draw the resolution plot
-         */
-        void ResolutionDrawPlot();
 
         /*
          * Write plots to root file
@@ -104,17 +80,15 @@ class GroupedContainer
         /*
          * Tools
          */
-        std::string IntToString(int a);
+        template <class T>
+        std::string NumberToString(T Number);
 
         /*
          * Get Parameter Functions
          */
-        TGraph* GetLinearityPlot() { return m_pLinearityPlot; }
-        TGraph* GetLinearityDifferencePlot() { return m_pLinearityDifferencePlot; }
         TGraph* GetResolutionPlot() { return m_pResolutionPlot; }
-        TGraph* GetScaledResolutionPlot() { return m_pScaledResolutionPlot; }
-        TF1* GetResolutionFit() { return m_pResolutionFit; }
-        TF1* GetLinearityFit() { return m_pLinearityFit; }
+        TGraph* GetLinearityPlot() { return m_pLinearityPlot; }
+        TGraph* GetFractionalLinearityPlot() { return m_pFracLinearityPlot; }
 };
 
 #endif

@@ -1,1 +1,1 @@
-/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/SingleParticleResolution/bin/SingleParticleResolution.exe
+/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/TarballForGrid/SingleParticleResolutionDevelopment/bin/SingleParticleResolution

@@ -37,9 +37,9 @@ INCLUDE_DIRECTORIES(BEFORE ./include ) # use BEFORE to fix problem on mac osx (c
 
 ### LIBRARY AND TOOLS #######################################################
 
-ADD_EXECUTABLE(SingleParticleResolution.exe ./src/SingleParticleResolution.cxx ./src/ResolutionContainer.cc ./src/GroupedContainer.cc)
+ADD_EXECUTABLE(SingleParticleResolution ./src/SingleParticleResolution.cxx ./src/ResolutionContainer.cc ./src/GroupedContainer.cc)
 
-INSTALL( TARGETS SingleParticleResolution.exe DESTINATION bin PERMISSIONS
+INSTALL( TARGETS SingleParticleResolution DESTINATION bin PERMISSIONS
     OWNER_READ OWNER_WRITE OWNER_EXECUTE
     GROUP_READ GROUP_EXECUTE
     WORLD_READ WORLD_EXECUTE )

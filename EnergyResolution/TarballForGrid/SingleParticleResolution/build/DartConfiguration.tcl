@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: /usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/SingleParticleResolution
-BuildDirectory: /usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/SingleParticleResolution/build
+SourceDirectory: /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/TarballForGrid/SingleParticleResolutionDevelopment
+BuildDirectory: /var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/TarballForGrid/SingleParticleResolutionDevelopment/build
 
 # Where to place the cost data store
 CostDataFile: 
@@ -33,7 +33,7 @@ ScpCommand: /usr/bin/scp
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/CMake/2.8.5/bin/cmake" "/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/SingleParticleResolution"
+ConfigureCommand: "/cvmfs/ilc.desy.de/sw/x86_64_gcc44_sl6/CMake/2.8.5/bin/cmake" "/var/clus/usera/sg568/ilcsoft_v01_17_07/OptimisationStudies/EnergyResolution/TarballForGrid/SingleParticleResolutionDevelopment"
 MakeCommand: /usr/bin/gmake -i
 DefaultCTestConfigurationType: Release
 

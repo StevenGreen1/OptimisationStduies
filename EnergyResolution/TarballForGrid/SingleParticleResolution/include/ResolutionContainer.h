@@ -19,23 +19,21 @@ class ResolutionContainer
         /*
          * Private Variables
          */
+        typedef std::vector<std::string> StringVector;
+        typedef std::vector<float> FloatVector;
+
+        const int      m_DetectorModel;
+        const int      m_ReconstructionVariant;
         TFile         *m_pTFile;
-        int            m_StageNumber;
-        float          m_TrueEnergy;
-        std::vector<std::string>    m_RootFiles;
+        const int      m_TrueEnergy;
+        StringVector   m_RootFiles;
         TH1F          *m_hEnergy;
         int            m_BinNumber;
-        float          m_MaxHistogramEnergy;
-        float          m_FitPercentage;          // Percentage of data with narrowest rms to fit to
-        float          m_RMSFitRange;            // Fit range
-        float          m_FitStartPoint;          // Fit start
-        float          m_FitEndPoint;            // Fit end
         TF1           *m_GaussianFit;
         float          m_FitMean;
         float          m_FitStdDev;
         float          m_FitAmplitude;
         float          m_FitChi2;
-        float          m_IdealChi2;
         float          m_EnergyResolution;
         float          m_EnergyResolutionError;
 
@@ -43,7 +41,7 @@ class ResolutionContainer
         /*
          * Default Constructor
          */
-        ResolutionContainer(TFile *pTFile, int stageNumber, float energy, std::vector<std::string> rootFiles);
+        ResolutionContainer(const int detectorModel, const int reconstructionVariant, TFile *pTFile, const int energy, StringVector rootFiles);
 
         /*
          * Default Destructor
@@ -79,8 +77,8 @@ class ResolutionContainer
         /*
          * Tools
          */
-        std::string FloatToString(float a);
-        std::string IntToString(int a);
+        template <class T>
+        std::string NumberToString(T Number);
 
         /*
          * Get Parameter Functions
