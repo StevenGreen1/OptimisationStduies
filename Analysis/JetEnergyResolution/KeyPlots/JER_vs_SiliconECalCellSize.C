@@ -13,21 +13,21 @@
 
     float xAxisVairableError[6] = {0,0,0,0,0,0};
 
-    float Jet_Energy_91GeV_JER[6] = {3.71643,3.63179,3.65898,3.81863,4.05563,4.46735};
+    float Jet_Energy_91GeV_JER[6] = {3.76035,3.6469,3.70352,3.66154,3.82945,4.2754};
 
-    float Jet_Energy_200GeV_JER[6] = {2.93072,2.9336,2.94133,3.13555,3.60691,4.21006};
+    float Jet_Energy_200GeV_JER[6] = {2.92045,2.88127,2.91137,3.07918,3.27352,3.63381};
 
-    float Jet_Energy_360GeV_JER[6] = {2.94181,2.90597,2.97897,3.30067,3.78615,4.40714};
+    float Jet_Energy_360GeV_JER[6] = {2.84185,2.84624,2.95032,3.12574,3.47943,4.03145};
 
-    float Jet_Energy_500GeV_JER[6] = {3.11829,3.07604,3.18398,3.58679,4.15968,4.53885};
+    float Jet_Energy_500GeV_JER[6] = {2.95465,3.01247,3.12725,3.35,3.71702,4.30269};
 
-    float Jet_Energy_91GeV_JERError[6] = {0.0472942,0.0462171,0.046563,0.0485948,0.0516107,0.0568502};
+    float Jet_Energy_91GeV_JERError[6] = {0.0478531,0.0464093,0.0471298,0.0465957,0.0487324,0.0544075};
 
-    float Jet_Energy_200GeV_JERError[6] = {0.0375302,0.0396941,0.0396644,0.0401532,0.0461893,0.0539131};
+    float Jet_Energy_200GeV_JERError[6] = {0.0373987,0.0368969,0.0372824,0.0394314,0.04192,0.0465338};
 
-    float Jet_Energy_360GeV_JERError[6] = {0.0395882,0.0414674,0.0401721,0.0545883,0.0483698,0.059345};
+    float Jet_Energy_360GeV_JERError[6] = {0.036306,0.0363619,0.0376916,0.0399327,0.0444513,0.0542517};
 
-    float Jet_Energy_500GeV_JERError[6] = {0.0419215,0.0439165,0.0406602,0.0590143,0.0684402,0.0692329};
+    float Jet_Energy_500GeV_JERError[6] = {0.0377315,0.0384699,0.0399357,0.0427803,0.0474673,0.0549464};
 
     TLegend *pLegend = new TLegend(0.6, 0.6, 0.9, 0.9);
     TGraphErrors *pTGraphErrors_Jet_Energy_91 = new TGraphErrors(6,xAxisVairable,Jet_Energy_91GeV_JER,xAxisVairableError,Jet_Energy_91GeV_JERError);

@@ -14,19 +14,52 @@ jetEnergyList = [91,200,360,500]
 reconstructionVariantList = [71] #range(69,77)
 
 # ECal Cell Size Silicon
-resultsName = 'Silicon ECal Number of Layers'
-detectorModelList = [99,98,97,96]
-xAxisPlottingList = [16,20,26,30]
-xAxisTitle = 'Silicon ECal Number of Layers'
-
-ecalLayersResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
-ecalLayersResults.readData()
-ecalLayersResults.optimiseData()
-ecalLayersResults.plotData()
+#resultsName = 'Silicon ECal Cell Size'
+#detectorModelList = [84,85,86,87,88,89]
+#xAxisPlottingList = [3,5,7,10,15,20]
+#xAxisTitle = 'Silicon ECal Cell Size [mm^{2}]'
+#ecalSiCellsResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
+#ecalSiCellsResults.readData()
+#ecalSiCellsResults.optimiseData()
+#ecalSiCellsResults.plotData()
 #ecalLayersResults.analyseOptimalData()
-ecalLayersResults.generateConfusionTerms()
-ecalLayersResults.plotConfusionData(500)
-ecalLayersResults.plotConfusionData(91)
+#ecalLayersResults.generateConfusionTerms()
+#ecalLayersResults.plotConfusionData(500)
+#ecalLayersResults.plotConfusionData(91)
+
+# ECal Cell Size Scintillator
+resultsName = 'Scintillator ECal Cell Size'
+detectorModelList = [90,91,92,93,94,95]
+xAxisPlottingList = [3,5,7,10,15,20]
+xAxisTitle = 'Scintillator ECal Cell Size [mm^{2}]'
+ecalScCellsResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
+ecalScCellsResults.readData()
+ecalScCellsResults.optimiseData()
+ecalScCellsResults.plotData()
+
+# ECal Cell Silicon Number of Layers
+#resultsName = 'Silicon ECal Number of Layers'
+#detectorModelList = [99,98,97,96]
+#xAxisPlottingList = [16,20,26,30]
+#xAxisTitle = 'Silicon ECal Number of Layers'
+#ecalSiLayersResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
+#ecalSiLayersResults.readData()
+#ecalSiLayersResults.optimiseData()
+#ecalSiLayersResults.plotData()
+
+# ECal Cell Scintillator Number of Layers
+resultsName = 'Scintillator ECal Number of Layers'
+detectorModelList = [103,102,101,100]
+xAxisPlottingList = [16,20,26,30]
+xAxisTitle = 'Scintillator ECal Number of Layers'
+ecalScLayersResults = Results(resultsName,detectorModelList,xAxisPlottingList,xAxisTitle,reconstructionVariantList,jetEnergyList, False, 71)
+ecalScLayersResults.readData()
+ecalScLayersResults.optimiseData()
+ecalScLayersResults.plotData()
+
+
+
+
 
 sys.exit()
 
