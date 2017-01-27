@@ -106,6 +106,18 @@ def getMokkaSteeringFileTemplate(baseFileName,detectorConfigFile):
         mokkaSteeringTemplate = re.sub('/Mokka/init/userInitString Ecal_Sc_cellDim1_string ECAL_SC_CELLDIM_XXXX','',mokkaSteeringTemplate)
         mokkaSteeringTemplate = re.sub('/Mokka/init/userInitString Ecal_Sc_cellDim2_string ECAL_SC_CELLDIM_XXXX','',mokkaSteeringTemplate)
 
+    # HCal Cell size as Function of Depth
+    if config['HCalNLayersLowGran'] != '':
+        mokkaSteeringTemplate = re.sub('HCAL_NLAYERS_LOWGRAN_XXXX',str(config['HCalNLayersLowGran']),mokkaSteeringTemplate)
+    else:
+        mokkaSteeringTemplate = re.sub('/Mokka/init/userInitInt Hcal_nlayers_lowgran HCAL_NLAYERS_LOWGRAN_XXXX','',mokkaSteeringTemplate)
+
+    # HCal Cell size as Function of Depth
+    if config['HCalCellSizeLowGran'] != '':
+        mokkaSteeringTemplate = re.sub('HCAL_CELL_SIZE_LOWGRAN_XXXX',str(config['HCalCellSizeLowGran']),mokkaSteeringTemplate)
+    else:
+        mokkaSteeringTemplate = re.sub('/Mokka/init/userInitDouble Hcal_cell_size_lowgran HCAL_CELL_SIZE_LOWGRAN_XXXX','',mokkaSteeringTemplate)
+
     return mokkaSteeringTemplate
 
 ### ----------------------------------------------------------------------------------------------------
