@@ -17,7 +17,7 @@ detectorModelNumber = sys.argv[1]
 eventsToSimulate = [ { 'EventType': "Z_uds"  , 'EventsPerFile' : 200 , 'Energies':  ['500'] } ]
 
 baseXmlFile  = '../../MokkaTemplateSteering/MokkaSteer.steer'
-eventsPerJob = 200
+eventsPerJob = 100
 
 jobName = 'OptimisationStudies_ECalStudies'
 
