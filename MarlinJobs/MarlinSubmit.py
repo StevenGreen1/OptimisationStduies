@@ -83,12 +83,12 @@ for eventSelection in eventsToSimulate:
             with open("MarlinSteering.steer" ,"w") as SteeringFile:
                 SteeringFile.write(xmlTemplate)
 
-            outputPath = '/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '_Run2/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
+            outputPath = '/' + jobDescription + '/MarlinJobs/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/' + eventType + '/' + str(energy) + 'GeV'
 
             skipJob = False
             for outputFile in outputFiles:
                 lfn = '/ilc/user/s/sgreen/' + outputPath + '/' + outputFile
-                if not doesFileExist(lfn):
+                if doesFileExist(lfn):
                     skipJob = True
 
             if skipJob:
