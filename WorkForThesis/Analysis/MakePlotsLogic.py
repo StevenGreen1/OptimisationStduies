@@ -20,7 +20,7 @@ class Results:
     m_PandoraSettings = ['Default','PerfectPhoton','PerfectPhotonNK0L','PerfectPFA']
 
     m_DetectorLabel = defaultdict(dict)
-    m_DetectorLabel = {45:'Steel HCal Absorber Material, QGSP_BERT', 46:'Steel HCal Absorber Material, QGSP_BERT_HP', 47:'Tungsten HCal Absorber Material, QGSP_BERT', 48:'Tungsten HCal Absorber Material, QGSP_BERT_HP'}
+    m_DetectorLabel = {85:'Steel HCal Absorber Material, QGSP_BERT', 46:'Steel HCal Absorber Material, QGSP_BERT_HP', 47:'Tungsten HCal Absorber Material, QGSP_BERT', 48:'Tungsten HCal Absorber Material, QGSP_BERT_HP'}
 
 #==================== 
 
@@ -124,7 +124,7 @@ class Results:
         if self.algorithm:
             if 'HCal Cell' in self.resultsName:
                 optimalRecoVar = defaultdict(dict)
-                optimalRecoVar = { 39:self.m_RecoVarFromTrunc[(0.5)], 40:self.m_RecoVarFromTrunc[(0.75)], 38:self.m_RecoVarFromTrunc[(1)], 41:self.m_RecoVarFromTrunc[(1.5)], 42:self.m_RecoVarFromTrunc[(2)], 43:self.m_RecoVarFromTrunc[(5)] }
+                optimalRecoVar = { 39:self.m_RecoVarFromTrunc[(0.5)], 40:self.m_RecoVarFromTrunc[(0.75)], 38:self.m_RecoVarFromTrunc[(1)], 41:self.m_RecoVarFromTrunc[(1.5)], 42:self.m_RecoVarFromTrunc[(2)], 43:self.m_RecoVarFromTrunc[(5)], 85:self.m_RecoVarFromTrunc[(1)] }
                 self.optimalRecoVar = optimalRecoVar
             else:
                 print 'Please speicify optimised energy truncations.'
