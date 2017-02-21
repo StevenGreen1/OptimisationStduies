@@ -7,13 +7,13 @@ void Draw_ER_vs_SiECalNLayers()
     const int energy(100);
 
     std::vector<int> detectorModels;
-    detectorModels.push_back(96);
+    detectorModels.push_back(85);
     detectorModels.push_back(97);
     detectorModels.push_back(98);
     detectorModels.push_back(99);
 
     std::map<int, int> detModelToLayerNumber;
-    detModelToLayerNumber[96] = 30;
+    detModelToLayerNumber[85] = 30;
     detModelToLayerNumber[97] = 26;
     detModelToLayerNumber[98] = 20;
     detModelToLayerNumber[99] = 16;
@@ -64,7 +64,7 @@ void Draw_ER_vs_SiECalNLayers()
         std::cout << "Energy Resolution  : " << energyResolution*100 << std::endl;
     }
 
-    TH2F *pAxes = new TH2F("axesEj","",100,14,32,1000,2.4,3.4);
+    TH2F *pAxes = new TH2F("axesEj","",100,14,32,1000,2.0,3.4);
     pAxes->SetTitle("100 GeV Photon Energy Resolution vs Number of Layers in ECal (Si)");
     pAxes->GetYaxis()->SetTitle("#sigma_{Reco} / E_{Reco}");
     pAxes->GetXaxis()->SetTitle("Number of ECal Layers");

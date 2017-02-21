@@ -1,6 +1,6 @@
 {
 //=========Macro generated from canvas: c1_n4/c1_n4
-//=========  (Tue Feb 21 10:43:08 2017) by ROOT version5.34/30
+//=========  (Tue Feb 21 16:09:33 2017) by ROOT version5.34/30
    TCanvas *c1_n4 = new TCanvas("c1_n4", "c1_n4",12,51,700,500);
    gStyle->SetOptStat(0);
    c1_n4->Range(0,0,1,1);
@@ -49,8 +49,8 @@
    gre->SetPointError(3,0,0.1324571);
    gre->SetPoint(4,42,10.82878);
    gre->SetPointError(4,0,0.1240853);
-   gre->SetPoint(5,48,10.7208);
-   gre->SetPointError(5,0,0.1265632);
+   gre->SetPoint(5,48,10.16821);
+   gre->SetPointError(5,0,0.120704);
    gre->SetPoint(6,54,9.990491);
    gre->SetPointError(6,0,0.124178);
    gre->SetPoint(7,60,9.808668);

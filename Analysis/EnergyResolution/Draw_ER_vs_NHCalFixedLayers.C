@@ -1,6 +1,6 @@
 
-// /r06/lc/sg568/HCAL_Optimisation_Studies/EnergyResolutionResults/Detector_Model_103/Reco_Stage_38/Kaon0L
-// EnergyResolution_PandoraSettingsDefault_DetectorModel_103_ReconstructionVariant_38_Kaon0L.root
+// /r06/lc/sg568/HCAL_Optimisation_Studies/EnergyResolutionResults/Detector_Model_103/Reco_Stage_85/Kaon0L
+// EnergyResolution_PandoraSettingsDefault_DetectorModel_103_ReconstructionVariant_85_Kaon0L.root
 void Draw_ER_vs_NHCalFixedLayers() 
 {
     const int recoVar(71);
@@ -9,14 +9,14 @@ void Draw_ER_vs_NHCalFixedLayers()
     std::vector<int> detectorModels;
     detectorModels.push_back(116);
     detectorModels.push_back(117);
-    detectorModels.push_back(38);
+    detectorModels.push_back(85);
     detectorModels.push_back(118);
     detectorModels.push_back(119);
 
     std::map<int, int> detModelToLayerNumber;
     detModelToLayerNumber[116] = 36;
     detModelToLayerNumber[117] = 42;
-    detModelToLayerNumber[38] = 48;
+    detModelToLayerNumber[85] = 48;
     detModelToLayerNumber[118] = 54;
     detModelToLayerNumber[119] = 60;
 

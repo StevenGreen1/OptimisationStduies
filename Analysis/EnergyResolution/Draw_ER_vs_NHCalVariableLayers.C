@@ -1,6 +1,6 @@
 
-// /r06/lc/sg568/HCAL_Optimisation_Studies/EnergyResolutionResults/Detector_Model_103/Reco_Stage_38/Photon
-// EnergyResolution_PandoraSettingsDefault_DetectorModel_103_ReconstructionVariant_38_Photon.root
+// /r06/lc/sg568/HCAL_Optimisation_Studies/EnergyResolutionResults/Detector_Model_103/Reco_Stage_85/Photon
+// EnergyResolution_PandoraSettingsDefault_DetectorModel_103_ReconstructionVariant_85_Photon.root
 void Draw_ER_vs_NHCalVariableLayers() 
 {
     const int recoVar(71);
@@ -12,7 +12,7 @@ void Draw_ER_vs_NHCalVariableLayers()
     detectorModels.push_back(51);
     detectorModels.push_back(52);
     detectorModels.push_back(53);
-    detectorModels.push_back(38);
+    detectorModels.push_back(85);
     detectorModels.push_back(54);
     detectorModels.push_back(55);
 
@@ -22,7 +22,7 @@ void Draw_ER_vs_NHCalVariableLayers()
     detModelToLayerNumber[51] = 30;
     detModelToLayerNumber[52] = 36;
     detModelToLayerNumber[53] = 42;
-    detModelToLayerNumber[38] = 48;
+    detModelToLayerNumber[85] = 48;
     detModelToLayerNumber[54] = 54;
     detModelToLayerNumber[55] = 60;
 

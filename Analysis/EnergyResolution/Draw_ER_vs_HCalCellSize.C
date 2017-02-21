@@ -6,7 +6,7 @@ void Draw_ER_vs_HCalCellSize()
     std::vector<int> detectorModels;
     detectorModels.push_back(39);
     detectorModels.push_back(40);
-    detectorModels.push_back(38);
+    detectorModels.push_back(85);
     detectorModels.push_back(41);
     detectorModels.push_back(42);
     detectorModels.push_back(43);
@@ -14,7 +14,7 @@ void Draw_ER_vs_HCalCellSize()
     std::map<int, int> detModelToRecoVar;
     detModelToRecoVar[39] = 69;
     detModelToRecoVar[40] = 70;
-    detModelToRecoVar[38] = 71;
+    detModelToRecoVar[85] = 71;
     detModelToRecoVar[41] = 72;
     detModelToRecoVar[42] = 73;
     detModelToRecoVar[43] = 74;
@@ -22,7 +22,7 @@ void Draw_ER_vs_HCalCellSize()
     std::map<int, int> detModelToCellSize;
     detModelToCellSize[39] = 10;
     detModelToCellSize[40] = 20;
-    detModelToCellSize[38] = 30;
+    detModelToCellSize[85] = 30;
     detModelToCellSize[41] = 40;
     detModelToCellSize[42] = 50;
     detModelToCellSize[43] = 100;

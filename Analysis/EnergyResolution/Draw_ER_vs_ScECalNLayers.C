@@ -7,13 +7,13 @@ void Draw_ER_vs_ScECalNLayers()
     const int energy(100);
 
     std::vector<int> detectorModels;
-    detectorModels.push_back(100);
+    detectorModels.push_back(91);
     detectorModels.push_back(101);
     detectorModels.push_back(102);
     detectorModels.push_back(103);
 
     std::map<int, int> detModelToLayerNumber;
-    detModelToLayerNumber[100] = 30;
+    detModelToLayerNumber[91] = 30;
     detModelToLayerNumber[101] = 26;
     detModelToLayerNumber[102] = 20;
     detModelToLayerNumber[103] = 16;

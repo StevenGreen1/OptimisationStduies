@@ -1,19 +1,19 @@
 
-// /r06/lc/sg568/HCAL_Optimisation_Studies/EnergyResolutionResults/Detector_Model_103/Reco_Stage_38/Photon
-// EnergyResolution_PandoraSettingsDefault_DetectorModel_103_ReconstructionVariant_38_Photon.root
+// /r06/lc/sg568/HCAL_Optimisation_Studies/EnergyResolutionResults/Detector_Model_103/Reco_Stage_85/Photon
+// EnergyResolution_PandoraSettingsDefault_DetectorModel_103_ReconstructionVariant_85_Photon.root
 void Draw_ER_vs_HCalMaterial() 
 {
     const int recoVar(71);
     const int energy(50);
 
     std::vector<int> detectorModels;
-    detectorModels.push_back(38);
+    detectorModels.push_back(85);
     detectorModels.push_back(46);
     detectorModels.push_back(47);
     detectorModels.push_back(48);
 
     std::map<int, int> detModelToHCalMaterial;
-    detModelToHCalMaterial[38] = 1;
+    detModelToHCalMaterial[85] = 1;
     detModelToHCalMaterial[46] = 2;
     detModelToHCalMaterial[47] = 3;
     detModelToHCalMaterial[48] = 4;
